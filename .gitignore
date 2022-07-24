@@ -6,7 +6,6 @@
 Thumbs.db
 archive
 node_modules
-content
 public
 resources
 netlify.toml
