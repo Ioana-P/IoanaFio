@@ -4,7 +4,7 @@
 widget: experience
 
 # This file represents a page section.
-headless: true
+headless: false
 
 # Order that this section appears on the page.
 weight: 40
@@ -74,9 +74,9 @@ experience:
     date_start: '2020-09-14'
     date_end: '2021-01-30'
     description: |2-
-          * Led multiple student cohorts to success in their final portfolio projects, on a range of topics from image recognition to recommendation systems. 
-          * Delivered lectures and workshops on topics ranging from NLP to introductory neural networks, Principal Component Analysis to setting up notebook instances in Google Cloud. 
-          * Acted as supervisor, mediator, tutor and occasional motivational speaker - imparting code, advice and encouragement to ensure student success.
+        * Led multiple student cohorts to success in their final portfolio projects, on a range of topics from image recognition to recommendation systems. 
+        * Delivered lectures and workshops on topics ranging from NLP to introductory neural networks, Principal Component Analysis to setting up notebook instances in Google Cloud. 
+        * Acted as supervisor, mediator, tutor and occasional motivational speaker - imparting code, advice and encouragement to ensure student success.
           
           
   - title: Science Teacher | Teach First Participant
@@ -84,12 +84,13 @@ experience:
     company_url: 'https://www.teachfirst.org.uk/'
     # company_logo: org-x
     location: London, UK
-    date_start: '2020-09-14'
-    date_end: '2021-01-31'
-    description: 
-        * Led multiple student cohorts to success in their final portfolio projects, on a range of topics from image recognition to recommendation systems. 
-        * Delivered lectures and workshops on topics ranging from NLP to introductory neural networks, Principal Component Analysis to setting up notebook instances in Google Cloud. 
-        * Acted as supervisor, mediator, tutor and occasional motivational speaker: imparting code, advice and encouragement to ensure student success.   
+    date_start: '2017-09-01'
+    date_end: '2019-07-26'
+    description: |2-
+      Developed pedagogical and leadership skills through two years of working full time as a teacher and studying towards a vocational qualification (PGDE - Postgraduate Diploma in Education).
+      * Acted as departmental Physics expert, providing colleagues with support and guidance on implementing the recently changed curriculum. 
+      * Designed, delivered and evaluated research and evidence-informed interventions in my classrooms.
+      * Took ownership of certain parts of the curriculum: delivered a session to the rest of the Science department introducing the National Curriculum’s updated unit on Energy and ways to effectively teach it.   
         
 
 design:
