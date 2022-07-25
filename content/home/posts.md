@@ -6,8 +6,11 @@ widget: pages
 # This file represents a page section.
 headless: true
 
+# Display widget or nay
+active: false
+
 # Order that this section appears on the page.
-weight: 60
+weight: 45
 
 title: Recent Posts
 subtitle:

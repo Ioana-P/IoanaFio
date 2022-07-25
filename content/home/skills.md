@@ -39,7 +39,11 @@ feature:
   - description:
     icon: mltranslation
     icon_pack: custom
-    name: Natural Language Processing
+    name: NLProc
+  - description:
+    icon: pedagogy
+    icon_pack: custom
+    name: Teaching
     
 
 # Uncomment to use emoji icons.

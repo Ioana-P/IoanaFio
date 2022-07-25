@@ -6,10 +6,13 @@ widget: featured
 # This file represents a page section.
 headless: true
 
-# Order that this section appears on the page.
-weight: 80
+# Display widget or nay
+active: true
 
-title: Featured Publications
+# Order that this section appears on the page.
+weight: 20
+
+title: Featured Posts
 subtitle: ''
 
 content:

@@ -7,8 +7,9 @@ main:
   - name: Home
     url: '#about'
     weight: 10
-  - name: Data Science Posts
-    url: '#posts'
+  - name: Posts
+    # url: '#posts'
+    url: "post/"
     weight: 20
   - name: Projects
     url: '#projects'

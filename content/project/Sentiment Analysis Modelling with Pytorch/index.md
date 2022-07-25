@@ -1,19 +1,23 @@
 ---
-date: "2016-04-27T00:00:00Z"
+date: "2020-06-04"
 external_link: ""
 image:
-  caption: Photo by rawpixel on Unsplash
+  caption: AWS Icon from uxwing.com
   focal_point: Smart
 links:
-- icon: twitter
+- icon: github
   icon_pack: fab
-  name: Follow
-  url: https://twitter.com/georgecushen
-slides: example
-summary: An example of using the in-built project page.
-tags:
-- Deep Learning
-title: Example Project
+  name: Check out
+  url: https://github.com/Ioana-P/Sentiment_Analysis_Pytorch
+# slides: example
+summary: Built a sentiment classifier using Pytorch and deployed using AWS Lambda and Sagemaker.
+tags: 
+  - "Deep Learning"
+  - "NLProc"
+  # - "Machine Learning"
+  
+# cannot seem to add multiple tags - have tried newline, after comma, after semicolon
+title: Sentiment Analysis with Pytorch
 url_code: ""
 url_pdf: ""
 url_slides: ""

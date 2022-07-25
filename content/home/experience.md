@@ -7,7 +7,7 @@ widget: experience
 headless: false
 
 # Order that this section appears on the page.
-weight: 40
+weight: 70
 
 title: Experience
 subtitle:
@@ -94,5 +94,5 @@ experience:
         
 
 design:
-  columns: '2'
+  columns: '3'
 ---

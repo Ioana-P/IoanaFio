@@ -7,7 +7,7 @@
 
 appearance:
   theme_day: rose
-  theme_night: minimal
+  theme_night: earth
   font: minimal
   font_size: L
 
@@ -53,7 +53,7 @@ footer:
 # Localization
 
 locale:
-  date_format: '20 July 2022'
+  date_format: ""
   time_format: '15:04'
   address_format: en-us
 
