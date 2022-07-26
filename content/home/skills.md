@@ -24,6 +24,10 @@ feature:
     icon: stats
     icon_pack: custom
     name: Statistics
+  - description:
+    icon: data-science
+    icon_pack: custom
+    name: Data Science
   - description: 
     icon: r-project-2
     icon_pack: custom
@@ -62,7 +66,7 @@ feature:
 #  description: "90%"
 
 design:
-  columns: '2'
+  columns: '4'
   view: 2
 
 

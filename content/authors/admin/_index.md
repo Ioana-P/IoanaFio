@@ -4,7 +4,8 @@ bio:
 education:
   courses:
   - course: Data Science Bootcamp
-    institution: 
+    institution: Flatiron School, London
+    year: 2020
   - course: PGDE in Education
     institution: University College London, United Kingdom
     year: 2019
@@ -15,6 +16,7 @@ email: "ioanacpreoteasa@gmail.com"
 highlight_name: true
 interests:
 - Open-Source Intelligence
+- Data Science for Good
 - Natural Language Processing
 - Machine Learning
 - Artificial Intelligence
@@ -46,6 +48,6 @@ superuser: false
 title: Ioana Fiona Preoteasa
 ---
 
-Ioana (she/her) is a data scientist and former secondary school teacher. 
+Ioana (she/her) is a data scientist and former secondary school teacher. Combining analytical rigour & pedagogical expertise to turn opaque data and ML methods into insights & narrative.
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/demo_resume.pdf" "newtab" >}}CV/resumé{{< /staticref >}}.
