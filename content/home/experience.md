@@ -28,7 +28,7 @@ experience:
     # company_logo: org-gc
     location: Remote / London, UK
     date_start: '2021-01-01'
-    date_end: ''
+    date_end: '2021-09-01'
     description: |2-
         Building data products for Integrity's project with the UK government's CSSF (Conflict, Stability and Security Fund), a cross-HMG fund focused on preventing instability and conflicts that threaten UK strategic interests. 
         Responsibilities include:
@@ -44,7 +44,7 @@ experience:
     # company_logo: org-gc
     location: Remote / London, UK
     date_start: '2021-05-01'
-    date_end: ''
+    date_end: '2021-09-01'
     description: |2-
         Automated large part of the QA of survey data commissioned by the World Bank as part of their third-party monitoring of the impact of the Afghanistan Reconstruction Trust Funds' (ARTF) projects. Further developed auto-QA on surveys of the country's  economy after 15th August 2021.
         Responsibilities include:

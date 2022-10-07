@@ -49,5 +49,6 @@ title: Ioana Fiona Preoteasa
 ---
 
 Ioana (she/her) is a data scientist and former secondary school teacher. Combining analytical rigour & pedagogical expertise to turn opaque data and ML methods into insights & narrative.
+**Note**: this site is very new and am still in the process of adding much of my projects and content from other places. 
 
-{{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/demo_resume.pdf" "newtab" >}}CV/resumé{{< /staticref >}}.
+{{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/DS_cv_resume.pdf" "newtab" >}}CV{{< /staticref >}}.

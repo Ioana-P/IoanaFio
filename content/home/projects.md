@@ -35,10 +35,10 @@ content:
       tag: "NLProc"
     - name: Web-scraping 
       tag: "Web-scraping"
-    # - name: Unsupervised Learning
-    #   tag: "Unsupervised Learning"
-    # - name: Statistics
-    #   tag: "Statistics"
+    - name: Unsupervised Learning
+      tag: "Unsupervised-Learning"
+    - name: Statistics
+      tag: "Statistics"
 
 
 

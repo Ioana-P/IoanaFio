@@ -23,13 +23,55 @@ url_pdf: ""
 url_slides: ""
 url_video: ""
 ---
+# Sentiment Analysis in Pytorch
+Training and deploying a Sentiment Analysis model in Pytorch using AWS Sagemaker. The data used was IMDB's Movie review dataset (https://ai.stanford.edu/~amaas/data/sentiment/), which consists of 50,000 instances of binary labelled movie reviews.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.
+##### How do we take a machine learning model and put it out there to be used? 
+##### How do we deploy an inference model out there in the real world, to interact with a user?
 
-Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.
+Amazon Web Services platform allows us to train, host and deploy a variety of models that we can use to gain insight from user data. For this instance, suppose we are looking to gauge opinions on a recent product, a film, a game, a trailer, etc.. Users might express their views via some form of text data (e.g. Tweets, reviews, Facebook posts, reddit comments). A deployed sentiment analysis model would be used to take in that data and infer the polarity of the data (positive or negative) and return to us, the number of positive and negative reviews respectively. This would be helpful to inform future product-related or marketing decisions regarding whatever product we're putting out there.
 
-Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.
 
-Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.
+My foci for this project were a) developing my **understanding of successful model deployment on AWS Sagemaker** and b) practicing writing a **neural network model in pytorch** and the appropriate data preprocessing functions for it. Given that this is a widely-used, canonical dataset, model performance was less of a priority. To that end I'm including below a flow-chart of the architecture (Figure 1) - to follow the logic of what happens to a user's inputted review, start from the top left ("User's review") and follow the arrows to the right. 
+I've included the training phase in the same diagram as deployment but it should be noted that training - shown through the righthand part of the diagram (labelled training data fed into the Sagemaker model and then stored in S3 buckets) - happens *prior* to deployment. 
 
-Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.
+
+
+![flow-chart](fig/sentiment_analysis_aws_flow.jpeg)
+
+Fig 1 - Flow-chart showing how a Sagemaker notebook instance containing a Pytorch model interacts with an API, Lambda function and webapp
+____________________________________________________________________________________________________________________________
+
+Model performance and issues are supervised through AWS' CloudWatch platform, which provides a chronological log of activity from the model endpoint. 
+
+A basic webapp, API and Lambda function were written for this project as well but are non-functioning as having these hosted on Sagemaker incurs significant costs. If you're interested in replicating the project, the code here was tested while the S3 buckets and notebooks were still fully functioning so everything should run if cloned to a Sagemaker notebook instance perfectly, asuming all files are copied over. If you're curious to see what the final, user-facing product would look like, there are some examples in Figures 2 and 3:
+
+![pos](fig/pos.jpeg)
+Fig 2 - quite pleased that the model got past the sneakily positive adjectives.
+
+____________________________________________________________________________________________________________________________
+
+![neg](fig/neg.jpeg)
+Fig 3 - also pleased that this model seems to have taste
+
+
+Navigation: 
+ * SageMaker Project.ipynb - main sagemaker notebook; contains more detailed and thorrough notes and comments on how the model is built and how the various components of AWS interact with each other
+ * website - directory containing webapp html code
+ * serve - directory with necessary deployment .py files:
+  - model.py - model training functions
+  - predict.py - model deployment and inference functions
+  - utils.py - preprocessing functions for text data
+ * train - directory with additional model training files:
+  - requirements.txt - files needed by AWS for model to run
+ * dict_data - directory containing word_dict.pkl - dictionary of unique integer to word key-value pairs
+
+A significant amount of the material for this project was learned through Udacity's Machine Learning Engineer Nanodegree. I am grateful for their content and resources and recommend the course. 
+
+References:
+Data - 
+Andrew L. Maas, Raymond E. Daly, Peter T. Pham, Dan Huang, Andrew Y. Ng, and Christopher Potts. (2011). Learning Word Vectors for Sentiment Analysis. The 49th Annual Meeting of the Association for Computational Linguistics (ACL 2011). 
+Pytorch - https://pytorch.org/ 
+If you're interested in learning how to use Pytorch, they provide a variety of great tutorials at https://pytorch.org/tutorials/
+Udacity - https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t
+

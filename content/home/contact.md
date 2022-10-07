@@ -25,7 +25,7 @@ content:
       captcha: false
 
   # Contact details (edit or remove options as required)
-  email: ioanacpreoteasa@gmail.com
+  email: ifpreoteasa.datascience@gmail.com
   directions: London, United Kingdom
   # coordinates:
   #   latitude: '37.4275'
