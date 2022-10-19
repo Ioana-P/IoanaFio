@@ -6,9 +6,11 @@
 Thumbs.db
 archive
 node_modules
+/public
 /resources
 netlify.toml
 package-lock.json
 package.json
 .hugo_build.lock
+/public/
 /resources/
