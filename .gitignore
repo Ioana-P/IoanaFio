@@ -6,6 +6,8 @@
 Thumbs.db
 archive
 node_modules
+/public/
+/public
 /resources
 netlify.toml
 package-lock.json
