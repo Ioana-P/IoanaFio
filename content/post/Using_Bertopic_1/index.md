@@ -1,6 +1,7 @@
 ---
 date: "2022-10-18"
 external_link: ""
+featured: true
 image: 
   caption: Snapshot of topics extracted from Tweets
   focal_point: Smart
@@ -21,7 +22,7 @@ tags:
 #   html_document:
 #     includes:
 #       before_body: fig/scatter_topics_SELECT.html
-featured: true
+
 title: Visualizing and quantifying topics on Twitter
 url_code: ""
 url_pdf: ""

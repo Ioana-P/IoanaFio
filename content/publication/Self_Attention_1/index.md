@@ -8,7 +8,7 @@ authors:
 - admin
 date: "2020-07-01T00:00:00Z"
 doi: ""
-featured: true
+featured: false
 image:
   caption: 'Image credit: [****]("featured.jpeg")'
   focal_point: ""
