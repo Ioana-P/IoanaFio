@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics | Academic</title>
+    <link>/tag/statistics/</link>
+      <atom:link href="/tag/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <description>Statistics</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 09 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Statistics</title>
+      <link>/tag/statistics/</link>
+    </image>
+    
+    <item>
+      <title>What do UK employers want from a data scientist?</title>
+      <link>/publication/what_do_uk_employers_want_dec_2020/</link>
+      <pubDate>Wed, 09 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/what_do_uk_employers_want_dec_2020/</guid>
+      <description>&lt;p&gt;Picture a novice data scientist, either straight out of education or pivoting careers. They are determined to enter the field but have limited time and funds to spare in extra training and are daunted by the sheer variety of skills and experiences employers request. Naturally, they sign up to intense bootcamps and scramble to take online courses on everything from Azure to Excel.&lt;/p&gt;
+&lt;p&gt;How can you be sure that focusing on a particular skill won’t prove to be a massive opportunity cost? How many years experience are they expecting? What should I expect to get paid, realistically? If you’re leafing through a data science syllabus, and you want to make sure your investment pays off then what should that syllabus include? That’s also a very pertinent question for people designing a data science course: how do we maximise the overlap between what recruiters want and what our course teaches?&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*Qn32iuMQeL32uS6Z3B5hBw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Every new or aspiring data scientist right now— Img 1.1 — Photo courtesy of &lt;a href=&#34;https://unsplash.com/photos/7iSEHWsxPLw&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;UnSplash&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;about-this-post&#34;&gt;&lt;strong&gt;About this post&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;I’m reporting on findings from an exploration of job data on Indeed.co.uk, so this focusses on the UK job market. Although this post provides useful answers, there are still plenty of questions to ask and it’s unclear how representative the findings are of the total population of jobs. This is why future iterations of the project in Q1 2021 and later will try to replicate / falsify the findings. If you have suggestions for other things to search for within the data or any critiques of methods used, please leave a comment. All feedback is appreciated.&lt;/p&gt;
+&lt;p&gt;If you just want the most important results, scroll to section &lt;strong&gt;II. Key insights&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to know how those results were generated in more detail, scroll to section &lt;strong&gt;III. Methodology&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to be able to replicate the findings, read the assumptions or see the results in full (including more of the null results), see the &lt;a href=&#34;https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;README in the project repo&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;and the&lt;/strong&gt; &lt;a href=&#34;https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis/blob/master/Data_Scientist_UK_Q4_Job_market_analysis.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;main notebook&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;i-why-and-how&#34;&gt;I. Why and How&lt;/h1&gt;
+&lt;p&gt;Harvard Business Review dubbed Data Scientist the &lt;a href=&#34;https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;sexiest job of the century&lt;/a&gt;, and the rapid wave of data bootcamps and online courses over the past decade reflects the immense magnetism of the profession. Yet with so many people rushing into data science, it’s important to know the market and offer a &lt;em&gt;competitive resume&lt;/em&gt;. This post and its &lt;a href=&#34;https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;corresponding project repository&lt;/a&gt; represent my initiative in adding to the trove of knowledge on the job market. This is an exploratory, single-researcher analysis, using data scraped only from Indeed, with a total sample of 1082 job descriptions and 382 annual salaries. Therefore you should take findings with a pinch of salt. The plan is to replicate the scraping and analysis during Q1 2021. I plan to broaden the range of analyses performed on the data as well as improve the quality and efficiency of the web-scraping tool. I searched for jobs with 3 different pairs of words in the title:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;data, scientist (DS)&lt;/li&gt;
+&lt;li&gt;machine, learning (ML)&lt;/li&gt;
+&lt;li&gt;data, analyst (DA)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I’ve included all of those under the umbrella of “data science roles” because even though it’s common knowledge that those roles do very different things and require different proficiencies, they still all &lt;em&gt;do&lt;/em&gt; data science, and the lines between the categories is blurry.&lt;/p&gt;
+&lt;h2 id=&#34;who-does-this-analysis-benefit-who-are-potential-stakeholders&#34;&gt;Who does this analysis benefit? Who are potential stakeholders?&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Let’s imagine that I am an aspiring data scientist, recently starting out in the field. Regardless of my current qualifications, I want to know what employers want so I know what skills I need to go and &lt;strong&gt;acquire&lt;/strong&gt;, which of my skills I can best &lt;strong&gt;leverage,&lt;/strong&gt; and what I else I should learn over time to increase my potential salary.&lt;/li&gt;
+&lt;li&gt;Let’s suppose that we are a data science course provider / bootcamp based in the UK. Our bottom line is &lt;strong&gt;getting our learners hired&lt;/strong&gt; in the data science world &lt;em&gt;and&lt;/em&gt;, additionally, trying to &lt;strong&gt;maximise the average salaries&lt;/strong&gt; our graduates get. To do so, we need to match our curriculum to what the market is asking for. What’s the right combination of skills, programming languages and expertise that we should be delivering? That’s a question we can answer by looking at employer needs.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;ii-key-insights&#34;&gt;II. Key insights&lt;/h1&gt;
+&lt;h2 id=&#34;1-3-out-of-5-data-science-roles-do-not-state-salary-openly-59&#34;&gt;1. 3 out of 5 data science roles do not state salary openly (~59%):&lt;/h2&gt;
+&lt;p&gt;The discrepancy is consistent across the three categories, though wider for roles with “machine learning” (ML) in the title than those with “data analyst” (DA). This is particularly daunting for the lone, fresh data scientist entering the field, especially if they have no prior experience of negotiating pay in any field.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If you’re an aspiring data scientist:&lt;/strong&gt; use &lt;a href=&#34;https://www.glassdoor.co.uk/index.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Glassdoor&lt;/a&gt; to research salaries at a company (where possible) and always bear in mind the average salary for that type of role you’re applying for. Consult any data science connections on what salaries they’ve earned over their career and compare any roles you’re interested in with similar ones that do have a salary&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If you’re designing a data science course: include salary negotiation training&lt;/strong&gt;. Inform learners of accurate, regularly updated salary ranges in the market.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-analyst-roles-are-most-numerous-but-least-well-paid&#34;&gt;&lt;strong&gt;2. Analyst roles are most numerous but least well paid:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Roles with “data scientist” (DS) and ML in the title are paid on average £25k per year more. That’s approximately £13 per hour more.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why does this matter?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you’re aiming to maximise your salary, it’s important to know what parts of the field return greatest financial rewards over time. Having said that, consider that experience can be the greatest barrier to getting a job in data science (see Insight 4). &lt;strong&gt;If&lt;/strong&gt; an analyst role is easier to get into, but you still want to aim for the higher salaried positions, then why not build on it?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Recommendations:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; maximum salary is what you’re aiming for, then acquire skills that set you up for DS and ML roles (see Insight 3).&lt;/li&gt;
+&lt;li&gt;Where possible use DA roles to build experience in the field — there is significant overlap between the skills required for DA and DS roles in particular (as shown in Insight 3).&lt;/li&gt;
+&lt;li&gt;If you are more interested in analysing and reporting on data, then take comfort in the fact that there are &lt;strong&gt;more&lt;/strong&gt; jobs suitable to that goal.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;For course-providers&lt;/strong&gt;: inform learners of the full range of salaries available to them and make sure they have realistic expectations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3-the-most-useful-skills-across-all-three-groups-are-pythonhttpswwwpythonorg-and-sqlhttpsenwikipediaorgwikisql&#34;&gt;&lt;strong&gt;3. The most useful skills across all three groups, are&lt;/strong&gt; &lt;a href=&#34;https://www.python.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;and&lt;/strong&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/SQL&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;SQL&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;For those just entering the field, that’s enough information to tell you where to start focusing your attention. Once you have a solid foundation in those two, here are your options:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*IR6XEm5D8i8tT0tzWGyiMQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.1 — the top 10 most mentioned skills / languages for each group&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.r-project.org/about.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;R programming&lt;/strong&gt;&lt;/a&gt; comes up in about 47% of DS jobs, and some jobs state that although they’d accept &lt;strong&gt;Python&lt;/strong&gt;, they’d &lt;em&gt;prefer&lt;/em&gt; someone who knows R. Moreover R offers a lot of statistical analysis tools that Python doesn’t have direct equivalents to, &lt;strong&gt;so if you’re going for stats-heavy roles&lt;/strong&gt;, R can give your resume an edge.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cloud platforms —&lt;/strong&gt; preferably train in &lt;a href=&#34;https://aws.amazon.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Amazon Web Services&lt;/a&gt; (&lt;strong&gt;AWS&lt;/strong&gt;), but about 18% of all jobs (and &lt;strong&gt;&lt;em&gt;28%&lt;/em&gt; of ML roles&lt;/strong&gt;) mention &lt;em&gt;at least one&lt;/em&gt; of the 3 main cloud platforms. This is more useful if you’re heading into or training towards a DS or an ML Engineering role. The latter mention &lt;strong&gt;AWS&lt;/strong&gt; ~ 25% of the time. The exception is if you’re applying for DA roles, in which case &lt;a href=&#34;https://azure.microsoft.com/en-us/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Azure&lt;/strong&gt;&lt;/a&gt; is more popular than the others, but still features in only about 6% of those roles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If you’re going more towards the analyst route&lt;/strong&gt; — you will likely not benefit anywhere near as much from learning &lt;a href=&#34;https://www.scala-lang.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scala&lt;/a&gt;, &lt;a href=&#34;https://www.java.com/en/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Java&lt;/a&gt; or &lt;a href=&#34;https://www.docker.com/?utm_source=google&amp;amp;utm_medium=cpc&amp;amp;utm_campaign=dockerhomepage&amp;amp;utm_content=nemea&amp;amp;utm_term=dockerhomepage&amp;amp;utm_budget=growth&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Docker&lt;/a&gt;, but you &lt;em&gt;will&lt;/em&gt; if you’re inclined towards &lt;strong&gt;ML roles!&lt;/strong&gt; The first two are popular languages for developing and optimising machine learning models, so it’s expected that ML roles would feature them. Docker is used widely for product deployment, so it would be wise to invest time in it if you’re aiming for ML.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;For bootcamps:&lt;/strong&gt; emphasise to learners which skills get them where and make some parts of the course optional / elective: e.g. schedule an Intro to AWS lesson for all the attendants, but those who want to pursue analytics can stop attending after the intro and get more ROI taking an Advanced SQL class.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Place less focus on deep learning:&lt;/strong&gt; as popular as neural networks have become over the past couple of decades, they did not feature prominently, even after repeated searches through the texts for many different variations. Deep learning primarily appears in a special niche of data science roles, more towards the ML side of jobs, but is &lt;strong&gt;not mandatory or useful&lt;/strong&gt; to the majority of data science roles.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-you-might-need-experience-to-get-experience&#34;&gt;&lt;strong&gt;4. You might need experience to get experience:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1008/1*H5krNpINKuw75UNZKVdm4A.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.2 — when ranges were stated they were averaged (e.g. “2–3 years” became 2.5)&lt;/p&gt;
+&lt;p&gt;Most jobs that could be found to explicitly state an experience threshold asked for 2 to 3 years experience. &lt;strong&gt;If&lt;/strong&gt; representative, this presents the largest barrier to entering a data science role. If you’re completely lacking in experience now, you might have around &lt;strong&gt;20 jobs open to your level&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;After 2 years working in data science, that number should be &lt;strong&gt;3 times bigger&lt;/strong&gt;. Moreover, the expected salary will increase too, as there is a moderate correlation between the two.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If you’re just starting out in the field:&lt;/strong&gt; building experience is crucial, so widen your expectations of the work you’ll be doing to achieve that. You may not have a dream role this year or next, but the available paths into that dream job open up significantly after only 2 years.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Play the long game:&lt;/strong&gt; be strategic and realistic about what job you’re applying for and make 1, 3 and 5 year plans that includes what skills you hope to have by each milestone and what salary you’d expect.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If you’re still struggling to land a role&lt;/strong&gt; then build experience doing freelance data science projects, data hackathons or charitable data science work.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;For course providers:&lt;/strong&gt; make sure learners are aware of the experience barrier and also try to build connections in the job market to create mini-opportunities for grads. Employers might be skeptical of taking bootcamp grads for a position, but they might be more open to the idea of facilitating internships and single project partnerships.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5-the-gap-between-the-capital-and-the-rest-of-the-country&#34;&gt;&lt;strong&gt;5. The gap between the Capital and the rest of the country:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;As you might expect, &lt;strong&gt;just over half of the jobs are in London&lt;/strong&gt;. They also pay on average 50% more than in the rest of the country, which is to be expected given the much higher cost of living.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*aTSpt_0kgjbM32S4BYIDNQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.3&lt;/p&gt;
+&lt;p&gt;The median data analyst in London would expect to earn as much as the overall median for outside the capital.&lt;/p&gt;
+&lt;h2 id=&#34;6-theres-a-split-between-customer--and-product--centric-roles-as-well-as-a-niche-group-of-research-focused-jobs&#34;&gt;6. There’s a split between customer- and product- centric roles, as well as a niche group of research focused jobs:&lt;/h2&gt;
+&lt;p&gt;Using topic modelling (&lt;a href=&#34;https://medium.com/latent-dirichlet-allocation-intuition-math-implementation-and-visualisation-63ccb616e094&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LDA&lt;/a&gt;) to cluster and group jobs, I could determine 3 emergent topics that weren’t just noise. These were the&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Customer centric roles&lt;/strong&gt; — candidates would be delivering insights towards customers and using tools such as ‘dashboards’, ‘excel’, (Power) ‘bi’ and thus providing analytical insights for the stakeholders.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Product and development roles —&lt;/strong&gt; candidates programming languages (‘java’), specific packages used for intensive machine learning (‘&lt;a href=&#34;https://www.tensorflow.org/?hl=en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tensorflow&lt;/a&gt;’, ‘&lt;a href=&#34;https://pytorch.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pytorch&lt;/a&gt;’) and more niche areas of data science (‘&lt;a href=&#34;https://en.wikipedia.org/wiki/Natural_language_processing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NLP&lt;/a&gt;’, ‘&lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;neural’ (networks&lt;/a&gt;)).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Academic and Research —&lt;/strong&gt; candidates would require higher qualifications for these roles such as PhDs. There’s a stronger emphasis on ‘publications’, ‘research’ but also on artificial intelligence and ‘novel’ techniques. These are more challenging roles to get into, but also exciting for the ML-inclined.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This last insight was generated with unsupervised techniques and it is not currently possible to verify the accuracy of those topics. However, they do corroborate other findings in Key Insight 3.&lt;/p&gt;
+&lt;h1 id=&#34;iii-methodology&#34;&gt;III. Methodology&lt;/h1&gt;
+&lt;p&gt;For this project, I’ve followed the &lt;a href=&#34;http://wiki.gis.com/wiki/index.php/PPDAC_Model&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;PPDAC&lt;/strong&gt;&lt;/a&gt; cycle for data science:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*XFvn6RAQ6xsh7qOe3UGl3w.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.1 — PPDAC cycle&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Problem&lt;/strong&gt; — Determine what questions we want to answer using the data.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2. &lt;strong&gt;Plan&lt;/strong&gt; —What libraries would I use? How many statistical tests should I run and what confidence level should I set in advance? What&lt;/p&gt;
+&lt;p&gt;3. &lt;strong&gt;Data&lt;/strong&gt; — Web-scraped job descriptions from Indeed.co.uk, searched for between 24th and 25th November, 2020.&lt;/p&gt;
+&lt;p&gt;4. &lt;strong&gt;Analysis&lt;/strong&gt; — Plot salary distributions for London and non-London jobs; different job categories and jobs by which programming language they mention. With an initial alpha of 0.05 I will run several NHST tests and report on results.&lt;/p&gt;
+&lt;p&gt;5. &lt;strong&gt;Conclusion&lt;/strong&gt; — Report any insights, recommendations and future steps.&lt;/p&gt;
+&lt;h1 id=&#34;1-problem&#34;&gt;1. Problem&lt;/h1&gt;
+&lt;p&gt;If we want to get ahead in the data science UK job market, it would be useful to be able to answer the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;How many data science jobs advertise salary?&lt;/li&gt;
+&lt;li&gt;What is the spread of salaries advertised for data scientist jobs on indeed.co.uk?&lt;/li&gt;
+&lt;li&gt;What are the main locations that data scientist roles appear in? (London expected to be the main one)&lt;/li&gt;
+&lt;li&gt;What are some of the most frequent words mentioned in the job title?&lt;/li&gt;
+&lt;li&gt;Which programming languages are in greatest demand? Do any of the languages correlate with higher salary?&lt;/li&gt;
+&lt;li&gt;Is there any relationship between years of experience required and salary?&lt;/li&gt;
+&lt;li&gt;What are the main topics emerging from the job descriptions and the title?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;2-plan&#34;&gt;2. Plan&lt;/h1&gt;
+&lt;p&gt;My plan was to scrape data from Indeed.co.uk using &lt;a href=&#34;https://www.crummy.com/software/BeautifulSoup/bs4/doc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BS4&lt;/a&gt; and &lt;a href=&#34;https://www.selenium.dev/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Selenium&lt;/a&gt;. Then I would extract key information such as salary, location and programming languages using &lt;a href=&#34;https://docs.python.org/3/library/re.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;regex&lt;/a&gt; (&lt;strong&gt;reg&lt;/strong&gt;ular &lt;strong&gt;ex&lt;/strong&gt;pressions). I would plot and wrangle data using the &lt;a href=&#34;https://pandas.pydata.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pandas&lt;/a&gt; and &lt;a href=&#34;https://www.google.com/search?q=seaborn&amp;#43;library&amp;amp;oq=seaborn&amp;#43;library&amp;amp;aqs=chrome..69i57.3040j0j4&amp;amp;sourceid=chrome&amp;amp;ie=UTF-8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Seaborn&lt;/a&gt; libraries then carry out statistical tests. I would also attempt to build a predictive model for salary using linear regression, and report on the coefficients as measures of the importance of each job feature. Lastly I would use &lt;a href=&#34;https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Latent Dirichlet Allocation&lt;/a&gt; to look for emerging topics within job descriptions.&lt;/p&gt;
+&lt;p&gt;The ideal situation would be to answer all questions stated and to be able to state Insights and &lt;strong&gt;Recommendations&lt;/strong&gt; for every part of my analysis. However, in several areas, I had to report null resorts due to either insufficient data or a lack of a signal, and will have to revisit those questions in future iterations of the project.&lt;/p&gt;
+&lt;h1 id=&#34;3-data&#34;&gt;3. Data&lt;/h1&gt;
+&lt;p&gt;From previous attempts at web-scraping jobs on Indeed.co.uk, I know that the number of jobs listed at any one time are in the hundreds, so there would likely be a problem of insufficient data for some of the questions I wanted to answer. Another problem was trying to make sure that the search terms I used captured the &lt;em&gt;field&lt;/em&gt; of data science as much as possible, rather than just one specific role within it.&lt;/p&gt;
+&lt;p&gt;To tackle those two problems, I retrieved job data from Indeed.co.uk based on 3 separate searches. For each of these, my search results only returned job posts where the &lt;em&gt;title&lt;/em&gt; of the job included the following pairs of words:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;data, scientist (DS)&lt;/li&gt;
+&lt;li&gt;machine, learning (ML)&lt;/li&gt;
+&lt;li&gt;data, analyst (DA)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There were jobs that contained a mixture of 2 of the title words (these duplicates were discarded). Moreover it’s generally known that a &lt;em&gt;data analyst&lt;/em&gt; is doing &lt;em&gt;data science,&lt;/em&gt; an &lt;em&gt;ML engineer&lt;/em&gt; does do &lt;em&gt;some&lt;/em&gt; analysis, a &lt;em&gt;data scientist&lt;/em&gt; does use &lt;em&gt;machine learning,&lt;/em&gt; and so on.&lt;/p&gt;
+&lt;h1 id=&#34;4-analysis&#34;&gt;4. Analysis&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Most data science jobs do not directly state their salary&lt;/strong&gt; (Fig 3.2)&lt;strong&gt;:&lt;/strong&gt; about 59% of data science jobs in our sample do not state salary.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1296/1*1r_l1qOGTTQEM2wBlqcZlQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.2: being coy about pay&lt;/p&gt;
+&lt;p&gt;From the perspective of a recent data science grad or someone fresh out of a bootcamp, one challenge they’ll face is salary negotiation — particularly daunting when most jobs do not directly state their salary. This applies across the board to all 3 categories, although the gap is wider for DA and ML roles.&lt;/p&gt;
+&lt;p&gt;For the bootcamp’s organisers, this makes it even more important that they research salary estimates thoroughly and inform their students of this — to help reach the goal of maximising average salary of bootcamp grads they should also be given help with salary negotiation.&lt;/p&gt;
+&lt;h2 id=&#34;2-what-is-the-spread-of-salaries-advertised-for-data-scientist-jobs-on-indeedcouk&#34;&gt;&lt;strong&gt;2. What is the spread of salaries advertised for data scientist jobs on indeed.co.uk?&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*VBikCkFtZVypo-y9LDz0JA.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.3: annual salary distribution — regarding the median with a decimal: salaries that stated a range (e.g. £40–45) had their average taken instead of both values. Hence the non-integer median value&lt;/p&gt;
+&lt;p&gt;Among the jobs that reported &lt;strong&gt;annual salary&lt;/strong&gt; (Fig 3.3), DA jobs were not as well paid as ML or DS jobs by quite a margin — the median salaries for DS and ML are at least £12k above the median for all data science jobs; &lt;strong&gt;DA roles pay about £20k less!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is fairly solid finding since it’s supported by general background knowledge about the field that analyst roles tend to be less technically specialist and pay less compared to other data science roles. If you’re aiming to maximise salary, then a recommendation might be to prepare your grads to aim for DS and ML jobs. However DA jobs are also the most numerous. They might form a reliable fallback for bootcamp grads not managing to hit targets for the DS and ML roles.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. What are the main locations that data scientist roles appear in? (London expected to be the main one)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*2TUTqpFmai30j24maaPtmA.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.4 — dominated by the capital&lt;/p&gt;
+&lt;p&gt;As expected, London dominates the country in terms of data science roles. Even with all the mini tech hubs, the emerging Northern cities and the Silicon Fen in Cambridge, London still edges &lt;em&gt;over the entire rest of the country&lt;/em&gt; (Fig 3.4).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*PlTm2V4MSWBJwTheg-gTCQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.5— number of jobs by top 10 location&lt;/p&gt;
+&lt;p&gt;The next 9 ‘locations’ with the most data science roles are utterly dwarfed by London (Fig 3.5). The fourth most popular location (as declared in the job) is ‘Home Based’, which is unfortunate for anyone hoping data science jobs might invigorate the North or anywhere that isn’t London.&lt;/p&gt;
+&lt;p&gt;The picture becomes even more dire when we consider salary breakdown between the capital and rest of the kingdom. Figure 3.6 shows the annual salaries for the 3 sub-groups in London. The purple and yellow line show the non-London and London median salaries respectively. There is £20k difference between the two!&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*aTSpt_0kgjbM32S4BYIDNQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.6— London vs the rest of the country&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. What are some of the most frequent words mentioned in the job title?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A job title can communicate a lot of things. For instance if a role mention “R” in their title (e.g. “Data Scientist with R experience”) you’ll have good reason to ignore that role if you don’t code in R. If we look at the single terms and bigrams (2 word combos) that appear most frequently (Fig 3.7) we can infer the following:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*ChFLF8dmi9cHEs9sAyjECw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.7 — top terms appearing in the title&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;About 14% of jobs are “senior” roles, hence looking for more experienced data scientists. This does not bode well for recent bootcamp graduates. ‘Junior’ roles make up less than 2% of the sample.&lt;/li&gt;
+&lt;li&gt;There’s about 10% of roles that are looking for an engineer role, which could either be ‘machine learning engineer’ (most of the occurrences) or ‘software engineer’ (~19 roles in all). These are roles that would we would expect to have much stronger requirements for code development skills.&lt;/li&gt;
+&lt;li&gt;There’s very few titles explicitly mentioning a language (e.g. Python is mentioned in less than 2% of titles. To find any trends in programming languages we’ll have to search through the job descriptions.&lt;/li&gt;
+&lt;li&gt;Very few jobs advertise by specific area of expertise it seems (e.g. “Natural Language processing”, “public health”). The most frequent case of data science specific expertise being demanded are roles focussed on Computer Vision (13 jobs). Perhaps this would indicate that most roles look for a blend of different skills, but aren’t looking for one single specialty area. This is encouraging for us since our graduates will have some flexibility in what skills to use for leverage.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;5. Which programming languages are in greatest demand? Do any of the languages correlate with higher salary?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For this question, I went beyond including just programming languages but also techniques, libraries, cloud services and skills. This has greatly increased the usefulness of the findings.&lt;/p&gt;
+&lt;p&gt;Figure 3.8 illustrates how the 10 most popular languages and skills compare across the 3 groups. This particular graph can be used to tailor your own portfolio building journey.&lt;/p&gt;
+&lt;p&gt;For instance, if you have expertise in R and SQL, you’re more well positioned to aim for a DA roles. If you have experience in Java and are considering pivoting into data science, then focusing on Python and AWS will put you in good stead.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*IR6XEm5D8i8tT0tzWGyiMQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.8— Skills in demand&lt;/p&gt;
+&lt;p&gt;If you’re a data bootcamp, you can help inform more clearly which skills grads can leverage towards which roles, so they can optimise their job search. Towards the end of your course, you could create ‘Data Science Profiles’ that learners can gravitate towards depending on the kind of work they would prefer doing. Those that want heavier computational work (so more on the ML side), can attend classes on Docker, Java and AWS. Those drawn more towards analytics can spend more time refining their SQL and other relevant skills.&lt;/p&gt;
+&lt;h2 id=&#34;modelling--a-null-result&#34;&gt;Modelling — a null result&lt;/h2&gt;
+&lt;p&gt;I next attempted to build a linear regression model for predicting salary, but it would seem &lt;strong&gt;that there wasn’t any way to reliably predict the salary from the features I built&lt;/strong&gt;. After multiple iterations, dropping non-significant features and cross-validating, the summary for the best model is this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Model had &lt;strong&gt;root-mean squared error (RMSE) of about £13,000&lt;/strong&gt; on test data, which is a very wide margin for our purposes. So if we took a job post and predicted that the role should be paid around £40 000, on average the answer would be that figure, give or take £13k. Therefore this tool needs more / different data and features before it can be useful.&lt;/li&gt;
+&lt;li&gt;The strongest determiner of salary was the presence of the word ‘lead’ in the title — according to the model, the difference between a role that has lead in the title and one that doesn’t is, on average, £23k.&lt;/li&gt;
+&lt;li&gt;The weakest feature was whether the title included ‘scientist’— acc to the same model, the difference you’d expect in salary for a role that has the word ‘scientist’ in the title vs one that does not, was about £7k.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also attempted to bin the salary data into bands so that I could attempt to predict (binned into categories such as £20&#39;000–25&#39;000). However, even that didn’t have much predictive power, with the best model having an accuracy of about 10% (given 10 different salary bands). To conclude, the model is nullified and I will attempt to build another in future iterations of the project, when more data is available. However, it might just be the case that the features used have no real relationship with salary.&lt;/p&gt;
+&lt;h1 id=&#34;6-is-there-any-relationship-between-years-of-experience-required-and-salary&#34;&gt;6. Is there any relationship between years of experience required and salary?&lt;/h1&gt;
+&lt;p&gt;Many new data scientists find it vexing or disappointing when they search for an “entry-level” position and find that it requires 3 years of experience in the field. But do the years of experience required stated in the job ad actually have anything to do with something more concrete, like pay?&lt;/p&gt;
+&lt;p&gt;After extracting the required experience in years from job posts using regex and averaging those that gave a range (“2–3 years experience” becomes 2.5), I compared it to salary for those jobs. Jobs with 0 years experience were found by searching for “junior role / data / position” (this is probably the most contentious assumption of the created feature). Unfortunately there were very few jobs I could extract such data for (246 job posts), although the Spearman Ranked Correlation test was significant (&lt;strong&gt;p value &amp;lt; 0.001&lt;/strong&gt;). The &lt;strong&gt;experience and salary have a weak-to-moderate correlation&lt;/strong&gt; (&lt;strong&gt;0.37&lt;/strong&gt;). We must remember that this was based on data mined with regex and is relying on certain assumptions and limitations. Hence this is an important test to re-run in the next project iteration.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1008/1*H5krNpINKuw75UNZKVdm4A.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.9 — how many years??&lt;/p&gt;
+&lt;p&gt;Out of those jobs, Figure 3.9 shows the general trend. The largest number of jobs in this group asked for 2 OR 3 years of experience. Hopefully this isn’t representative of the job market, but if it is then as a beginner data scientist, you’d have to find ways to make up for the lack of experience, e.g. by doing freelance work for a while.&lt;/p&gt;
+&lt;h1 id=&#34;7-what-are-the-main-topics-emerging-from-the-job-descriptions-and-the-title&#34;&gt;&lt;strong&gt;7. What are the main topics emerging from the job descriptions and the title?&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;Using topic modelling, can we see if there are natural groups within the job descriptions? Can we split apart our data in some semantic way?&lt;/p&gt;
+&lt;p&gt;Using Latent Dirichlet Allocation and pyLDAviz (&lt;a href=&#34;https://medium.com/latent-semantic-analysis-intuition-math-implementation-a194aff870f8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here’s my previous post&lt;/a&gt; on it), I determined a few emergent topics of interest. It’s important to note that, since this is an unsupervised approach, there’s a strong chance that the outputs are mostly noise, and not useful insights. However, guided by domain knowledge and other pieces of information in this dataset, we can infer at least 3 useful topics.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Client and Business-centric&lt;/em&gt; — (Fig 3.10) Roles heavily featuring this topic are focused more on delivering insights towards customers and using tools such as dashboards, excel, (power) ‘bi’ and thus providing analytical insights for the stakeholders.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*3JOj8mRch3XLVu9UQfD0Mw.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.10— Client and Business centric&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Development and Deep Learning&lt;/em&gt;— (Fig 3.11) This topic and associated job roles are focussed on development programming languages (‘java’), specific packages used for deep learning (‘tensorflow’, ‘pytorch’), niche areas (‘NLP’, ‘neural’ (networks)) and mentions ‘development’, ‘processing’ and ‘product’. This topic corresponds strongly to a lot of ML jobs.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*--JQ4Os7AO9G6YI-Uyr-Tw.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.11—Development and Deep Learning&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Academic &amp;amp; Scientific&lt;/em&gt; (Fig 3.12)  — there’s a very strong association with this topic and terms such as ‘university’ and ‘research’ — more so than for any other topic! Also the only other topic with a strong association with ‘AI’, ‘novel’, ‘publication’ and ‘academic’ is Topic 1 — Deep Learning and Development.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*6jiWe7njEo74vkwfvWEQbg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.12 — Academic and Scientific roles&lt;/p&gt;
+&lt;h1 id=&#34;5-conclusion&#34;&gt;5. Conclusion&lt;/h1&gt;
+&lt;p&gt;My plan is to repeat this project in late Q1 2021 with a fresh batch of job post data and to improve the functionality of the web scraper to be able to detect tags for things such as “Remote working”. I hope that this exploratory analysis proves useful to some people, although I repeat that all findings should be considered in light of the unstructured and semi-rigorous nature of the work. None of these findings can/should be interpreted as conclusive, only preliminary. As said before, I appreciate any feedback and any claps! If I had to summarise the most important advice for aspiring data scientists in one bullet point it would be this:&lt;/p&gt;
+&lt;p&gt;Invest &lt;strong&gt;most time into mastering Python and SQL&lt;/strong&gt;, &lt;strong&gt;play the long game&lt;/strong&gt; and &lt;strong&gt;lower your initial expectations&lt;/strong&gt; of what pay or job you’ll get, with the realistic hope that 2 years of building experience in your less-than-ideal job. Don’t spend too much time initially on niche, fancy areas like deep learning or NLP, you can revisit those at a latter stage. Knowledge of the basics, of how to solve problems and work experience are what pay off most.&lt;/p&gt;
+&lt;p&gt;Thank you.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

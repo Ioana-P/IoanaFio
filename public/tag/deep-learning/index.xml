@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Learning | Academic</title>
+    <link>/tag/deep-learning/</link>
+      <atom:link href="/tag/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Deep Learning</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 18 Oct 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Deep Learning</title>
+      <link>/tag/deep-learning/</link>
+    </image>
+    
+    <item>
+      <title>Visualizing and quantifying topics on Twitter</title>
+      <link>/project/twitter_sentiment_tracking/</link>
+      <pubDate>Tue, 18 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>/project/twitter_sentiment_tracking/</guid>
+      <description>&lt;h2 id=&#34;using-osint-tools-and-transformers-to-extract-topics-and-sentiment&#34;&gt;Using OSINT tools and Transformers to extract topics and sentiment&lt;/h2&gt;
+&lt;p&gt;Using the Blattodea tool that I helped develop during a hackathon, I retrieved the most recent tweets from Elon Musk. I then used one of &lt;a href=&#34;https://huggingface.co/models&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;HuggingFace&amp;rsquo;s&lt;/a&gt; pre-trained sentiment classification models and &lt;a href=&#34;https://maartengr.github.io/BERTopic/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BERTopic&lt;/a&gt; to extract and visualize key themes.
+I have also developed an RShiny dashboard for this project to hone my interactive visualization skills.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Dashboard screenshot&#34; srcset=&#34;
+               /project/twitter_sentiment_tracking/fig/dash_screenshot_hu7c0338f64b56aad8b96fcf4e43899430_140612_66a23c97d2bd90a9bd9aa98aedfa22f3.webp 400w,
+               /project/twitter_sentiment_tracking/fig/dash_screenshot_hu7c0338f64b56aad8b96fcf4e43899430_140612_85f1f8c082af3f4339824fb7133c71d7.webp 760w,
+               /project/twitter_sentiment_tracking/fig/dash_screenshot_hu7c0338f64b56aad8b96fcf4e43899430_140612_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;/project/twitter_sentiment_tracking/fig/dash_screenshot_hu7c0338f64b56aad8b96fcf4e43899430_140612_66a23c97d2bd90a9bd9aa98aedfa22f3.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;536&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;note-on-utility-and-future-projects&#34;&gt;Note on utility and future projects&lt;/h2&gt;
+&lt;p&gt;BERTopic can accommodate &lt;a href=&#34;https://maartengr.github.io/BERTopic/getting_started/online/online.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;online topic modelling&amp;rdquo;&lt;/a&gt; (i.e. incrementally adjusts topics with new data), and the results in this project have shown the model to be qualitatively coherent (lacking a labelled dataset, I am unable to compute the exact accuracy of clustering/classification). It would not be difficult to expand this work to a more regular, (semi-)automated pipeline to &lt;em&gt;monitor social media content&lt;/em&gt; around a particular hashtag/person/theme and to extract insight or detect sudden changes. Suppose you were a news organisation looking to gauge interest in a particular recent event. Although social media isn&amp;rsquo;t representative of general discourse around any given topic, taking data from Twitter, passing it through BERTopic and then setting the pipeline to regularly update the data and topics, would give you the data to assess at least some of the discussion around a theme or event.&lt;/p&gt;
+&lt;h2 id=&#34;results-and-thoughts&#34;&gt;Results and thoughts&lt;/h2&gt;
+&lt;p&gt;(Results are analysed and visualized at greater length inside the repo&amp;rsquo;s index.Rmarkdown notebook. For cleaning, EDA and modelling code, please see the Jupyter notebooks in the repo, explained in the filing system below)&lt;/p&gt;
+&lt;h3 id=&#34;overall-usage&#34;&gt;Overall usage&lt;/h3&gt;
+&lt;p&gt;I have been able to extract clear and definite topics from the collected data, and the pattern of activity around key themes has been what I expected it to be. For example, Musk&amp;rsquo;s opining on ending the war in Ukraine generated a larger amount of responses across the board than his other tweets. Through this project I&amp;rsquo;ve found that BERTopic has been extremely useful and capable of extracting information from unstructured text data, and I plan on using it in future projects. Moreover, the model was able to group topic clusters at a greater level of precision and accuracy than I had honestly expected. In the dendrogram included below I show how some of the topics (the most interesting ones) have been grouped by the model and what the model tells us vs what we can infer. For an NLP project is arguably even more important than in most data science projects to combine contextual knowledge and data viz with the results: language is far more ambiguous and mysterious than numbers.
+Note that the tweets analysed here are all from 1st August 2022 onwards.&lt;/p&gt;
+&lt;h3 id=&#34;clustering-topics&#34;&gt;Clustering Topics&lt;/h3&gt;
+&lt;p&gt;Given the time-range for our data, it should be no surprise that tweets about the war have formed their own distinct group of clusters. It&amp;rsquo;s easy to see how topics 35, 36, 1 and 10 are linked. For interpreting this graph, recall that the most important number to count is the number of steps to take along the tree for two topics/leafs to connect.
+(Note that these are graphs generated with the help of BERTopic and there&amp;rsquo;s far less you can do in terms of graph customization).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Hierarchy of our topics of interest&#34; srcset=&#34;
+               /project/twitter_sentiment_tracking/fig/hierarchical_select_top_hu70c2815d607fc6af5045f54f172892cf_68184_cdc00f0f301053cdfb0b5bf7aef0b408.webp 400w,
+               /project/twitter_sentiment_tracking/fig/hierarchical_select_top_hu70c2815d607fc6af5045f54f172892cf_68184_68c54f40c6fb247aa0c0d1791a7c91ed.webp 760w,
+               /project/twitter_sentiment_tracking/fig/hierarchical_select_top_hu70c2815d607fc6af5045f54f172892cf_68184_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;/project/twitter_sentiment_tracking/fig/hierarchical_select_top_hu70c2815d607fc6af5045f54f172892cf_68184_cdc00f0f301053cdfb0b5bf7aef0b408.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;357&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Topics 29 and 9 form an understandable cluster together as there were a significant number of tweets focused on Starlink&amp;rsquo;s activity in Ukraine (and its commercial activity more generally), both by Musk and his followers.
+The grouping of clusters 3 and 2 is more interesting: closer inspection of 2 revealed that it includes some tweets related to Twitter bots (something Musk has made a point of discussing openly recently), which would link it sensibly to topic 3; however some of the tweets were also referring to Tesla &amp;lsquo;bots&amp;rsquo; (i.e. Tesla&amp;rsquo;s robotics research and department). If we&amp;rsquo;d had a set of topic labels for each of these, it&amp;rsquo;s very likely that BERTopic would misclassify the tweets in this particular topic. Topic two tweets range from :&lt;/p&gt;
+&lt;p&gt;| &amp;ldquo;Tesla Bot is the future of robotics 🤯 &amp;quot;&lt;/p&gt;
+&lt;p&gt;to&lt;/p&gt;
+&lt;p&gt;| &amp;ldquo;If Twitter put as much effort into botspam removal as they do into subpoenas we wouldnt have this problem in the first place&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;Human language users like us can tell that these are two distinct themes. Yet I&amp;rsquo;d say that this amalgamation of is quite an understandable mistake, given the amount of words that appear across topic 2 that make it strongly related to topic 3 and others. It is possible that if we had more documents, BERTopic would&amp;rsquo;ve split topic 2 into another leaf.&lt;/p&gt;
+&lt;p&gt;Towards the bottom we can also see three topics that, although not as closely aligned as the war-themed ones, still cluster together. These are all connected by the theme of rocketry, SpaceX and all of Musk&amp;rsquo;s space-related endeavours. It&amp;rsquo;s encouraging to see that the model was able to place these closely together. Note the next leaf that joins this particular sub-branch, topic 55, related to engines. Now, when I originally looked at this topic, I figured that the algorithm had misgrouped again and that discussions of engines must be focussed on cars. However, I was wrong and the algo was right - inspection of the tweets with this as their main topic (currently topic nr 48 in our merged data) revealed that my intuition was wrong:&lt;/p&gt;
+&lt;p&gt;| &amp;ldquo;Hi Elon  😀 According to  380 tankers delivered to Starbase So I would be really happy to know Will B7 performs a long duration full stack 33 engines static fire Thanks🙏😀&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;p&gt;| &amp;ldquo;How certain are you on the final number of engines for Superheavy Booster&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;and, a slight outlier in some sense:&lt;/p&gt;
+&lt;p&gt;| &amp;ldquo;there will be a day when there are literally 69 boosters 🤓&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;(I do enjoy points of childish levity in a dataset.)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Anyway&lt;/em&gt;, this is another great example of BERTopic&amp;rsquo;s strengths as a model.&lt;/p&gt;
+&lt;h3 id=&#34;twitter-stats-over-time&#34;&gt;Twitter stats over time&lt;/h3&gt;
+&lt;p&gt;If we take a look at the by-day total likes, re-tweets and responses, it&amp;rsquo;s clear that 3rd Oct 2022, when Musk posted his poll on the war, was a bit of watershed in terms of twitter stats (note that the ones in the plot are scaled down for comparison&amp;rsquo;s sake- he didn&amp;rsquo;t just get under 5 responses!). This particular day certainly generated the most conversation (if we take number of responses as a proxy) and in generally most of his tweet stats increased somewhat in the period after. Apart from the one-day spike, it can hardly be said that the furore many felt as a result of the 3rd Oct twitter poll has manifested at the tweet meta-data level.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Stats for Musk&amp;amp;rsquo;s tweets over time&#34; srcset=&#34;
+               /project/twitter_sentiment_tracking/fig/ggplot_musk_all_total_tweets_feats_hu3ba6f4586ae26ee2ba8466bf160ced7b_282186_df48baed456d29cace13c80db6489c6b.webp 400w,
+               /project/twitter_sentiment_tracking/fig/ggplot_musk_all_total_tweets_feats_hu3ba6f4586ae26ee2ba8466bf160ced7b_282186_e05b136ea41cef6c84108e220707709a.webp 760w,
+               /project/twitter_sentiment_tracking/fig/ggplot_musk_all_total_tweets_feats_hu3ba6f4586ae26ee2ba8466bf160ced7b_282186_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;/project/twitter_sentiment_tracking/fig/ggplot_musk_all_total_tweets_feats_hu3ba6f4586ae26ee2ba8466bf160ced7b_282186_df48baed456d29cace13c80db6489c6b.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;543&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;If we compare &lt;em&gt;average&lt;/em&gt; values before and after the poll went out (shown below with the box and jitter plot- each point represents one tweet), then we see barely any changes at all. The distribution of retweets and responses seems to be somewhat more skewed, but looking at it it&amp;rsquo;s not even worth doing a statistical test.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;EDA_twitter_sentiment_tracking/boxplot_before_and_after.png&#34; alt=&#34;Stats for Musk&amp;amp;rsquo;s tweets before and after&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;How about when we combine tweet stats with the topics, just for Elon Musk&amp;rsquo;s tweets? Well, the heatmap below shows that there isn&amp;rsquo;t much correlation between the probability scores of each of our main topics of interest and any of the three tweet features:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;EDA_twitter_sentiment_tracking/corr_heatmap.png&#34; alt=&#34;Correlation heatmap of main topics and tweet stats&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;There are two correlations worth testing for here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;nr of likes and tweets on SpaceX&lt;/li&gt;
+&lt;li&gt;nr of responses and tweets on Russia-Ukraine war&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&amp;rsquo;s check them for statistical significance.&lt;/p&gt;
+&lt;p&gt;| H0: there is no statistically significant correlation between our determined* cluster of Elon Musk&amp;rsquo;s tweets on the Russia-Ukraine war and the number of responses to his tweets.&lt;/p&gt;
+&lt;p&gt;| H1: there is a statistically significant correlation between our determined* Elon Musk&amp;rsquo;s tweets on the Russia-Ukraine war and the number of responses to his tweets.&lt;/p&gt;
+&lt;p&gt;Setting alpha = 0.05/(number of tests) = 0.025&lt;/p&gt;
+&lt;p&gt;| H0: there is no statistically significant correlation between our determined* cluster of Elon Musk&amp;rsquo;s tweets on SpaceX and the number of likes to these tweets.&lt;/p&gt;
+&lt;p&gt;| H1: there is a statistically significant correlation between our determined* Elon Musk&amp;rsquo;s tweets on SpaceX and the number of likes to these tweets.&lt;/p&gt;
+&lt;p&gt;Setting alpha = 0.05/(number of tests) = 0.025&lt;/p&gt;
+&lt;p&gt;*I&amp;rsquo;m referring to them as determined by us because these tweets were categorised via a semi-supervised method, and they are not a gold-standard dataset that has been hand-labelled.&lt;/p&gt;
+&lt;h3 id=&#34;sentiment-and-topics&#34;&gt;Sentiment and Topics&lt;/h3&gt;
+&lt;p&gt;I was interested to see how different topics within this data in terms of the sentiment. To that end, I passed the tweets through a pre-trained sentiment classifier to infer whether they were positive or negative. Below I show how this varies over time for the Tweets directly mentioning Elon Musk:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Sentiment around Musk by topic&#34; srcset=&#34;
+               /project/twitter_sentiment_tracking/fig/ggplot_pct_tweets_by_topic_and_sentiment_hub766bd4ccc75a0dda2f3385562008020_455449_5fd6e367845b11c845a000c67d512f55.webp 400w,
+               /project/twitter_sentiment_tracking/fig/ggplot_pct_tweets_by_topic_and_sentiment_hub766bd4ccc75a0dda2f3385562008020_455449_90c48b09a35b4ca2367466a217ef5f56.webp 760w,
+               /project/twitter_sentiment_tracking/fig/ggplot_pct_tweets_by_topic_and_sentiment_hub766bd4ccc75a0dda2f3385562008020_455449_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;/project/twitter_sentiment_tracking/fig/ggplot_pct_tweets_by_topic_and_sentiment_hub766bd4ccc75a0dda2f3385562008020_455449_5fd6e367845b11c845a000c67d512f55.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;543&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s important to note that the amount of tweets is hard to include in the graph and the y-axis reports on percentages by day. Prior to early autumn &amp;lsquo;22, the number of tweets mentioning Elon and concerned with the war was significantly lower. Note that although there is a trend line included, it wherever the green and red lines run tangentially to each other near 100% is to be ignored: those are days with very few datapoints and where the % sentiment per day flips between fully positive and fully negative easily.
+I&amp;rsquo;ve tried to represent the number of tweets in the opacity/transparency of the points, however, that is skewed by the fact the outlier of negative tweets Musk received the around the time he released his poll. Nevertheless, at least within this limited subset of his audience, there appears to have been a clear rise in the proportion of negative tweets, especially around the theme of the war. However, this batch is not representative of course: partially for the reason stated earlier about how the data was collect but also because these topics do not cover the full range of sentiment around Musk. Consider the fact that there could easily have been someone tweeting &amp;ldquo;@elonmusk, please stay out of global affairs&amp;rdquo; and this would likely not have been categoriesed as part of the war-theme topic cluster. Therefore, we are very likely undercounting. Realistically, here are only looking at the subset of tweets that were in some way in Elon&amp;rsquo;s extended network, that mentioned him and that mentioned terms directly relevant to the war, so that someone with no prior knowledge could have picked them up and said &amp;ldquo;yes, this Tweet has X opinion about Musk on this topic&amp;rdquo;. Lastly, there is the possibility of tweets that mention Musk but without actually being focussed on him: e.g. someone making a negative statement about the war in general and @ Musk in it for different reasons.&lt;/p&gt;
+&lt;p&gt;Perhaps the opacity of the points should be a greater focus of attention: it would appear that attention flared up dramatically on Musk (for this segment of the data) and then died down again slowly, but maintained the tendency to be negative.&lt;/p&gt;
+&lt;h3 id=&#34;bottom-line&#34;&gt;Bottom-line&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Musk&amp;rsquo;s tweets on the war did generate a significant response on Twitter, although this appears to have been short-lived&lt;/li&gt;
+&lt;li&gt;These tweets form very clear clusters of topics and can be amalgamated with other, tangentially related topics.&lt;/li&gt;
+&lt;li&gt;BERTopic is an awesome tool that I&amp;rsquo;m looking forward to using again!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;repo-filing-system&#34;&gt;Repo filing system:&lt;/h3&gt;
+&lt;p&gt;Notebooks&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;index.md - principal file of findings and final results; most relevant notebook to most people
+2a. Topic_modelling_with_BERT.ipynb - notebook details the journey of analysing the model results and extracting insights.
+2b. Modelling_w_BERTopic_GColab.ipynb - Google Colab notebook where the BERTopic and sentiment models&amp;rsquo; results were generated.&lt;/li&gt;
+&lt;li&gt;EDA.ipynb - rough exploration of the data; go here for more in-depth look at some of the data. Most of the visualizations therein were not used.&lt;/li&gt;
+&lt;li&gt;data_cleaning.ipynb - notebook detailing the entire cleaning process. Primarily relies on py modules within functions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Folders&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;data - folder containing raw, processed, clean and feature data and any additional summary data generated. Also contains inferred data (i.e. tweets and their predicted sentiment; tweets and their associated topics)&lt;/li&gt;
+&lt;li&gt;models - the fitted BERTopic model files - &lt;strong&gt;NOTE&lt;/strong&gt; unfortunately, due to a bug in the way the models were saved, it is not possible to load them up locally on a lot of machines. However, it is possible to reproduce their creation and fitting on Google Colab, using the &lt;a href=&#34;https://github.com/Ioana-P/IoanaFio/blob/main/content/project/twitter_sentiment_tracking/Modelling_w_BERTopic_GColab.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Colab notebook&lt;/a&gt; inside this repo
+*fig - all data viz (including interactive HTML files)
+*functions&lt;/li&gt;
+&lt;li&gt;archive - any additional files and subfolders will be here&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;References:
+@article{grootendorst2022bertopic,
+title={BERTopic: Neural topic modeling with a class-based TF-IDF procedure},
+author={Grootendorst, Maarten},
+journal={arXiv preprint arXiv:2203.05794},
+year={2022}
+}&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>1 | Basics of Self-Attention</title>
+      <link>/publication/self_attention_1/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/self_attention_1/</guid>
+      <description>&lt;p&gt;TL;DR — Transformers are an exciting and (&lt;strong&gt;relatively&lt;/strong&gt;) new part of Machine Learning (ML) but there are a &lt;strong&gt;lot&lt;/strong&gt; of concepts that need to be broken down before you can understand them. This is the first post in a column I’m writing about them. Here we focus on how the basic self-attention mechanism works, which is the first layer of a Transformer model. Essentially for each input vector Self-Attention produces a vector that is the weighted sum over the vectors in its neighbourhood. The weights are determined by the relationship or &lt;em&gt;connectedness&lt;/em&gt; between the words. This column is aimed at ML novices and enthusiasts who are curious about what goes on under the hood of Transformers.&lt;/p&gt;
+&lt;h1 id=&#34;contents&#34;&gt;Contents:&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#cce2&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2beb&#34;&gt;Self-Attention — the math&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#c2e8&#34;&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h1&gt;
+&lt;p&gt;Transformers are an ML architecture that have been used successfully in a wide variety of NLP tasks, especially sequence to sequence (seq2seq) ones such as machine translation and text generation. In seq2seq tasks, the goal is to take a set of inputs (e.g. words in English) and produce a desirable set of outputs (- the same words in German). Since their inception in 2017, they’ve usurped the dominant architecture of their day (&lt;a href=&#34;https://en.wikipedia.org/wiki/Long_short-term_memory&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LSTMs&lt;/a&gt;) for seq2seq and have become almost ubiquitous in any news about NLP breakthroughs (for instance OpenAI’s &lt;a href=&#34;https://www.vox.com/2019/5/15/18623134/openai-language-ai-gpt2-poetry-try-it&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPT-2 even appeared in mainstream&lt;/a&gt; media!).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/984/1*pblofc3psQrBkvXI4Jfxog.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.1 — machine translation (EN → DE)⁴&lt;/p&gt;
+&lt;p&gt;This column is intended as a very gentle, gradual introduction to the math, code and concept behind Transformer architecture. There’s no better place to start with than the attention mechanism because:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The most basic transformers rely purely on attention &lt;strong&gt;mechanisms³.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;2-self-attention--the-math&#34;&gt;2. Self-Attention — the math&lt;/h1&gt;
+&lt;p&gt;We want an ML system to learn the important relationships between words, similar to the way a human being understands words in a sentence. In Fig 2.1 you and I both know that “The” is referring to “animal” and thus should have a strong connection with that word. As the diagram’s colour coding shows, this system knows that there is some connection between “animal”, “cross”,“street” and “the” because they’re all &lt;em&gt;related&lt;/em&gt; to “animal”, the subject of the sentence. This is achieved through &lt;em&gt;Self-Attention.⁴&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*9XxSNAGInd3rbwTE_AwrQA.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.1 — which words does “The” pay &lt;strong&gt;&lt;em&gt;attention&lt;/em&gt;&lt;/strong&gt; to?⁴&lt;/p&gt;
+&lt;p&gt;At its most basic level, Self-Attention is a process by which one sequence of vectors &lt;em&gt;x&lt;/em&gt; is &lt;strong&gt;encoded&lt;/strong&gt; into another sequence of vectors &lt;em&gt;z&lt;/em&gt; (Fig 2.2). Each of the original vectors is just a &lt;strong&gt;block of numbers&lt;/strong&gt; that &lt;strong&gt;represents a word.&lt;/strong&gt; Its corresponding &lt;em&gt;z&lt;/em&gt; vector represents both the original word &lt;em&gt;and&lt;/em&gt; its &lt;strong&gt;relationship&lt;/strong&gt; with the other words around it.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*qeY6mWlzwkCIl2LhPN0zZQ.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.2: sequence of input vectors &lt;em&gt;x&lt;/em&gt; getting turned into another equally long sequence of vectors &lt;em&gt;z&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Vectors represent some sort of thing in a &lt;em&gt;space,&lt;/em&gt; like the flow of water particles in an ocean or the effect of gravity at any point around the Earth. You &lt;em&gt;can&lt;/em&gt; think of words as vectors in the total space of words. The direction of each word-vector &lt;em&gt;means&lt;/em&gt; something. Similarities and differences between the vectors correspond to similarities and differences between the words themselves (I’ve written about the subject before &lt;a href=&#34;https://medium.com/analytics-vidhya/ideas-for-using-word2vec-in-human-learning-tasks-1c5dabbeb72e&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Let’s just start by looking at the first three vectors and only looking in particular at how the vector &lt;em&gt;x2&lt;/em&gt;, our vector for “cat”, gets turned into &lt;em&gt;z2&lt;/em&gt;. All of these steps will be repeated for &lt;em&gt;each&lt;/em&gt; of the input vectors.&lt;/p&gt;
+&lt;p&gt;First, we multiply the vector in our spotlight, &lt;em&gt;x2&lt;/em&gt;, with all the vectors in a sequence, &lt;em&gt;including itself&lt;/em&gt;. We’re going to do a product of each vector and the &lt;em&gt;transpose&lt;/em&gt; (the diagonally flipped version) of &lt;em&gt;x2&lt;/em&gt; (Fig 2.3). This is the same as doing a dot product and you can think of a dot product of two vectors as a measure of &lt;strong&gt;how similar they are.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*dVJGPnBgZAFy8MorveslUQ.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.3: transposed multiplication (superscript “T” = “transposed”)&lt;/p&gt;
+&lt;p&gt;The dot product of two vectors is proportional to the cosine of the angle between them (Fig 2.4) — so the more closely they align in direction, the larger the dot product. If they were pointing in the exact same direction then the angle A would be 0⁰ and a cosine of 0⁰ is equal to 1. If they were pointing in opposite directions (so that A = 180⁰) then the cosine would be -1.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*2c4vsG2yNRBQL8xsIYKuew.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.4 — dot product of two vectors&lt;/p&gt;
+&lt;p&gt;As an aside, note that the &lt;em&gt;operation&lt;/em&gt; we use to get this product between vectors is a hyperparameter we can choose. The dot product is just the simplest option we have and the one that’s used in &lt;a href=&#34;https://arxiv.org/pdf/1706.03762.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Attention Is All You Need&lt;/em&gt;&lt;/a&gt;&lt;em&gt;³&lt;/em&gt; (AIAYN)&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you want an additional intuitive perspective on this, &lt;a href=&#34;http://www.peterbloem.nl/blog/transformers&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bloem’s&lt;/a&gt;¹ post discusses how self-attention is analogous to the way recommender systems determine the similarity of movies or users.&lt;/p&gt;
+&lt;p&gt;So we put one word under the spotlight at a time and determine its output from its neighbourhood of words. Here we’re only looking at the words before and after but we could choose to widen that window in the future.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/900/1*RN9sHNRPhQu2atGXzTW5zg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.5 — raw weights for each j-th vector&lt;/p&gt;
+&lt;p&gt;If the spotlit word is “cat”, the sequence of words we’re going over is “the”, “cat”, “sat”. We’re asking &lt;strong&gt;how much attention the word “&lt;em&gt;cat”&lt;/em&gt; should pay to “&lt;em&gt;the”, “cat”&lt;/em&gt; and “&lt;em&gt;sat” respectively&lt;/em&gt;&lt;/strong&gt; (similar to what we see in Fig 2.1).&lt;/p&gt;
+&lt;p&gt;Multiplying the transpose of our spotlit word vector and the sequence of words around it will give us a set of 3 &lt;em&gt;raw weights&lt;/em&gt; (Fig 2.5)&lt;em&gt;.&lt;/em&gt; Each weight is proportional to how connected the two words are in meaning. We need to then normalise them so they are easier to use going ahead. We’ll do this using the &lt;a href=&#34;https://en.wikipedia.org/wiki/Softmax_function&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;softmax formula (Fig 2.6).&lt;/a&gt; This converts a sequence of numbers to be within the range of 0, 1 where each output is proportional to the &lt;em&gt;exponential of the input number&lt;/em&gt;. This makes our weights much easier to use and interpret.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1068/1*FM5PaDrHI31yoE8AwvMAWw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.6: normalising raw weights via softmax function&lt;/p&gt;
+&lt;p&gt;Now we take our normalised weights (one per every vector in the &lt;em&gt;j&lt;/em&gt; sequence), multiply them respectively with the &lt;em&gt;x&lt;/em&gt; input vectors, sum the products and bingo! We have an output &lt;em&gt;z&lt;/em&gt; vector, (Fig 2.5)! This is, of course, the output vector &lt;strong&gt;just&lt;/strong&gt; for x2 (“cat”) — this operation will be repeated for every input vector in &lt;em&gt;x&lt;/em&gt; until we get the output sequence we saw in Fig 2.2.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*Q1d4gzdBleLgcMUrI58D8g.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.7: Final operation to get our new sequence of vectors, &lt;em&gt;z&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This explanation so far may have raised some questions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Aren’t the weights we calculated highly dependent on how we determined the original input vectors?&lt;/li&gt;
+&lt;li&gt;Why are we relying on the &lt;em&gt;similarity&lt;/em&gt; of the vectors? What if we want to find a connection between two ‘dissimilar’ words, such as the object and subject of “The cat sat on the matt”?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the next post, we’ll address these questions. We’ll transform each vector for each of its different uses and thus define relationships between words &lt;em&gt;more precisely&lt;/em&gt; so that we can get an output more like Fig 2.8.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*al_9j5AzCoqPaTUMjFRkjQ.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.8 — which words is “cross” paying attention to in the &lt;strong&gt;orange column&lt;/strong&gt; vs the &lt;strong&gt;pink&lt;/strong&gt; one?&lt;/p&gt;
+&lt;p&gt;I hope you’ve enjoyed this post and I appreciate any amount of claps. Feel free to leave any feedback (positive or constructive) in the comments and I’ll aim to take it onboard as quickly as I can.&lt;/p&gt;
+&lt;p&gt;The people who helped my understanding the most and to whom I am very grateful are Peter Bloem (his &lt;a href=&#34;http://www.peterbloem.nl/blog/transformers&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;post&lt;/a&gt; is a great start if, like me, you prefer a math-first approach to Machine Learning¹ ) and Jay Alammar (if you want a top-down view to start with, I recommend &lt;a href=&#34;https://jalammar.github.io/illustrated-transformer/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;his article&lt;/a&gt;²).&lt;/p&gt;
+&lt;h1 id=&#34;3-references&#34;&gt;3. References&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Alammar J. &lt;em&gt;The Illustrated Transformer.&lt;/em&gt; (2018)  &lt;a href=&#34;https://jalammar.github.io/illustrated-transformer/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://jalammar.github.io/illustrated-transformer/&lt;/a&gt; [accessed 27th June 2020]&lt;/li&gt;
+&lt;li&gt;Bloem P. &lt;em&gt;Transformers from Scratch.&lt;/em&gt; (2019) &lt;a href=&#34;http://www.peterbloem.nl/blog/transformers&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://www.peterbloem.nl/blog/transformers&lt;/a&gt; .[accessed 27th June 2020]&lt;/li&gt;
+&lt;li&gt;Vaswani A. et al. Dec 2017. &lt;em&gt;Attention is all you need&lt;/em&gt;. 31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, CA, USA. &lt;a href=&#34;https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf&lt;/a&gt; [accessed 27th June 2020]. &lt;a href=&#34;https://arxiv.org/abs/1706.03762&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;arXiv:1706.03762&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Vaswani A. et al. Mar 2018 &lt;a href=&#34;https://arxiv.org/abs/1803.07416&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;arXiv:1803.07416&lt;/a&gt; . &lt;a href=&#34;https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb?authuser=2#scrollTo=OJKU36QAfqOC&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Interactive notebook&lt;/a&gt;: [accessed 29th June 2020]&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sentiment Analysis with Pytorch</title>
+      <link>/project/sentiment-analysis-modelling-with-pytorch/</link>
+      <pubDate>Thu, 04 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>/project/sentiment-analysis-modelling-with-pytorch/</guid>
+      <description>&lt;h1 id=&#34;sentiment-analysis-in-pytorch&#34;&gt;Sentiment Analysis in Pytorch&lt;/h1&gt;
+&lt;p&gt;Training and deploying a Sentiment Analysis model in Pytorch using AWS Sagemaker. The data used was IMDB&amp;rsquo;s Movie review dataset (&lt;a href=&#34;https://ai.stanford.edu/~amaas/data/sentiment/%29&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://ai.stanford.edu/~amaas/data/sentiment/)&lt;/a&gt;, which consists of 50,000 instances of binary labelled movie reviews.&lt;/p&gt;
+&lt;h5 id=&#34;how-do-we-take-a-machine-learning-model-and-put-it-out-there-to-be-used&#34;&gt;How do we take a machine learning model and put it out there to be used?&lt;/h5&gt;
+&lt;h5 id=&#34;how-do-we-deploy-an-inference-model-out-there-in-the-real-world-to-interact-with-a-user&#34;&gt;How do we deploy an inference model out there in the real world, to interact with a user?&lt;/h5&gt;
+&lt;p&gt;Amazon Web Services platform allows us to train, host and deploy a variety of models that we can use to gain insight from user data. For this instance, suppose we are looking to gauge opinions on a recent product, a film, a game, a trailer, etc.. Users might express their views via some form of text data (e.g. Tweets, reviews, Facebook posts, reddit comments). A deployed sentiment analysis model would be used to take in that data and infer the polarity of the data (positive or negative) and return to us, the number of positive and negative reviews respectively. This would be helpful to inform future product-related or marketing decisions regarding whatever product we&amp;rsquo;re putting out there.&lt;/p&gt;
+&lt;p&gt;My foci for this project were a) developing my &lt;strong&gt;understanding of successful model deployment on AWS Sagemaker&lt;/strong&gt; and b) practicing writing a &lt;strong&gt;neural network model in pytorch&lt;/strong&gt; and the appropriate data preprocessing functions for it. Given that this is a widely-used, canonical dataset, model performance was less of a priority. To that end I&amp;rsquo;m including below a flow-chart of the architecture (Figure 1) - to follow the logic of what happens to a user&amp;rsquo;s inputted review, start from the top left (&amp;ldquo;User&amp;rsquo;s review&amp;rdquo;) and follow the arrows to the right.
+I&amp;rsquo;ve included the training phase in the same diagram as deployment but it should be noted that training - shown through the righthand part of the diagram (labelled training data fed into the Sagemaker model and then stored in S3 buckets) - happens &lt;em&gt;prior&lt;/em&gt; to deployment.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;flow-chart&#34; srcset=&#34;
+               /project/sentiment-analysis-modelling-with-pytorch/fig/sentiment_analysis_aws_flow_hu1d99e222f3b6a766d72cf462d1c736fd_128671_6be9b60775e3bb77510e7c528d4fbd3d.webp 400w,
+               /project/sentiment-analysis-modelling-with-pytorch/fig/sentiment_analysis_aws_flow_hu1d99e222f3b6a766d72cf462d1c736fd_128671_74dd00a16cbf37242ef27e9739defb88.webp 760w,
+               /project/sentiment-analysis-modelling-with-pytorch/fig/sentiment_analysis_aws_flow_hu1d99e222f3b6a766d72cf462d1c736fd_128671_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;/project/sentiment-analysis-modelling-with-pytorch/fig/sentiment_analysis_aws_flow_hu1d99e222f3b6a766d72cf462d1c736fd_128671_6be9b60775e3bb77510e7c528d4fbd3d.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;580&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Fig 1 - Flow-chart showing how a Sagemaker notebook instance containing a Pytorch model interacts with an API, Lambda function and webapp&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Model performance and issues are supervised through AWS&amp;rsquo; CloudWatch platform, which provides a chronological log of activity from the model endpoint.&lt;/p&gt;
+&lt;p&gt;A basic webapp, API and Lambda function were written for this project as well but are non-functioning as having these hosted on Sagemaker incurs significant costs. If you&amp;rsquo;re interested in replicating the project, the code here was tested while the S3 buckets and notebooks were still fully functioning so everything should run if cloned to a Sagemaker notebook instance perfectly, asuming all files are copied over. If you&amp;rsquo;re curious to see what the final, user-facing product would look like, there are some examples in Figures 2 and 3:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;pos&#34; srcset=&#34;
+               /project/sentiment-analysis-modelling-with-pytorch/fig/pos_huf342677c58750bdb400499c29a8920a2_112513_69b4e4246a866ba350815cb2312f2fda.webp 400w,
+               /project/sentiment-analysis-modelling-with-pytorch/fig/pos_huf342677c58750bdb400499c29a8920a2_112513_287d5862b4078660187f115c76a4ee85.webp 760w,
+               /project/sentiment-analysis-modelling-with-pytorch/fig/pos_huf342677c58750bdb400499c29a8920a2_112513_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;/project/sentiment-analysis-modelling-with-pytorch/fig/pos_huf342677c58750bdb400499c29a8920a2_112513_69b4e4246a866ba350815cb2312f2fda.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;254&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+Fig 2 - quite pleased that the model got past the sneakily positive adjectives.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;neg&#34; srcset=&#34;
+               /project/sentiment-analysis-modelling-with-pytorch/fig/neg_hueaf939b9d0ded4bcadfadb59be3286f0_85586_46cff1ec5735d847a05bdb685b051a41.webp 400w,
+               /project/sentiment-analysis-modelling-with-pytorch/fig/neg_hueaf939b9d0ded4bcadfadb59be3286f0_85586_d0b68549bfa5126ddb72a5c31198fa32.webp 760w,
+               /project/sentiment-analysis-modelling-with-pytorch/fig/neg_hueaf939b9d0ded4bcadfadb59be3286f0_85586_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;/project/sentiment-analysis-modelling-with-pytorch/fig/neg_hueaf939b9d0ded4bcadfadb59be3286f0_85586_46cff1ec5735d847a05bdb685b051a41.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;381&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+Fig 3 - also pleased that this model seems to have taste&lt;/p&gt;
+&lt;p&gt;Navigation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SageMaker Project.ipynb - main sagemaker notebook; contains more detailed and thorrough notes and comments on how the model is built and how the various components of AWS interact with each other&lt;/li&gt;
+&lt;li&gt;website - directory containing webapp html code&lt;/li&gt;
+&lt;li&gt;serve - directory with necessary deployment .py files:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;model.py - model training functions&lt;/li&gt;
+&lt;li&gt;predict.py - model deployment and inference functions&lt;/li&gt;
+&lt;li&gt;utils.py - preprocessing functions for text data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;train - directory with additional model training files:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;requirements.txt - files needed by AWS for model to run&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;dict_data - directory containing word_dict.pkl - dictionary of unique integer to word key-value pairs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A significant amount of the material for this project was learned through Udacity&amp;rsquo;s Machine Learning Engineer Nanodegree. I am grateful for their content and resources and recommend the course.&lt;/p&gt;
+&lt;p&gt;References:
+Data -
+Andrew L. Maas, Raymond E. Daly, Peter T. Pham, Dan Huang, Andrew Y. Ng, and Christopher Potts. (2011). Learning Word Vectors for Sentiment Analysis. The 49th Annual Meeting of the Association for Computational Linguistics (ACL 2011).
+Pytorch - &lt;a href=&#34;https://pytorch.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://pytorch.org/&lt;/a&gt;
+If you&amp;rsquo;re interested in learning how to use Pytorch, they provide a variety of great tutorials at &lt;a href=&#34;https://pytorch.org/tutorials/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://pytorch.org/tutorials/&lt;/a&gt;
+Udacity - &lt;a href=&#34;https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

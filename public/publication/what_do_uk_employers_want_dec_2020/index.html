@@ -1,0 +1,1756 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.5.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Extracting useful insights about the UK data science job market utilizing web-scraped data, NLP techniques and unsupervised learning in the form of topic modelling." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/publication/what_do_uk_employers_want_dec_2020/" />
+
+  
+  
+  
+    <meta name="theme-color" content="rgb(251, 191, 183)" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.c7b8d9abd591ba2253ea42747e3ac3f5.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha512-W0xM4mr6dEP9nREo7Z9z+9X70wytKvMGeDsj7ps2+xg5QPrEBXC8tAW1IFnzjR6eoJ90JmCnFzerQJTLzIEHjA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3a1b2f5c1da49b147f3050c4749cae46.css" />
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="/publication/what_do_uk_employers_want_dec_2020/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+    <meta property="twitter:site" content="@wowchemy" />
+    <meta property="twitter:creator" content="@wowchemy" />
+  
+  <meta property="og:site_name" content="Academic" />
+  <meta property="og:url" content="/publication/what_do_uk_employers_want_dec_2020/" />
+  <meta property="og:title" content="What do UK employers want from a data scientist? | Academic" />
+  <meta property="og:description" content="Extracting useful insights about the UK data science job market utilizing web-scraped data, NLP techniques and unsupervised learning in the form of topic modelling." /><meta property="og:image" content="/publication/what_do_uk_employers_want_dec_2020/featured.jpeg" />
+    <meta property="twitter:image" content="/publication/what_do_uk_employers_want_dec_2020/featured.jpeg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-12-09T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2020-12-09T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/publication/what_do_uk_employers_want_dec_2020/"
+  },
+  "headline": "What do UK employers want from a data scientist?",
+  
+  "image": [
+    "/publication/what_do_uk_employers_want_dec_2020/featured.jpeg"
+  ],
+  
+  "datePublished": "2020-12-09T00:00:00Z",
+  "dateModified": "2020-12-09T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Ioana Fiona Preoteasa"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Extracting useful insights about the UK data science job market utilizing web-scraped data, NLP techniques and unsupervised learning in the form of topic modelling."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>What do UK employers want from a data scientist? | Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="a221ae397c0eea88c07fd1b28a36fa8d" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.d221902fdb3ac4942841d39f708dccc2.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/post/"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/uploads/DS_cv_resume.pdf"><span>CV</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link  active" href="/publication/"><span>Writing</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    
+
+
+
+
+
+
+
+
+<div class="pub">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>What do UK employers want from a data scientist?</h1>
+
+  
+  <p class="page-subtitle">Analysing job post data from Indeed, can we make more evidence-informed career decisions?</p>
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      Ioana Fiona Preoteasa</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    December, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    
+
+    
+    
+
+    
+
+    <div class="space-below"></div>
+
+    <div class="article-style"><p>Picture a novice data scientist, either straight out of education or pivoting careers. They are determined to enter the field but have limited time and funds to spare in extra training and are daunted by the sheer variety of skills and experiences employers request. Naturally, they sign up to intense bootcamps and scramble to take online courses on everything from Azure to Excel.</p>
+<p>How can you be sure that focusing on a particular skill won’t prove to be a massive opportunity cost? How many years experience are they expecting? What should I expect to get paid, realistically? If you’re leafing through a data science syllabus, and you want to make sure your investment pays off then what should that syllabus include? That’s also a very pertinent question for people designing a data science course: how do we maximise the overlap between what recruiters want and what our course teaches?</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*Qn32iuMQeL32uS6Z3B5hBw.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Every new or aspiring data scientist right now— Img 1.1 — Photo courtesy of <a href="https://unsplash.com/photos/7iSEHWsxPLw" target="_blank" rel="noopener">UnSplash</a></p>
+<h2 id="about-this-post"><strong>About this post</strong></h2>
+<p>I’m reporting on findings from an exploration of job data on Indeed.co.uk, so this focusses on the UK job market. Although this post provides useful answers, there are still plenty of questions to ask and it’s unclear how representative the findings are of the total population of jobs. This is why future iterations of the project in Q1 2021 and later will try to replicate / falsify the findings. If you have suggestions for other things to search for within the data or any critiques of methods used, please leave a comment. All feedback is appreciated.</p>
+<p>If you just want the most important results, scroll to section <strong>II. Key insights</strong>.</p>
+<p>If you want to know how those results were generated in more detail, scroll to section <strong>III. Methodology</strong>.</p>
+<p>If you want to be able to replicate the findings, read the assumptions or see the results in full (including more of the null results), see the <a href="https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis" target="_blank" rel="noopener"><strong>README in the project repo</strong></a> <strong>and the</strong> <a href="https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis/blob/master/Data_Scientist_UK_Q4_Job_market_analysis.ipynb" target="_blank" rel="noopener"><strong>main notebook</strong></a><strong>.</strong></p>
+<h1 id="i-why-and-how">I. Why and How</h1>
+<p>Harvard Business Review dubbed Data Scientist the <a href="https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century" target="_blank" rel="noopener">sexiest job of the century</a>, and the rapid wave of data bootcamps and online courses over the past decade reflects the immense magnetism of the profession. Yet with so many people rushing into data science, it’s important to know the market and offer a <em>competitive resume</em>. This post and its <a href="https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis" target="_blank" rel="noopener">corresponding project repository</a> represent my initiative in adding to the trove of knowledge on the job market. This is an exploratory, single-researcher analysis, using data scraped only from Indeed, with a total sample of 1082 job descriptions and 382 annual salaries. Therefore you should take findings with a pinch of salt. The plan is to replicate the scraping and analysis during Q1 2021. I plan to broaden the range of analyses performed on the data as well as improve the quality and efficiency of the web-scraping tool. I searched for jobs with 3 different pairs of words in the title:</p>
+<ul>
+<li>data, scientist (DS)</li>
+<li>machine, learning (ML)</li>
+<li>data, analyst (DA)</li>
+</ul>
+<p>I’ve included all of those under the umbrella of “data science roles” because even though it’s common knowledge that those roles do very different things and require different proficiencies, they still all <em>do</em> data science, and the lines between the categories is blurry.</p>
+<h2 id="who-does-this-analysis-benefit-who-are-potential-stakeholders">Who does this analysis benefit? Who are potential stakeholders?</h2>
+<ol>
+<li>Let’s imagine that I am an aspiring data scientist, recently starting out in the field. Regardless of my current qualifications, I want to know what employers want so I know what skills I need to go and <strong>acquire</strong>, which of my skills I can best <strong>leverage,</strong> and what I else I should learn over time to increase my potential salary.</li>
+<li>Let’s suppose that we are a data science course provider / bootcamp based in the UK. Our bottom line is <strong>getting our learners hired</strong> in the data science world <em>and</em>, additionally, trying to <strong>maximise the average salaries</strong> our graduates get. To do so, we need to match our curriculum to what the market is asking for. What’s the right combination of skills, programming languages and expertise that we should be delivering? That’s a question we can answer by looking at employer needs.</li>
+</ol>
+<h1 id="ii-key-insights">II. Key insights</h1>
+<h2 id="1-3-out-of-5-data-science-roles-do-not-state-salary-openly-59">1. 3 out of 5 data science roles do not state salary openly (~59%):</h2>
+<p>The discrepancy is consistent across the three categories, though wider for roles with “machine learning” (ML) in the title than those with “data analyst” (DA). This is particularly daunting for the lone, fresh data scientist entering the field, especially if they have no prior experience of negotiating pay in any field.</p>
+<ul>
+<li><strong>If you’re an aspiring data scientist:</strong> use <a href="https://www.glassdoor.co.uk/index.htm" target="_blank" rel="noopener">Glassdoor</a> to research salaries at a company (where possible) and always bear in mind the average salary for that type of role you’re applying for. Consult any data science connections on what salaries they’ve earned over their career and compare any roles you’re interested in with similar ones that do have a salary</li>
+<li><strong>If you’re designing a data science course: include salary negotiation training</strong>. Inform learners of accurate, regularly updated salary ranges in the market.</li>
+</ul>
+<h2 id="2-analyst-roles-are-most-numerous-but-least-well-paid"><strong>2. Analyst roles are most numerous but least well paid:</strong></h2>
+<p>Roles with “data scientist” (DS) and ML in the title are paid on average £25k per year more. That’s approximately £13 per hour more.</p>
+<p><strong>Why does this matter?</strong></p>
+<p>If you’re aiming to maximise your salary, it’s important to know what parts of the field return greatest financial rewards over time. Having said that, consider that experience can be the greatest barrier to getting a job in data science (see Insight 4). <strong>If</strong> an analyst role is easier to get into, but you still want to aim for the higher salaried positions, then why not build on it?</p>
+<p><strong>Recommendations:</strong></p>
+<ul>
+<li><strong>If</strong> maximum salary is what you’re aiming for, then acquire skills that set you up for DS and ML roles (see Insight 3).</li>
+<li>Where possible use DA roles to build experience in the field — there is significant overlap between the skills required for DA and DS roles in particular (as shown in Insight 3).</li>
+<li>If you are more interested in analysing and reporting on data, then take comfort in the fact that there are <strong>more</strong> jobs suitable to that goal.</li>
+<li><strong>For course-providers</strong>: inform learners of the full range of salaries available to them and make sure they have realistic expectations.</li>
+</ul>
+<h2 id="3-the-most-useful-skills-across-all-three-groups-are-pythonhttpswwwpythonorg-and-sqlhttpsenwikipediaorgwikisql"><strong>3. The most useful skills across all three groups, are</strong> <a href="https://www.python.org/" target="_blank" rel="noopener"><strong>Python</strong></a> <strong>and</strong> <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener"><strong>SQL</strong></a><strong>:</strong></h2>
+<p>For those just entering the field, that’s enough information to tell you where to start focusing your attention. Once you have a solid foundation in those two, here are your options:</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*IR6XEm5D8i8tT0tzWGyiMQ.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 2.1 — the top 10 most mentioned skills / languages for each group</p>
+<ul>
+<li><a href="https://www.r-project.org/about.html" target="_blank" rel="noopener"><strong>R programming</strong></a> comes up in about 47% of DS jobs, and some jobs state that although they’d accept <strong>Python</strong>, they’d <em>prefer</em> someone who knows R. Moreover R offers a lot of statistical analysis tools that Python doesn’t have direct equivalents to, <strong>so if you’re going for stats-heavy roles</strong>, R can give your resume an edge.</li>
+<li><strong>Cloud platforms —</strong> preferably train in <a href="https://aws.amazon.com/" target="_blank" rel="noopener">Amazon Web Services</a> (<strong>AWS</strong>), but about 18% of all jobs (and <strong><em>28%</em> of ML roles</strong>) mention <em>at least one</em> of the 3 main cloud platforms. This is more useful if you’re heading into or training towards a DS or an ML Engineering role. The latter mention <strong>AWS</strong> ~ 25% of the time. The exception is if you’re applying for DA roles, in which case <a href="https://azure.microsoft.com/en-us/" target="_blank" rel="noopener"><strong>Azure</strong></a> is more popular than the others, but still features in only about 6% of those roles.</li>
+<li><strong>If you’re going more towards the analyst route</strong> — you will likely not benefit anywhere near as much from learning <a href="https://www.scala-lang.org/" target="_blank" rel="noopener">Scala</a>, <a href="https://www.java.com/en/" target="_blank" rel="noopener">Java</a> or <a href="https://www.docker.com/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=dockerhomepage&amp;utm_content=nemea&amp;utm_term=dockerhomepage&amp;utm_budget=growth" target="_blank" rel="noopener">Docker</a>, but you <em>will</em> if you’re inclined towards <strong>ML roles!</strong> The first two are popular languages for developing and optimising machine learning models, so it’s expected that ML roles would feature them. Docker is used widely for product deployment, so it would be wise to invest time in it if you’re aiming for ML.</li>
+<li><strong>For bootcamps:</strong> emphasise to learners which skills get them where and make some parts of the course optional / elective: e.g. schedule an Intro to AWS lesson for all the attendants, but those who want to pursue analytics can stop attending after the intro and get more ROI taking an Advanced SQL class.</li>
+<li><strong>Place less focus on deep learning:</strong> as popular as neural networks have become over the past couple of decades, they did not feature prominently, even after repeated searches through the texts for many different variations. Deep learning primarily appears in a special niche of data science roles, more towards the ML side of jobs, but is <strong>not mandatory or useful</strong> to the majority of data science roles.</li>
+</ul>
+<h2 id="4-you-might-need-experience-to-get-experience"><strong>4. You might need experience to get experience:</strong></h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1008/1*H5krNpINKuw75UNZKVdm4A.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 2.2 — when ranges were stated they were averaged (e.g. “2–3 years” became 2.5)</p>
+<p>Most jobs that could be found to explicitly state an experience threshold asked for 2 to 3 years experience. <strong>If</strong> representative, this presents the largest barrier to entering a data science role. If you’re completely lacking in experience now, you might have around <strong>20 jobs open to your level</strong>.</p>
+<p>After 2 years working in data science, that number should be <strong>3 times bigger</strong>. Moreover, the expected salary will increase too, as there is a moderate correlation between the two.</p>
+<ul>
+<li><strong>If you’re just starting out in the field:</strong> building experience is crucial, so widen your expectations of the work you’ll be doing to achieve that. You may not have a dream role this year or next, but the available paths into that dream job open up significantly after only 2 years.</li>
+<li><strong>Play the long game:</strong> be strategic and realistic about what job you’re applying for and make 1, 3 and 5 year plans that includes what skills you hope to have by each milestone and what salary you’d expect.</li>
+<li><strong>If you’re still struggling to land a role</strong> then build experience doing freelance data science projects, data hackathons or charitable data science work.</li>
+<li><strong>For course providers:</strong> make sure learners are aware of the experience barrier and also try to build connections in the job market to create mini-opportunities for grads. Employers might be skeptical of taking bootcamp grads for a position, but they might be more open to the idea of facilitating internships and single project partnerships.</li>
+</ul>
+<h2 id="5-the-gap-between-the-capital-and-the-rest-of-the-country"><strong>5. The gap between the Capital and the rest of the country:</strong></h2>
+<p>As you might expect, <strong>just over half of the jobs are in London</strong>. They also pay on average 50% more than in the rest of the country, which is to be expected given the much higher cost of living.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*aTSpt_0kgjbM32S4BYIDNQ.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 2.3</p>
+<p>The median data analyst in London would expect to earn as much as the overall median for outside the capital.</p>
+<h2 id="6-theres-a-split-between-customer--and-product--centric-roles-as-well-as-a-niche-group-of-research-focused-jobs">6. There’s a split between customer- and product- centric roles, as well as a niche group of research focused jobs:</h2>
+<p>Using topic modelling (<a href="https://medium.com/latent-dirichlet-allocation-intuition-math-implementation-and-visualisation-63ccb616e094" target="_blank" rel="noopener">LDA</a>) to cluster and group jobs, I could determine 3 emergent topics that weren’t just noise. These were the</p>
+<ol>
+<li><strong>The Customer centric roles</strong> — candidates would be delivering insights towards customers and using tools such as ‘dashboards’, ‘excel’, (Power) ‘bi’ and thus providing analytical insights for the stakeholders.</li>
+<li><strong>Product and development roles —</strong> candidates programming languages (‘java’), specific packages used for intensive machine learning (‘<a href="https://www.tensorflow.org/?hl=en" target="_blank" rel="noopener">tensorflow</a>’, ‘<a href="https://pytorch.org/" target="_blank" rel="noopener">pytorch</a>’) and more niche areas of data science (‘<a href="https://en.wikipedia.org/wiki/Natural_language_processing" target="_blank" rel="noopener">NLP</a>’, ‘<a href="https://en.wikipedia.org/wiki/Artificial_neural_network" target="_blank" rel="noopener">neural’ (networks</a>)).</li>
+<li><strong>Academic and Research —</strong> candidates would require higher qualifications for these roles such as PhDs. There’s a stronger emphasis on ‘publications’, ‘research’ but also on artificial intelligence and ‘novel’ techniques. These are more challenging roles to get into, but also exciting for the ML-inclined.</li>
+</ol>
+<p>This last insight was generated with unsupervised techniques and it is not currently possible to verify the accuracy of those topics. However, they do corroborate other findings in Key Insight 3.</p>
+<h1 id="iii-methodology">III. Methodology</h1>
+<p>For this project, I’ve followed the <a href="http://wiki.gis.com/wiki/index.php/PPDAC_Model" target="_blank" rel="noopener"><strong>PPDAC</strong></a> cycle for data science:</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*XFvn6RAQ6xsh7qOe3UGl3w.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.1 — PPDAC cycle</p>
+<ol>
+<li><strong>Problem</strong> — Determine what questions we want to answer using the data.</li>
+</ol>
+<p>2. <strong>Plan</strong> —What libraries would I use? How many statistical tests should I run and what confidence level should I set in advance? What</p>
+<p>3. <strong>Data</strong> — Web-scraped job descriptions from Indeed.co.uk, searched for between 24th and 25th November, 2020.</p>
+<p>4. <strong>Analysis</strong> — Plot salary distributions for London and non-London jobs; different job categories and jobs by which programming language they mention. With an initial alpha of 0.05 I will run several NHST tests and report on results.</p>
+<p>5. <strong>Conclusion</strong> — Report any insights, recommendations and future steps.</p>
+<h1 id="1-problem">1. Problem</h1>
+<p>If we want to get ahead in the data science UK job market, it would be useful to be able to answer the following:</p>
+<ol>
+<li>How many data science jobs advertise salary?</li>
+<li>What is the spread of salaries advertised for data scientist jobs on indeed.co.uk?</li>
+<li>What are the main locations that data scientist roles appear in? (London expected to be the main one)</li>
+<li>What are some of the most frequent words mentioned in the job title?</li>
+<li>Which programming languages are in greatest demand? Do any of the languages correlate with higher salary?</li>
+<li>Is there any relationship between years of experience required and salary?</li>
+<li>What are the main topics emerging from the job descriptions and the title?</li>
+</ol>
+<h1 id="2-plan">2. Plan</h1>
+<p>My plan was to scrape data from Indeed.co.uk using <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="noopener">BS4</a> and <a href="https://www.selenium.dev/" target="_blank" rel="noopener">Selenium</a>. Then I would extract key information such as salary, location and programming languages using <a href="https://docs.python.org/3/library/re.html" target="_blank" rel="noopener">regex</a> (<strong>reg</strong>ular <strong>ex</strong>pressions). I would plot and wrangle data using the <a href="https://pandas.pydata.org/" target="_blank" rel="noopener">Pandas</a> and <a href="https://www.google.com/search?q=seaborn&#43;library&amp;oq=seaborn&#43;library&amp;aqs=chrome..69i57.3040j0j4&amp;sourceid=chrome&amp;ie=UTF-8" target="_blank" rel="noopener">Seaborn</a> libraries then carry out statistical tests. I would also attempt to build a predictive model for salary using linear regression, and report on the coefficients as measures of the importance of each job feature. Lastly I would use <a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation" target="_blank" rel="noopener">Latent Dirichlet Allocation</a> to look for emerging topics within job descriptions.</p>
+<p>The ideal situation would be to answer all questions stated and to be able to state Insights and <strong>Recommendations</strong> for every part of my analysis. However, in several areas, I had to report null resorts due to either insufficient data or a lack of a signal, and will have to revisit those questions in future iterations of the project.</p>
+<h1 id="3-data">3. Data</h1>
+<p>From previous attempts at web-scraping jobs on Indeed.co.uk, I know that the number of jobs listed at any one time are in the hundreds, so there would likely be a problem of insufficient data for some of the questions I wanted to answer. Another problem was trying to make sure that the search terms I used captured the <em>field</em> of data science as much as possible, rather than just one specific role within it.</p>
+<p>To tackle those two problems, I retrieved job data from Indeed.co.uk based on 3 separate searches. For each of these, my search results only returned job posts where the <em>title</em> of the job included the following pairs of words:</p>
+<ul>
+<li>data, scientist (DS)</li>
+<li>machine, learning (ML)</li>
+<li>data, analyst (DA)</li>
+</ul>
+<p>There were jobs that contained a mixture of 2 of the title words (these duplicates were discarded). Moreover it’s generally known that a <em>data analyst</em> is doing <em>data science,</em> an <em>ML engineer</em> does do <em>some</em> analysis, a <em>data scientist</em> does use <em>machine learning,</em> and so on.</p>
+<h1 id="4-analysis">4. Analysis</h1>
+<ol>
+<li><strong>Most data science jobs do not directly state their salary</strong> (Fig 3.2)<strong>:</strong> about 59% of data science jobs in our sample do not state salary.</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1296/1*1r_l1qOGTTQEM2wBlqcZlQ.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.2: being coy about pay</p>
+<p>From the perspective of a recent data science grad or someone fresh out of a bootcamp, one challenge they’ll face is salary negotiation — particularly daunting when most jobs do not directly state their salary. This applies across the board to all 3 categories, although the gap is wider for DA and ML roles.</p>
+<p>For the bootcamp’s organisers, this makes it even more important that they research salary estimates thoroughly and inform their students of this — to help reach the goal of maximising average salary of bootcamp grads they should also be given help with salary negotiation.</p>
+<h2 id="2-what-is-the-spread-of-salaries-advertised-for-data-scientist-jobs-on-indeedcouk"><strong>2. What is the spread of salaries advertised for data scientist jobs on indeed.co.uk?</strong></h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*VBikCkFtZVypo-y9LDz0JA.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.3: annual salary distribution — regarding the median with a decimal: salaries that stated a range (e.g. £40–45) had their average taken instead of both values. Hence the non-integer median value</p>
+<p>Among the jobs that reported <strong>annual salary</strong> (Fig 3.3), DA jobs were not as well paid as ML or DS jobs by quite a margin — the median salaries for DS and ML are at least £12k above the median for all data science jobs; <strong>DA roles pay about £20k less!</strong></p>
+<p>This is fairly solid finding since it’s supported by general background knowledge about the field that analyst roles tend to be less technically specialist and pay less compared to other data science roles. If you’re aiming to maximise salary, then a recommendation might be to prepare your grads to aim for DS and ML jobs. However DA jobs are also the most numerous. They might form a reliable fallback for bootcamp grads not managing to hit targets for the DS and ML roles.</p>
+<p><strong>3. What are the main locations that data scientist roles appear in? (London expected to be the main one)</strong></p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*2TUTqpFmai30j24maaPtmA.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.4 — dominated by the capital</p>
+<p>As expected, London dominates the country in terms of data science roles. Even with all the mini tech hubs, the emerging Northern cities and the Silicon Fen in Cambridge, London still edges <em>over the entire rest of the country</em> (Fig 3.4).</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*PlTm2V4MSWBJwTheg-gTCQ.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.5— number of jobs by top 10 location</p>
+<p>The next 9 ‘locations’ with the most data science roles are utterly dwarfed by London (Fig 3.5). The fourth most popular location (as declared in the job) is ‘Home Based’, which is unfortunate for anyone hoping data science jobs might invigorate the North or anywhere that isn’t London.</p>
+<p>The picture becomes even more dire when we consider salary breakdown between the capital and rest of the kingdom. Figure 3.6 shows the annual salaries for the 3 sub-groups in London. The purple and yellow line show the non-London and London median salaries respectively. There is £20k difference between the two!</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*aTSpt_0kgjbM32S4BYIDNQ.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.6— London vs the rest of the country</p>
+<p><strong>4. What are some of the most frequent words mentioned in the job title?</strong></p>
+<p>A job title can communicate a lot of things. For instance if a role mention “R” in their title (e.g. “Data Scientist with R experience”) you’ll have good reason to ignore that role if you don’t code in R. If we look at the single terms and bigrams (2 word combos) that appear most frequently (Fig 3.7) we can infer the following:</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*ChFLF8dmi9cHEs9sAyjECw.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.7 — top terms appearing in the title</p>
+<ul>
+<li>About 14% of jobs are “senior” roles, hence looking for more experienced data scientists. This does not bode well for recent bootcamp graduates. ‘Junior’ roles make up less than 2% of the sample.</li>
+<li>There’s about 10% of roles that are looking for an engineer role, which could either be ‘machine learning engineer’ (most of the occurrences) or ‘software engineer’ (~19 roles in all). These are roles that would we would expect to have much stronger requirements for code development skills.</li>
+<li>There’s very few titles explicitly mentioning a language (e.g. Python is mentioned in less than 2% of titles. To find any trends in programming languages we’ll have to search through the job descriptions.</li>
+<li>Very few jobs advertise by specific area of expertise it seems (e.g. “Natural Language processing”, “public health”). The most frequent case of data science specific expertise being demanded are roles focussed on Computer Vision (13 jobs). Perhaps this would indicate that most roles look for a blend of different skills, but aren’t looking for one single specialty area. This is encouraging for us since our graduates will have some flexibility in what skills to use for leverage.</li>
+</ul>
+<p><strong>5. Which programming languages are in greatest demand? Do any of the languages correlate with higher salary?</strong></p>
+<p>For this question, I went beyond including just programming languages but also techniques, libraries, cloud services and skills. This has greatly increased the usefulness of the findings.</p>
+<p>Figure 3.8 illustrates how the 10 most popular languages and skills compare across the 3 groups. This particular graph can be used to tailor your own portfolio building journey.</p>
+<p>For instance, if you have expertise in R and SQL, you’re more well positioned to aim for a DA roles. If you have experience in Java and are considering pivoting into data science, then focusing on Python and AWS will put you in good stead.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*IR6XEm5D8i8tT0tzWGyiMQ.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.8— Skills in demand</p>
+<p>If you’re a data bootcamp, you can help inform more clearly which skills grads can leverage towards which roles, so they can optimise their job search. Towards the end of your course, you could create ‘Data Science Profiles’ that learners can gravitate towards depending on the kind of work they would prefer doing. Those that want heavier computational work (so more on the ML side), can attend classes on Docker, Java and AWS. Those drawn more towards analytics can spend more time refining their SQL and other relevant skills.</p>
+<h2 id="modelling--a-null-result">Modelling — a null result</h2>
+<p>I next attempted to build a linear regression model for predicting salary, but it would seem <strong>that there wasn’t any way to reliably predict the salary from the features I built</strong>. After multiple iterations, dropping non-significant features and cross-validating, the summary for the best model is this:</p>
+<ul>
+<li>Model had <strong>root-mean squared error (RMSE) of about £13,000</strong> on test data, which is a very wide margin for our purposes. So if we took a job post and predicted that the role should be paid around £40 000, on average the answer would be that figure, give or take £13k. Therefore this tool needs more / different data and features before it can be useful.</li>
+<li>The strongest determiner of salary was the presence of the word ‘lead’ in the title — according to the model, the difference between a role that has lead in the title and one that doesn’t is, on average, £23k.</li>
+<li>The weakest feature was whether the title included ‘scientist’— acc to the same model, the difference you’d expect in salary for a role that has the word ‘scientist’ in the title vs one that does not, was about £7k.</li>
+</ul>
+<p>I also attempted to bin the salary data into bands so that I could attempt to predict (binned into categories such as £20'000–25'000). However, even that didn’t have much predictive power, with the best model having an accuracy of about 10% (given 10 different salary bands). To conclude, the model is nullified and I will attempt to build another in future iterations of the project, when more data is available. However, it might just be the case that the features used have no real relationship with salary.</p>
+<h1 id="6-is-there-any-relationship-between-years-of-experience-required-and-salary">6. Is there any relationship between years of experience required and salary?</h1>
+<p>Many new data scientists find it vexing or disappointing when they search for an “entry-level” position and find that it requires 3 years of experience in the field. But do the years of experience required stated in the job ad actually have anything to do with something more concrete, like pay?</p>
+<p>After extracting the required experience in years from job posts using regex and averaging those that gave a range (“2–3 years experience” becomes 2.5), I compared it to salary for those jobs. Jobs with 0 years experience were found by searching for “junior role / data / position” (this is probably the most contentious assumption of the created feature). Unfortunately there were very few jobs I could extract such data for (246 job posts), although the Spearman Ranked Correlation test was significant (<strong>p value &lt; 0.001</strong>). The <strong>experience and salary have a weak-to-moderate correlation</strong> (<strong>0.37</strong>). We must remember that this was based on data mined with regex and is relying on certain assumptions and limitations. Hence this is an important test to re-run in the next project iteration.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1008/1*H5krNpINKuw75UNZKVdm4A.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.9 — how many years??</p>
+<p>Out of those jobs, Figure 3.9 shows the general trend. The largest number of jobs in this group asked for 2 OR 3 years of experience. Hopefully this isn’t representative of the job market, but if it is then as a beginner data scientist, you’d have to find ways to make up for the lack of experience, e.g. by doing freelance work for a while.</p>
+<h1 id="7-what-are-the-main-topics-emerging-from-the-job-descriptions-and-the-title"><strong>7. What are the main topics emerging from the job descriptions and the title?</strong></h1>
+<p>Using topic modelling, can we see if there are natural groups within the job descriptions? Can we split apart our data in some semantic way?</p>
+<p>Using Latent Dirichlet Allocation and pyLDAviz (<a href="https://medium.com/latent-semantic-analysis-intuition-math-implementation-a194aff870f8" target="_blank" rel="noopener">here’s my previous post</a> on it), I determined a few emergent topics of interest. It’s important to note that, since this is an unsupervised approach, there’s a strong chance that the outputs are mostly noise, and not useful insights. However, guided by domain knowledge and other pieces of information in this dataset, we can infer at least 3 useful topics.</p>
+<p><em>Client and Business-centric</em> — (Fig 3.10) Roles heavily featuring this topic are focused more on delivering insights towards customers and using tools such as dashboards, excel, (power) ‘bi’ and thus providing analytical insights for the stakeholders.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*3JOj8mRch3XLVu9UQfD0Mw.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.10— Client and Business centric</p>
+<p><em>Development and Deep Learning</em>— (Fig 3.11) This topic and associated job roles are focussed on development programming languages (‘java’), specific packages used for deep learning (‘tensorflow’, ‘pytorch’), niche areas (‘NLP’, ‘neural’ (networks)) and mentions ‘development’, ‘processing’ and ‘product’. This topic corresponds strongly to a lot of ML jobs.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*--JQ4Os7AO9G6YI-Uyr-Tw.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.11—Development and Deep Learning</p>
+<p><em>Academic &amp; Scientific</em> (Fig 3.12)  — there’s a very strong association with this topic and terms such as ‘university’ and ‘research’ — more so than for any other topic! Also the only other topic with a strong association with ‘AI’, ‘novel’, ‘publication’ and ‘academic’ is Topic 1 — Deep Learning and Development.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*6jiWe7njEo74vkwfvWEQbg.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.12 — Academic and Scientific roles</p>
+<h1 id="5-conclusion">5. Conclusion</h1>
+<p>My plan is to repeat this project in late Q1 2021 with a fresh batch of job post data and to improve the functionality of the web scraper to be able to detect tags for things such as “Remote working”. I hope that this exploratory analysis proves useful to some people, although I repeat that all findings should be considered in light of the unstructured and semi-rigorous nature of the work. None of these findings can/should be interpreted as conclusive, only preliminary. As said before, I appreciate any feedback and any claps! If I had to summarise the most important advice for aspiring data scientists in one bullet point it would be this:</p>
+<p>Invest <strong>most time into mastering Python and SQL</strong>, <strong>play the long game</strong> and <strong>lower your initial expectations</strong> of what pay or job you’ll get, with the realistic hope that 2 years of building experience in your less-than-ideal job. Don’t spend too much time initially on niche, fancy areas like deep learning or NLP, you can revisit those at a latter stage. Knowledge of the basics, of how to solve problems and work experience are what pay off most.</p>
+<p>Thank you.</p>
+</div>
+
+    
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/nlproc/">NLProc</a>
+  
+  <a class="badge badge-light" href="/tag/web-scraping/">Web-scraping</a>
+  
+  <a class="badge badge-light" href="/tag/unsupervised-learning/">Unsupervised-Learning</a>
+  
+  <a class="badge badge-light" href="/tag/data-viz/">Data-viz</a>
+  
+  <a class="badge badge-light" href="/tag/statistics/">Statistics</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/publication/what_do_uk_employers_want_dec_2020/&amp;text=What%20do%20UK%20employers%20want%20from%20a%20data%20scientist?" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/publication/what_do_uk_employers_want_dec_2020/&amp;t=What%20do%20UK%20employers%20want%20from%20a%20data%20scientist?" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=What%20do%20UK%20employers%20want%20from%20a%20data%20scientist?&amp;body=/publication/what_do_uk_employers_want_dec_2020/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/publication/what_do_uk_employers_want_dec_2020/&amp;title=What%20do%20UK%20employers%20want%20from%20a%20data%20scientist?" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=What%20do%20UK%20employers%20want%20from%20a%20data%20scientist?%20/publication/what_do_uk_employers_want_dec_2020/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/publication/what_do_uk_employers_want_dec_2020/&amp;title=What%20do%20UK%20employers%20want%20from%20a%20data%20scientist?" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu7eb9c9766accbf54f7f04ff419d2cc82_1157039_270x270_fill_q75_lanczos_center.jpg" alt="Ioana Fiona Preoteasa">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Ioana Fiona Preoteasa</h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/Ioana-P" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/ioanapr/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2022 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.e66e385e2f1df861699d60acd7a9c670.js"></script>
+
+    
+    
+    
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+    
+    
+      <script src="/js/wowchemy-headroom.c251366b4128fd5e6b046d4c97a62a51.js" type="module"></script>
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.ab2f2890dbe3e2e83579366d3d6e8fd9.js"></script>
+
+    
+    
+    
+    
+    
+    
+      
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <script src="/js/wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
+
+
+
+
+
+
+</body>
+</html>

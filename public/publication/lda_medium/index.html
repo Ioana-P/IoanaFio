@@ -1,0 +1,1707 @@
+<!DOCTYPE html><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.5.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="I explain the intuition behind LDirA and go through a worked example of applying and visualizing it to a canonical NLP dataset." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/publication/lda_medium/" />
+
+  
+  
+  
+    <meta name="theme-color" content="rgb(251, 191, 183)" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.c7b8d9abd591ba2253ea42747e3ac3f5.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha512-W0xM4mr6dEP9nREo7Z9z+9X70wytKvMGeDsj7ps2+xg5QPrEBXC8tAW1IFnzjR6eoJ90JmCnFzerQJTLzIEHjA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3a1b2f5c1da49b147f3050c4749cae46.css" />
+
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="/publication/lda_medium/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+    <meta property="twitter:site" content="@wowchemy" />
+    <meta property="twitter:creator" content="@wowchemy" />
+  
+  <meta property="og:site_name" content="Academic" />
+  <meta property="og:url" content="/publication/lda_medium/" />
+  <meta property="og:title" content="Latent Dirichlet Allocation: Intuition, math, implementation and visualisation with pyLDAvis | Academic" />
+  <meta property="og:description" content="I explain the intuition behind LDirA and go through a worked example of applying and visualizing it to a canonical NLP dataset." /><meta property="og:image" content="/publication/lda_medium/featured.jpeg" />
+    <meta property="twitter:image" content="/publication/lda_medium/featured.jpeg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-09-26T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2020-09-26T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/publication/lda_medium/"
+  },
+  "headline": "Latent Dirichlet Allocation: Intuition, math, implementation and visualisation with pyLDAvis",
+  
+  "image": [
+    "/publication/lda_medium/featured.jpeg"
+  ],
+  
+  "datePublished": "2020-09-26T00:00:00Z",
+  "dateModified": "2020-09-26T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Ioana Fiona Preoteasa"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "I explain the intuition behind LDirA and go through a worked example of applying and visualizing it to a canonical NLP dataset."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Latent Dirichlet Allocation: Intuition, math, implementation and visualisation with pyLDAvis | Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="97de9558876ce696430e2d0d3cc09ec1" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.d221902fdb3ac4942841d39f708dccc2.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header--fixed">
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/post/"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/uploads/DS_cv_resume.pdf"><span>CV</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link  active" href="/publication/"><span>Writing</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    
+
+
+
+
+
+
+
+
+<div class="pub">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Latent Dirichlet Allocation: Intuition, math, implementation and visualisation with pyLDAvis</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      Ioana Fiona Preoteasa</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    September, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    
+
+    
+    
+
+    
+
+    <div class="space-below"></div>
+
+    <div class="article-style"><p>TL;DR — <a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation" target="_blank" rel="noopener">Latent Dirichlet Allocation</a> (LDA, sometimes LDirA/LDiA) is one of the most popular and interpretable generative models for finding <strong>topics in text data</strong>. I’ve provided an <a href="https://nbviewer.jupyter.org/github/Ioana-P/MLEng_vs_DScientist_analysis/blob/master/2_Topic_modelling.ipynb#topic=0&amp;lambda=1&amp;term=" target="_blank" rel="noopener">example notebook</a> based on web-scraped job description data. Although running LDA on a canonical dataset like <a href="https://scikit-learn.org/0.19/modules/generated/sklearn.datasets.fetch_20newsgroups.html#sklearn.datasets.fetch_20newsgroups" target="_blank" rel="noopener">20Newsgroups</a> would’ve provided <a href="https://nbviewer.jupyter.org/github/bmabey/pyLDAvis/blob/master/notebooks/sklearn.ipynb" target="_blank" rel="noopener">clearer topics</a> , it’s important to witness how difficult topic identification can be “in the wild”, and how you might not actually find clear topics — with unsupervised learning, you are <em>never guaranteed to find an answer!</em></p>
+<ul>
+<li><strong>Acknowledgement</strong>: the greatest aid to <em>my</em> understanding was Louis Serrano’s two videos on LDA (2020). A lot of the intuition section is based on his explanation, and I would urge you to visit his <a href="https://www.youtube.com/watch?v=T05t-SqKArY" target="_blank" rel="noopener">video</a> for a more thorough dissection.</li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*Xs1Xe1Hh4P6IGyWN8fImXw.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 1.0 — the LDA “machine” producing documents</p>
+<h1 id="contents">Contents:</h1>
+<p><a href="#f1d8">Intuition</a></p>
+<p><a href="#7b8f">Maths</a></p>
+<p><a href="#b9d6">Implementation and visualisation</a></p>
+<h1 id="intuition">Intuition</h1>
+<p>Let’s say that you have a collection of different news articles (your <em>corpus</em> of <em>documents</em>), and you suspect that there are several topics that come up frequently within said corpus — your goal is to find out what they are! To get there you make a few <strong>key assumptions:</strong></p>
+<ul>
+<li><em>The d</em><a href="https://en.wikipedia.org/wiki/Distributional_semantics#:~:text=The%20distributional%20hypothesis%20suggests%20that,occur%20in%20similar%20linguistic%20contexts." target="_blank" rel="noopener"><em>istributional hypothesis</em></a><em>:</em> Words that appear together frequently are likely to be close in meaning;</li>
+<li>each topic is a mixture of different words (Fig 1.1);</li>
+<li>each document is a mixture of different topics (Fig 1.2).</li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*bgPL1Ex8dfxBSM7bSE3HlA.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 1.1 — Topics as a mixture of words</p>
+<p>In Fig 1.1 you’ll notice that the topic “Health &amp; Medicine” has various words associated with it to <em>varying degrees</em> (“cancer” is more strongly associated than “vascular” or “exercise”). Note that different words can be associated with different topics, as with the word “cardio”.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*-dW-PbkYomLrP6XtNTYwHA.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 1.2 — Document as a mixture of topics</p>
+<p>In Fig 1.2 you’ll see that a single document can pertain to multiple topics (as colour-coded on the left). Words like “injury” and “recovery” might also belong to multiple topics (hence why I’ve coloured them in more than one colour).</p>
+<p>Now LDA is a <em>generative model</em> — it tries to determine the underlying mechanism that <em>generates</em> the articles and the topics. Think of it as if there’s a machine with particular settings that spits out articles, but we can’t see the machine’s settings, only what it produces. LDA creates a set of machines with different settings and selects the one that gives the best-fitting results (Serrano, 2020). Once the best one is found, we take a look at its “settings” and we deduce the topics from that.</p>
+<p>So what are these <em>settings</em>?</p>
+<p>First, we have something called the <em>Dirichlet</em> (pronounced like dee-reesh-lay) <em>prior</em> of the topics. This is a number that says how <em>sparse</em> or how <em>mixed</em> up our topics are. In L Serrano’s video (which I highly recommend!) he illustrates how visually you can think of this as a triangle (Fig 1.3) where the dots represent the documents and their position with respect to the corners (i.e. the topics) represents the how they’re related to each of the topics (2020). So a dot that is very close to the “Sports” vertex will be almost entirely about sport.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*46pYVxXIOAL7qd40Bs_xHQ.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 1.3 — Dirichlet distribution of topics</p>
+<p>In the lefthand triangle the documents are fairly separated, most of them neatly tucked into their corners (this corresponds to a low Dirichlet prior, alpha&lt;1); on the right they are in the middle and represent a more even mix of topics (a higher Dirichlet prior, alpha&gt;1). Look at the document in Fig 1.2 and, given the mix of topics, have a think about where you think it would be placed in the triangle on the right (my answer is that it’d be the dot <em>just above</em> the one closest to the Sports corner).</p>
+<p>Second, we have the Dirichlet prior of the <em>terms</em> (all the words in our vocabulary). This number (whose name is <em>beta)</em> has almost exactly the same function as alpha — except that it determines how the <strong>topics</strong> are distributed amongst the <strong>terms</strong><em>.</em></p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*ctgYvHaDDkcDKAzYcVigHg.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 1.4 Dirichlet distribution of terms; the numbers are proportional to how much each word is associated with each respective topic</p>
+<p>As we said before, the topics are assumed to be mixtures (more precisely, <em>distributions</em>) of different terms. In Fig 1.4 “Sports” is mostly drawn towards “injury”. “Health&amp;Medicine” is torn between “cardio” and “injury” and has no association with the term “pray”.</p>
+<p><em>But wait, our vocabulary doesn’t consist of just 3 words!</em> You’re right! We could have a vocabulary of <em>4 words</em> (as shown in Fig 1.5)! Trouble is that visualising a typical vocabulary of <em>N</em> words (where <em>N</em> could be 10'000) would require a <a href="https://en.wikipedia.org/wiki/Simplex#The_standard_simplex" target="_blank" rel="noopener">generalised version of the triangle shape,</a> but in <em>N — 1</em> dimensions (the term for this is an n-1 <em>simplex</em>). This is where the visuals stop and we trust that the maths of higher dimensions will function as expected. This also applies to the topics — very often we’ll find ourselves with more than 3 topics.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*iq3bjiBg_Pchh0upPmnmMQ.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 1.5 — which topic is the red one, based on the distribution of terms?</p>
+<p>An important clarification: in LDA we start with values of alpha and beta as hyperparameters, but these numbers <em>only</em> tell us whether our dots (documents / topics) are <strong>generally</strong> concentrated in the middle of their triangles or closer to the corners. The <em>actual positions</em> within the triangle (simplex) are guessed by the machine — the guesswork is not random, it’s heavily weighted by the Dirichlet priors.</p>
+<p>So the machine creates the two Dirichlet distributions, <em>distributes</em> the documents and topics on them and then <em>generates</em> documents based on those distributions (Fig 1.6). So, how does the last step happen, the <em>generation</em> part?</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*Xs1Xe1Hh4P6IGyWN8fImXw.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 1.6 — the LDA “machine” producing documents</p>
+<p>Remember at the start we said that topics are seen as mixtures / distributions of words and documents as mixtures / distributions of topics? Going from left to right in Figure 1.7 we start with a document, somewhere in the triangle, torn between our 3 topics. If it’s near the “Sports” corner, this means that the document will be <em>mostly about Sports</em>, with some mentions of “Religion” and “Health&amp;Medicine”. So we know the topic composition of the document → therefore we can estimate what <em>words</em> will come up. We will be sampling (i.e. randomly pulling out) words mostly from Sports, some from Health&amp;Medicine and a very small amount from Religion (Fig 1.7). Here’s a question for you: looking at the triangle at the bottom of Fig 1.7, do you think <em>word 2</em> will come up or not?</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*hDZIC8V8IyX-otJ1eblCuw.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 1.7 — how the two Dirichlet distributions feed into our document generation</p>
+<p>The answer is that <strong>it might</strong>: remember that topics are mixtures of words. You might be thinking that <em>word 2</em> is very strongly related to the yellow (Religion) topic, and since this topic is very sparse in this document <em>word 2</em> won’t come up as much. But remember that a. <em>word 2</em> is also associated with the blue, Sports topic and b. the words are sample probabilistically, so every word has some non-zero chance of appearing.</p>
+<p>The words in our final, generated document (on the right end of Fig 1.7) will be compared to the words in the original documents. We won’t get the same document, BUT when we compare a range of different LDA “machines” with a range of different distributions, we find that one of them was closer to generating the document than the others were and that’s the LDA model that we choose.</p>
+<h1 id="maths">Maths</h1>
+<p>A normal statistical language model assumes that you can generate a document by sampling from a probability distribution over words, i.e. for each word in our vocabulary there is an associated probability of that word appearing.</p>
+<p>LDA adds a layer of complexity over this arrangement. It assumes a list of topics, <em>k</em>. Each document <em>m</em> is a probability distribution over these <em>k</em> topics, and each topic is a probability distribution over all the different terms in our vocabulary <em>V</em>. That is to say that each word has various probabilities of appearing in each topic.</p>
+<p>The full probability formula that generates a document is in Figure 2.0 below. If we break this down, on the right hand side we have three product sums:</p>
+<ul>
+<li><strong>Dirichlet distribution of topics over terms:</strong> (corresponds to Fig 1.4 and 1.5) for each topic <em>i</em> amongst <em>K topics</em>, what is the probability distribution of words for <em>i.</em></li>
+<li><strong>Dirichlet distribution of documents over topics:</strong> (corresponds to Fig 1.3) for each document <em>j</em> in our corpus of size <em>M,</em> what is the probability distribution of topics for <em>j.</em></li>
+<li><strong>Probability of a topic appearing given a document X the probability of a word appearing given a topic:</strong> (corresponding to the two rectangles in Fig 1.7) how likely is it that certain topics, <em>Z,</em> appear in this document and then how likely is that certain words, <em>W,</em> appear given those topics.</li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*pUTv6gS_8GDQodj4TlGTgw.jpeg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 2.0 — LDA formula</p>
+<p>The first two sums contain <strong>symmetric</strong> Dirichlet distributions which are prior probability distributions for our documents and our topics (Fig 2.1 shows a set of general Dirichlet distributions, including symmetric ones).</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1280/1*YJbCG2oZI6prRgIBmHiQtg.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 2.1 — By Empetrisor — Own work, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/w/index.php?curid=49908662" target="_blank" rel="noopener">https://commons.wikimedia.org/w/index.php?curid=49908662</a></p>
+<p>The 3rd sum contains two multinomial distributions, one over topics and one over words — i.e. we sample topics from a probability distribution of them and then for each topic instance we sample words from a probability distribution of words for that particular topic.</p>
+<p>As was mentioned at the end of the Intuition section, using the final probability we try to generate the same distribution of words as the one that we get in our original documents. The probability of achieving this is <em>very, very low</em>, but for some values of alpha and beta the probability will be less low.</p>
+<h2 id="interpreting-an-lda-model-and-its-topics">Interpreting an LDA model and its topics</h2>
+<p>What metrics do we use for finding our latent topics? As Shirley and Sievert note:</p>
+<blockquote>
+<p>“To interpret a topic, one typically examines a ranked list of the most probable terms in that topic, […]. The problem with interpreting topics this way is that common terms in the corpus often appear near the top of such lists for multiple topics, making it hard to differentiate the meanings of these topics.” (2014)</p>
+</blockquote>
+<p>That is exactly the problem we’ve stumbled into in the next section, <em>Implementation</em>. Therefore we use an alternative metric for interpreting our topics — <em>relevance</em> (Shirley and Sievert, 2014).</p>
+<h2 id="relevance">Relevance</h2>
+<p>This is an adjustable metric that balances a term’s frequency in a particular topic against the term’s frequency across the whole corpus of documents.</p>
+<p>In other words, if we have a term that’s quite popular in a topic, relevance allows us to gauge how much of its popularity is due to it being very specific to that topic and how much of it is due to it just being a work that appears <em>everywhere.</em> An example of the latter would be “learning” in the job description data. When we adjust relevance with a lower lambda (i.e. penalising terms that just happen to be frequent across <strong>all</strong> topics), we see that “learning” is not that special a term, and it only comes up frequently because of its prevalence across the corpus.</p>
+<p>The mathematical definition of relevance is:</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1172/0*tL0f-BtwU3oSv-8-" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<ul>
+<li><em>r —</em> relevance</li>
+<li><em>⍵ —</em> a term in our vocabulary</li>
+<li><em>k —</em> a topic amongst the ones our LDA has produced</li>
+<li><em>λ —</em> the adjustable weight parameter</li>
+<li>𝝓kw — probability of a term appearing in a particular topic</li>
+<li><strong><em>p</em></strong><em>w —</em> the probability of a term appearing inside the corpus as a whole</li>
+</ul>
+<p>Apart from lambda, <em>λ,</em> all the terms are derived from the LDA data and model. We adjust lambda in the next section to help us derive more useful insights. The original paper authors kept lambda in the range of 0.3 to 0.6 (Shirley and Sievert, 2014).</p>
+<h1 id="implementation-and-visualisation">Implementation and visualisation</h1>
+<p>The implementation of sklearn’s LatentDirichletAllocation model follows the pattern of most sklearn models. In my <a href="https://nbviewer.jupyter.org/github/Ioana-P/MLEng_vs_DScientist_analysis/blob/master/2_Topic_modelling.ipynb#topic=0&amp;lambda=1&amp;term=" target="_blank" rel="noopener">notebook</a>, I:</p>
+<ol>
+<li>Pre-processed my text data,</li>
+<li>Vectorised it (resulting in a document-term matrix),</li>
+<li>Fit_transformed it using LDA and then</li>
+<li>Inspected the results to see if there are any emergent, identifiable topics.</li>
+</ol>
+<p>The last part is highly subjective (remember this is <em>unsupervised learning</em>) and is not guaranteed to reveal anything really interesting. Furthermore the ability to identify topics (like clusters) depends on your domain knowledge of the data. I recommend also altering the alpha and beta parameters to match your expectations of the text data.</p>
+<p>The data I’m using is job post description data from indeed.co.uk. The dataframe has many other attributes than text, including whether I used the search terms “data scientist”, “data analyst” or “machine learning engineer”. Can we find some of the original search categories in our LDA topics?</p>
+<p>In the gist below you’ll see that I’ve vectorised my data and passed it to an LDA model (this happens under the hood of the data_to_lda function).</p>
+<p>Running this code and the print_topics function will produce something like this:</p>
+<pre tabindex="0"><code>Topics found via LDA on Count Vectorised data for ALL categories:  
+  
+Topic #1:  
+software; experience; amazon; learning; opportunity; team; application; business; work; product; engineer; problem; development; technical; make; personal; process; skill; working; science  
+  
+Topic #2:  
+learning; research; experience; science; team; role; work; working; model; skill; deep; please; language; python; nlp; quantitative; technique; candidate; algorithm; researcherTopic #3:  
+learning; work; team; time; company; causalens; business; high; platform; exciting; award; day; development; approach; best; holiday; fund; mission; opportunity; problem  
+  
+Topic #4:  
+client; business; team; work; people; opportunity; service; financial; role; value; investment; experience; firm; market; skill; management; make; global; working; support...
+</code></pre><p>The “print_topics” function gives the terms for each topic in decreasing order of probability, which <strong>can</strong> be informative. It’s at this stage that we can <strong>start</strong> trying to label the emergent, latent topics from our model. For instance, Topic 1 seems to be related mildly related to ML engineer skills and requirements (the mention of “amazon” relates to using AWS — this is something I found from the EDA stage of the project in another notebook); meanwhile, Topic 4 clearly has a more client-facing or business-oriented theme, given terms like “market”, “financial”, “global”.</p>
+<p>Now those two categories might seem a bit far-fetched to you and that’s a fair criticism. You may also have noticed that using this method for topic determination is hard. So, let’s turn to pyLDAvis!</p>
+<h2 id="pyldavis">pyLDAvis</h2>
+<p>Using pyLDAvis, the LDA data (which in our case, was 10-dimensional) has been decomposed via PCA (principal component analysis) to be only 2-dimensional. Thus it has been flattened for the purposes of visualisation. We have ten circles and the center of each circle represents the position of our topic in the latent feature space; the distances between topics illustrates how (dis)similar the topics are and the area of the circles is proportional to how many documents feature each topic.</p>
+<p>Below I’ve shown how you insert an already trained sklearn LDA model in pyLDAvis. Thankfully the <a href="https://github.com/bmabey/pyLDAvis" target="_blank" rel="noopener">people responsible for adapting the original LDAvis</a> (which was R model) to python made it communicate efficiently with sklearn.</p>
+<p>And in Fig 3.0 is the plot we generate:</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*e9Fj031z3H1s_eNx_KnfWg.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.0 — pyLDAvis interactive plot</p>
+<p><strong>Interpreting pyLDAvis plots</strong></p>
+<p>The LDAvis plot comes in two parts — a 2-dimensional ‘flattened’ replotting of our n-dimensional LDA data and an interactive, varying horizontal bar-chart of term distributions. Both of these are shown in Fig A1.0. One important feature to note is that the right-hand bar chart shows the terms in a topic in <em>decreasing order of relevance</em>, but the bars indicate the frequency of the terms. The red section represents the term frequency purely within the particular topic; the red and blue represent the overall term frequency within the corpus of documents.</p>
+<p><strong>Adjusting</strong> <em>λ (lambda)</em></p>
+<p>If we set λ equal to 1, then our relevance is given purely by the probability of the word to that topic. Setting it to 0 will result in our relevance being dictated by specificity of that word to the topic — this is because the right hand term divides the probability of a term appearing in a particular topic divided by the probability of the word appearing generally — thus, highly frequent words (such as ‘team’, ‘skill’, ‘business’) will be downgraded heavily in relevance when we have a lower <em>λ</em> value.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*gZJYETiTTlLPyi2VsXam9Q.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.1 — setting lambda to 1</p>
+<p>In Fig 3.1 <em>λ</em> was set to 1 and you can see that the terms tend to match the ones that dominate across the board generally (i.e. like in our print-outs of the most popular terms for each topic). This was only done for topic 1, but when I changed topic the distribution of top-30 most relevant terms barely changed at all!</p>
+<p>Now, in Fig 3.2 <em>λ</em> was set to 0 and the terms changed completely!</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*vHiv2kJNqRAZdsC23_O3sg.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.2 — lambda set to 0</p>
+<p>Now we have highly specific terms, but pay attention to the scale at the top — the most relevant word appears about 60 times. That’s quite a come down after over 6000! Also, these words won’t necessarily tell us anything interesting. If you select a different topic with this lambda value you will keep getting junk terms that aren’t necessarily that important.</p>
+<p>In Fig 3.3 I’ve set lambda to 0.6 and I am exploring topic 2. Right off the bat there is a significant theme here surrounding engineer work, with terms like “aws”, “cloud” and “platform”.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*6Z1RjZ39WG4OCe6uyFE4uA.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.3 — lambda = 0.6</p>
+<p>Another great thing that you can do with pyLDAvis is visually inspect the conditional topic distribution given a word, simply by hovering over the word (Fig 3.4). Below we can see just how much “NLP” is split amongst several topics — not a lot! This gives me further reason to believe that topic 6 is focused on NLP and text-based work (terms like “speech”, “language”, “text” also help in that regard). An interesting insight for me is the fact that “research” and “PhD” co-occur so strongly in this topic.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://miro.medium.com/max/1400/1*lsD8XKNR7YSUlqkcVp-ZjA.png" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+Fig 3.4 — conditional topic distribution for “NLP”</p>
+<p>Does this mean that NLP-focussed roles in the industry demand higher education than other roles? Do they demand previous research experience more often than other roles? Are NLP roles perhaps more fixated on experimental techniques and thus require someone with knowledge of the cutting edge?</p>
+<p>While the interactive plot generated cannot deliver concrete answers, what it can do is provide us with a starting position for further investigation. If you’re in an organisation where you can run topic modelling, you can use LDA’s latent themes to inform survey-design, A/B testing or even correlate it with other available data to find interesting correlations!</p>
+<p>I wish you the best of luck in topic modelling. If you’ve enjoyed this lengthy read, please give me as many claps as you think are appropriate. If you have knowledge of LDA and think I’ve gotten something <strong>even partially wrong</strong> please leave me a comment (feedback is a gift and all that)!</p>
+<h2 id="references"><strong>References</strong></h2>
+<ol>
+<li>Serrano L. (2020). Accessed online: <a href="https://www.youtube.com/watch?v=T05t-SqKArY" target="_blank" rel="noopener">Latent Dirichlet Allocation (Part 1 of 2)</a></li>
+<li>Sievert C. and Shirley K (2014). <em>LDAvis: A method for visualizing and interpreting topics.</em> Accessed online: <a href="https://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf" target="_blank" rel="noopener">Proceedings of the Workshop on Interactive Language Learning, Visualization, and Interfaces</a></li>
+</ol>
+</div>
+
+    
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/nlproc/">NLProc</a>
+  
+  <a class="badge badge-light" href="/tag/unsupervised-learning/">Unsupervised-Learning</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/publication/lda_medium/&amp;text=Latent%20Dirichlet%20Allocation:%20Intuition,%20math,%20implementation%20and%20visualisation%20with%20pyLDAvis" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/publication/lda_medium/&amp;t=Latent%20Dirichlet%20Allocation:%20Intuition,%20math,%20implementation%20and%20visualisation%20with%20pyLDAvis" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Latent%20Dirichlet%20Allocation:%20Intuition,%20math,%20implementation%20and%20visualisation%20with%20pyLDAvis&amp;body=/publication/lda_medium/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/publication/lda_medium/&amp;title=Latent%20Dirichlet%20Allocation:%20Intuition,%20math,%20implementation%20and%20visualisation%20with%20pyLDAvis" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Latent%20Dirichlet%20Allocation:%20Intuition,%20math,%20implementation%20and%20visualisation%20with%20pyLDAvis%20/publication/lda_medium/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/publication/lda_medium/&amp;title=Latent%20Dirichlet%20Allocation:%20Intuition,%20math,%20implementation%20and%20visualisation%20with%20pyLDAvis" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu7eb9c9766accbf54f7f04ff419d2cc82_1157039_270x270_fill_q75_lanczos_center.jpg" alt="Ioana Fiona Preoteasa">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Ioana Fiona Preoteasa</h5>
+      
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/Ioana-P" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/ioanapr/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2022 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.e66e385e2f1df861699d60acd7a9c670.js"></script>
+
+    
+    
+    
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js" integrity="sha512-Ypjm0o7jOxAd4hpdoppSEN0TQOC19UtPAqD+4s5AlXmUvbmmS/YMxYqAqarQYyxTnB6/rqip9qcxlNB/3U9Wdg==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/languages/python.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+
+    
+    
+    
+    <script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+    
+    
+      <script src="/js/wowchemy-headroom.c251366b4128fd5e6b046d4c97a62a51.js" type="module"></script>
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.ab2f2890dbe3e2e83579366d3d6e8fd9.js"></script>
+
+    
+    
+    
+    
+    
+    
+      
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <script src="/js/wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
+
+
+
+
+
+
+</body>
+</html>

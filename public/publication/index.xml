@@ -1,0 +1,1862 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Writing | Academic</title>
+    <link>/publication/</link>
+      <atom:link href="/publication/index.xml" rel="self" type="application/rss+xml" />
+    <description>Writing</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 09 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Writing</title>
+      <link>/publication/</link>
+    </image>
+    
+    <item>
+      <title>What do UK employers want from a data scientist?</title>
+      <link>/publication/what_do_uk_employers_want_dec_2020/</link>
+      <pubDate>Wed, 09 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/what_do_uk_employers_want_dec_2020/</guid>
+      <description>&lt;p&gt;Picture a novice data scientist, either straight out of education or pivoting careers. They are determined to enter the field but have limited time and funds to spare in extra training and are daunted by the sheer variety of skills and experiences employers request. Naturally, they sign up to intense bootcamps and scramble to take online courses on everything from Azure to Excel.&lt;/p&gt;
+&lt;p&gt;How can you be sure that focusing on a particular skill won’t prove to be a massive opportunity cost? How many years experience are they expecting? What should I expect to get paid, realistically? If you’re leafing through a data science syllabus, and you want to make sure your investment pays off then what should that syllabus include? That’s also a very pertinent question for people designing a data science course: how do we maximise the overlap between what recruiters want and what our course teaches?&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*Qn32iuMQeL32uS6Z3B5hBw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Every new or aspiring data scientist right now— Img 1.1 — Photo courtesy of &lt;a href=&#34;https://unsplash.com/photos/7iSEHWsxPLw&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;UnSplash&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;about-this-post&#34;&gt;&lt;strong&gt;About this post&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;I’m reporting on findings from an exploration of job data on Indeed.co.uk, so this focusses on the UK job market. Although this post provides useful answers, there are still plenty of questions to ask and it’s unclear how representative the findings are of the total population of jobs. This is why future iterations of the project in Q1 2021 and later will try to replicate / falsify the findings. If you have suggestions for other things to search for within the data or any critiques of methods used, please leave a comment. All feedback is appreciated.&lt;/p&gt;
+&lt;p&gt;If you just want the most important results, scroll to section &lt;strong&gt;II. Key insights&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to know how those results were generated in more detail, scroll to section &lt;strong&gt;III. Methodology&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to be able to replicate the findings, read the assumptions or see the results in full (including more of the null results), see the &lt;a href=&#34;https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;README in the project repo&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;and the&lt;/strong&gt; &lt;a href=&#34;https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis/blob/master/Data_Scientist_UK_Q4_Job_market_analysis.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;main notebook&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;i-why-and-how&#34;&gt;I. Why and How&lt;/h1&gt;
+&lt;p&gt;Harvard Business Review dubbed Data Scientist the &lt;a href=&#34;https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;sexiest job of the century&lt;/a&gt;, and the rapid wave of data bootcamps and online courses over the past decade reflects the immense magnetism of the profession. Yet with so many people rushing into data science, it’s important to know the market and offer a &lt;em&gt;competitive resume&lt;/em&gt;. This post and its &lt;a href=&#34;https://github.com/Ioana-P/DS_Indeed_Job_Market_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;corresponding project repository&lt;/a&gt; represent my initiative in adding to the trove of knowledge on the job market. This is an exploratory, single-researcher analysis, using data scraped only from Indeed, with a total sample of 1082 job descriptions and 382 annual salaries. Therefore you should take findings with a pinch of salt. The plan is to replicate the scraping and analysis during Q1 2021. I plan to broaden the range of analyses performed on the data as well as improve the quality and efficiency of the web-scraping tool. I searched for jobs with 3 different pairs of words in the title:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;data, scientist (DS)&lt;/li&gt;
+&lt;li&gt;machine, learning (ML)&lt;/li&gt;
+&lt;li&gt;data, analyst (DA)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I’ve included all of those under the umbrella of “data science roles” because even though it’s common knowledge that those roles do very different things and require different proficiencies, they still all &lt;em&gt;do&lt;/em&gt; data science, and the lines between the categories is blurry.&lt;/p&gt;
+&lt;h2 id=&#34;who-does-this-analysis-benefit-who-are-potential-stakeholders&#34;&gt;Who does this analysis benefit? Who are potential stakeholders?&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Let’s imagine that I am an aspiring data scientist, recently starting out in the field. Regardless of my current qualifications, I want to know what employers want so I know what skills I need to go and &lt;strong&gt;acquire&lt;/strong&gt;, which of my skills I can best &lt;strong&gt;leverage,&lt;/strong&gt; and what I else I should learn over time to increase my potential salary.&lt;/li&gt;
+&lt;li&gt;Let’s suppose that we are a data science course provider / bootcamp based in the UK. Our bottom line is &lt;strong&gt;getting our learners hired&lt;/strong&gt; in the data science world &lt;em&gt;and&lt;/em&gt;, additionally, trying to &lt;strong&gt;maximise the average salaries&lt;/strong&gt; our graduates get. To do so, we need to match our curriculum to what the market is asking for. What’s the right combination of skills, programming languages and expertise that we should be delivering? That’s a question we can answer by looking at employer needs.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;ii-key-insights&#34;&gt;II. Key insights&lt;/h1&gt;
+&lt;h2 id=&#34;1-3-out-of-5-data-science-roles-do-not-state-salary-openly-59&#34;&gt;1. 3 out of 5 data science roles do not state salary openly (~59%):&lt;/h2&gt;
+&lt;p&gt;The discrepancy is consistent across the three categories, though wider for roles with “machine learning” (ML) in the title than those with “data analyst” (DA). This is particularly daunting for the lone, fresh data scientist entering the field, especially if they have no prior experience of negotiating pay in any field.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If you’re an aspiring data scientist:&lt;/strong&gt; use &lt;a href=&#34;https://www.glassdoor.co.uk/index.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Glassdoor&lt;/a&gt; to research salaries at a company (where possible) and always bear in mind the average salary for that type of role you’re applying for. Consult any data science connections on what salaries they’ve earned over their career and compare any roles you’re interested in with similar ones that do have a salary&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If you’re designing a data science course: include salary negotiation training&lt;/strong&gt;. Inform learners of accurate, regularly updated salary ranges in the market.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-analyst-roles-are-most-numerous-but-least-well-paid&#34;&gt;&lt;strong&gt;2. Analyst roles are most numerous but least well paid:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Roles with “data scientist” (DS) and ML in the title are paid on average £25k per year more. That’s approximately £13 per hour more.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why does this matter?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you’re aiming to maximise your salary, it’s important to know what parts of the field return greatest financial rewards over time. Having said that, consider that experience can be the greatest barrier to getting a job in data science (see Insight 4). &lt;strong&gt;If&lt;/strong&gt; an analyst role is easier to get into, but you still want to aim for the higher salaried positions, then why not build on it?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Recommendations:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; maximum salary is what you’re aiming for, then acquire skills that set you up for DS and ML roles (see Insight 3).&lt;/li&gt;
+&lt;li&gt;Where possible use DA roles to build experience in the field — there is significant overlap between the skills required for DA and DS roles in particular (as shown in Insight 3).&lt;/li&gt;
+&lt;li&gt;If you are more interested in analysing and reporting on data, then take comfort in the fact that there are &lt;strong&gt;more&lt;/strong&gt; jobs suitable to that goal.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;For course-providers&lt;/strong&gt;: inform learners of the full range of salaries available to them and make sure they have realistic expectations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3-the-most-useful-skills-across-all-three-groups-are-pythonhttpswwwpythonorg-and-sqlhttpsenwikipediaorgwikisql&#34;&gt;&lt;strong&gt;3. The most useful skills across all three groups, are&lt;/strong&gt; &lt;a href=&#34;https://www.python.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/a&gt; &lt;strong&gt;and&lt;/strong&gt; &lt;a href=&#34;https://en.wikipedia.org/wiki/SQL&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;SQL&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;For those just entering the field, that’s enough information to tell you where to start focusing your attention. Once you have a solid foundation in those two, here are your options:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*IR6XEm5D8i8tT0tzWGyiMQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.1 — the top 10 most mentioned skills / languages for each group&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.r-project.org/about.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;R programming&lt;/strong&gt;&lt;/a&gt; comes up in about 47% of DS jobs, and some jobs state that although they’d accept &lt;strong&gt;Python&lt;/strong&gt;, they’d &lt;em&gt;prefer&lt;/em&gt; someone who knows R. Moreover R offers a lot of statistical analysis tools that Python doesn’t have direct equivalents to, &lt;strong&gt;so if you’re going for stats-heavy roles&lt;/strong&gt;, R can give your resume an edge.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cloud platforms —&lt;/strong&gt; preferably train in &lt;a href=&#34;https://aws.amazon.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Amazon Web Services&lt;/a&gt; (&lt;strong&gt;AWS&lt;/strong&gt;), but about 18% of all jobs (and &lt;strong&gt;&lt;em&gt;28%&lt;/em&gt; of ML roles&lt;/strong&gt;) mention &lt;em&gt;at least one&lt;/em&gt; of the 3 main cloud platforms. This is more useful if you’re heading into or training towards a DS or an ML Engineering role. The latter mention &lt;strong&gt;AWS&lt;/strong&gt; ~ 25% of the time. The exception is if you’re applying for DA roles, in which case &lt;a href=&#34;https://azure.microsoft.com/en-us/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Azure&lt;/strong&gt;&lt;/a&gt; is more popular than the others, but still features in only about 6% of those roles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If you’re going more towards the analyst route&lt;/strong&gt; — you will likely not benefit anywhere near as much from learning &lt;a href=&#34;https://www.scala-lang.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scala&lt;/a&gt;, &lt;a href=&#34;https://www.java.com/en/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Java&lt;/a&gt; or &lt;a href=&#34;https://www.docker.com/?utm_source=google&amp;amp;utm_medium=cpc&amp;amp;utm_campaign=dockerhomepage&amp;amp;utm_content=nemea&amp;amp;utm_term=dockerhomepage&amp;amp;utm_budget=growth&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Docker&lt;/a&gt;, but you &lt;em&gt;will&lt;/em&gt; if you’re inclined towards &lt;strong&gt;ML roles!&lt;/strong&gt; The first two are popular languages for developing and optimising machine learning models, so it’s expected that ML roles would feature them. Docker is used widely for product deployment, so it would be wise to invest time in it if you’re aiming for ML.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;For bootcamps:&lt;/strong&gt; emphasise to learners which skills get them where and make some parts of the course optional / elective: e.g. schedule an Intro to AWS lesson for all the attendants, but those who want to pursue analytics can stop attending after the intro and get more ROI taking an Advanced SQL class.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Place less focus on deep learning:&lt;/strong&gt; as popular as neural networks have become over the past couple of decades, they did not feature prominently, even after repeated searches through the texts for many different variations. Deep learning primarily appears in a special niche of data science roles, more towards the ML side of jobs, but is &lt;strong&gt;not mandatory or useful&lt;/strong&gt; to the majority of data science roles.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;4-you-might-need-experience-to-get-experience&#34;&gt;&lt;strong&gt;4. You might need experience to get experience:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1008/1*H5krNpINKuw75UNZKVdm4A.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.2 — when ranges were stated they were averaged (e.g. “2–3 years” became 2.5)&lt;/p&gt;
+&lt;p&gt;Most jobs that could be found to explicitly state an experience threshold asked for 2 to 3 years experience. &lt;strong&gt;If&lt;/strong&gt; representative, this presents the largest barrier to entering a data science role. If you’re completely lacking in experience now, you might have around &lt;strong&gt;20 jobs open to your level&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;After 2 years working in data science, that number should be &lt;strong&gt;3 times bigger&lt;/strong&gt;. Moreover, the expected salary will increase too, as there is a moderate correlation between the two.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If you’re just starting out in the field:&lt;/strong&gt; building experience is crucial, so widen your expectations of the work you’ll be doing to achieve that. You may not have a dream role this year or next, but the available paths into that dream job open up significantly after only 2 years.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Play the long game:&lt;/strong&gt; be strategic and realistic about what job you’re applying for and make 1, 3 and 5 year plans that includes what skills you hope to have by each milestone and what salary you’d expect.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If you’re still struggling to land a role&lt;/strong&gt; then build experience doing freelance data science projects, data hackathons or charitable data science work.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;For course providers:&lt;/strong&gt; make sure learners are aware of the experience barrier and also try to build connections in the job market to create mini-opportunities for grads. Employers might be skeptical of taking bootcamp grads for a position, but they might be more open to the idea of facilitating internships and single project partnerships.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5-the-gap-between-the-capital-and-the-rest-of-the-country&#34;&gt;&lt;strong&gt;5. The gap between the Capital and the rest of the country:&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;As you might expect, &lt;strong&gt;just over half of the jobs are in London&lt;/strong&gt;. They also pay on average 50% more than in the rest of the country, which is to be expected given the much higher cost of living.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*aTSpt_0kgjbM32S4BYIDNQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.3&lt;/p&gt;
+&lt;p&gt;The median data analyst in London would expect to earn as much as the overall median for outside the capital.&lt;/p&gt;
+&lt;h2 id=&#34;6-theres-a-split-between-customer--and-product--centric-roles-as-well-as-a-niche-group-of-research-focused-jobs&#34;&gt;6. There’s a split between customer- and product- centric roles, as well as a niche group of research focused jobs:&lt;/h2&gt;
+&lt;p&gt;Using topic modelling (&lt;a href=&#34;https://medium.com/latent-dirichlet-allocation-intuition-math-implementation-and-visualisation-63ccb616e094&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LDA&lt;/a&gt;) to cluster and group jobs, I could determine 3 emergent topics that weren’t just noise. These were the&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Customer centric roles&lt;/strong&gt; — candidates would be delivering insights towards customers and using tools such as ‘dashboards’, ‘excel’, (Power) ‘bi’ and thus providing analytical insights for the stakeholders.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Product and development roles —&lt;/strong&gt; candidates programming languages (‘java’), specific packages used for intensive machine learning (‘&lt;a href=&#34;https://www.tensorflow.org/?hl=en&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tensorflow&lt;/a&gt;’, ‘&lt;a href=&#34;https://pytorch.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pytorch&lt;/a&gt;’) and more niche areas of data science (‘&lt;a href=&#34;https://en.wikipedia.org/wiki/Natural_language_processing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NLP&lt;/a&gt;’, ‘&lt;a href=&#34;https://en.wikipedia.org/wiki/Artificial_neural_network&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;neural’ (networks&lt;/a&gt;)).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Academic and Research —&lt;/strong&gt; candidates would require higher qualifications for these roles such as PhDs. There’s a stronger emphasis on ‘publications’, ‘research’ but also on artificial intelligence and ‘novel’ techniques. These are more challenging roles to get into, but also exciting for the ML-inclined.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This last insight was generated with unsupervised techniques and it is not currently possible to verify the accuracy of those topics. However, they do corroborate other findings in Key Insight 3.&lt;/p&gt;
+&lt;h1 id=&#34;iii-methodology&#34;&gt;III. Methodology&lt;/h1&gt;
+&lt;p&gt;For this project, I’ve followed the &lt;a href=&#34;http://wiki.gis.com/wiki/index.php/PPDAC_Model&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;PPDAC&lt;/strong&gt;&lt;/a&gt; cycle for data science:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*XFvn6RAQ6xsh7qOe3UGl3w.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.1 — PPDAC cycle&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Problem&lt;/strong&gt; — Determine what questions we want to answer using the data.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2. &lt;strong&gt;Plan&lt;/strong&gt; —What libraries would I use? How many statistical tests should I run and what confidence level should I set in advance? What&lt;/p&gt;
+&lt;p&gt;3. &lt;strong&gt;Data&lt;/strong&gt; — Web-scraped job descriptions from Indeed.co.uk, searched for between 24th and 25th November, 2020.&lt;/p&gt;
+&lt;p&gt;4. &lt;strong&gt;Analysis&lt;/strong&gt; — Plot salary distributions for London and non-London jobs; different job categories and jobs by which programming language they mention. With an initial alpha of 0.05 I will run several NHST tests and report on results.&lt;/p&gt;
+&lt;p&gt;5. &lt;strong&gt;Conclusion&lt;/strong&gt; — Report any insights, recommendations and future steps.&lt;/p&gt;
+&lt;h1 id=&#34;1-problem&#34;&gt;1. Problem&lt;/h1&gt;
+&lt;p&gt;If we want to get ahead in the data science UK job market, it would be useful to be able to answer the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;How many data science jobs advertise salary?&lt;/li&gt;
+&lt;li&gt;What is the spread of salaries advertised for data scientist jobs on indeed.co.uk?&lt;/li&gt;
+&lt;li&gt;What are the main locations that data scientist roles appear in? (London expected to be the main one)&lt;/li&gt;
+&lt;li&gt;What are some of the most frequent words mentioned in the job title?&lt;/li&gt;
+&lt;li&gt;Which programming languages are in greatest demand? Do any of the languages correlate with higher salary?&lt;/li&gt;
+&lt;li&gt;Is there any relationship between years of experience required and salary?&lt;/li&gt;
+&lt;li&gt;What are the main topics emerging from the job descriptions and the title?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;2-plan&#34;&gt;2. Plan&lt;/h1&gt;
+&lt;p&gt;My plan was to scrape data from Indeed.co.uk using &lt;a href=&#34;https://www.crummy.com/software/BeautifulSoup/bs4/doc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BS4&lt;/a&gt; and &lt;a href=&#34;https://www.selenium.dev/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Selenium&lt;/a&gt;. Then I would extract key information such as salary, location and programming languages using &lt;a href=&#34;https://docs.python.org/3/library/re.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;regex&lt;/a&gt; (&lt;strong&gt;reg&lt;/strong&gt;ular &lt;strong&gt;ex&lt;/strong&gt;pressions). I would plot and wrangle data using the &lt;a href=&#34;https://pandas.pydata.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Pandas&lt;/a&gt; and &lt;a href=&#34;https://www.google.com/search?q=seaborn&amp;#43;library&amp;amp;oq=seaborn&amp;#43;library&amp;amp;aqs=chrome..69i57.3040j0j4&amp;amp;sourceid=chrome&amp;amp;ie=UTF-8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Seaborn&lt;/a&gt; libraries then carry out statistical tests. I would also attempt to build a predictive model for salary using linear regression, and report on the coefficients as measures of the importance of each job feature. Lastly I would use &lt;a href=&#34;https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Latent Dirichlet Allocation&lt;/a&gt; to look for emerging topics within job descriptions.&lt;/p&gt;
+&lt;p&gt;The ideal situation would be to answer all questions stated and to be able to state Insights and &lt;strong&gt;Recommendations&lt;/strong&gt; for every part of my analysis. However, in several areas, I had to report null resorts due to either insufficient data or a lack of a signal, and will have to revisit those questions in future iterations of the project.&lt;/p&gt;
+&lt;h1 id=&#34;3-data&#34;&gt;3. Data&lt;/h1&gt;
+&lt;p&gt;From previous attempts at web-scraping jobs on Indeed.co.uk, I know that the number of jobs listed at any one time are in the hundreds, so there would likely be a problem of insufficient data for some of the questions I wanted to answer. Another problem was trying to make sure that the search terms I used captured the &lt;em&gt;field&lt;/em&gt; of data science as much as possible, rather than just one specific role within it.&lt;/p&gt;
+&lt;p&gt;To tackle those two problems, I retrieved job data from Indeed.co.uk based on 3 separate searches. For each of these, my search results only returned job posts where the &lt;em&gt;title&lt;/em&gt; of the job included the following pairs of words:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;data, scientist (DS)&lt;/li&gt;
+&lt;li&gt;machine, learning (ML)&lt;/li&gt;
+&lt;li&gt;data, analyst (DA)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There were jobs that contained a mixture of 2 of the title words (these duplicates were discarded). Moreover it’s generally known that a &lt;em&gt;data analyst&lt;/em&gt; is doing &lt;em&gt;data science,&lt;/em&gt; an &lt;em&gt;ML engineer&lt;/em&gt; does do &lt;em&gt;some&lt;/em&gt; analysis, a &lt;em&gt;data scientist&lt;/em&gt; does use &lt;em&gt;machine learning,&lt;/em&gt; and so on.&lt;/p&gt;
+&lt;h1 id=&#34;4-analysis&#34;&gt;4. Analysis&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Most data science jobs do not directly state their salary&lt;/strong&gt; (Fig 3.2)&lt;strong&gt;:&lt;/strong&gt; about 59% of data science jobs in our sample do not state salary.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1296/1*1r_l1qOGTTQEM2wBlqcZlQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.2: being coy about pay&lt;/p&gt;
+&lt;p&gt;From the perspective of a recent data science grad or someone fresh out of a bootcamp, one challenge they’ll face is salary negotiation — particularly daunting when most jobs do not directly state their salary. This applies across the board to all 3 categories, although the gap is wider for DA and ML roles.&lt;/p&gt;
+&lt;p&gt;For the bootcamp’s organisers, this makes it even more important that they research salary estimates thoroughly and inform their students of this — to help reach the goal of maximising average salary of bootcamp grads they should also be given help with salary negotiation.&lt;/p&gt;
+&lt;h2 id=&#34;2-what-is-the-spread-of-salaries-advertised-for-data-scientist-jobs-on-indeedcouk&#34;&gt;&lt;strong&gt;2. What is the spread of salaries advertised for data scientist jobs on indeed.co.uk?&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*VBikCkFtZVypo-y9LDz0JA.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.3: annual salary distribution — regarding the median with a decimal: salaries that stated a range (e.g. £40–45) had their average taken instead of both values. Hence the non-integer median value&lt;/p&gt;
+&lt;p&gt;Among the jobs that reported &lt;strong&gt;annual salary&lt;/strong&gt; (Fig 3.3), DA jobs were not as well paid as ML or DS jobs by quite a margin — the median salaries for DS and ML are at least £12k above the median for all data science jobs; &lt;strong&gt;DA roles pay about £20k less!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is fairly solid finding since it’s supported by general background knowledge about the field that analyst roles tend to be less technically specialist and pay less compared to other data science roles. If you’re aiming to maximise salary, then a recommendation might be to prepare your grads to aim for DS and ML jobs. However DA jobs are also the most numerous. They might form a reliable fallback for bootcamp grads not managing to hit targets for the DS and ML roles.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. What are the main locations that data scientist roles appear in? (London expected to be the main one)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*2TUTqpFmai30j24maaPtmA.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.4 — dominated by the capital&lt;/p&gt;
+&lt;p&gt;As expected, London dominates the country in terms of data science roles. Even with all the mini tech hubs, the emerging Northern cities and the Silicon Fen in Cambridge, London still edges &lt;em&gt;over the entire rest of the country&lt;/em&gt; (Fig 3.4).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*PlTm2V4MSWBJwTheg-gTCQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.5— number of jobs by top 10 location&lt;/p&gt;
+&lt;p&gt;The next 9 ‘locations’ with the most data science roles are utterly dwarfed by London (Fig 3.5). The fourth most popular location (as declared in the job) is ‘Home Based’, which is unfortunate for anyone hoping data science jobs might invigorate the North or anywhere that isn’t London.&lt;/p&gt;
+&lt;p&gt;The picture becomes even more dire when we consider salary breakdown between the capital and rest of the kingdom. Figure 3.6 shows the annual salaries for the 3 sub-groups in London. The purple and yellow line show the non-London and London median salaries respectively. There is £20k difference between the two!&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*aTSpt_0kgjbM32S4BYIDNQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.6— London vs the rest of the country&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. What are some of the most frequent words mentioned in the job title?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A job title can communicate a lot of things. For instance if a role mention “R” in their title (e.g. “Data Scientist with R experience”) you’ll have good reason to ignore that role if you don’t code in R. If we look at the single terms and bigrams (2 word combos) that appear most frequently (Fig 3.7) we can infer the following:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*ChFLF8dmi9cHEs9sAyjECw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.7 — top terms appearing in the title&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;About 14% of jobs are “senior” roles, hence looking for more experienced data scientists. This does not bode well for recent bootcamp graduates. ‘Junior’ roles make up less than 2% of the sample.&lt;/li&gt;
+&lt;li&gt;There’s about 10% of roles that are looking for an engineer role, which could either be ‘machine learning engineer’ (most of the occurrences) or ‘software engineer’ (~19 roles in all). These are roles that would we would expect to have much stronger requirements for code development skills.&lt;/li&gt;
+&lt;li&gt;There’s very few titles explicitly mentioning a language (e.g. Python is mentioned in less than 2% of titles. To find any trends in programming languages we’ll have to search through the job descriptions.&lt;/li&gt;
+&lt;li&gt;Very few jobs advertise by specific area of expertise it seems (e.g. “Natural Language processing”, “public health”). The most frequent case of data science specific expertise being demanded are roles focussed on Computer Vision (13 jobs). Perhaps this would indicate that most roles look for a blend of different skills, but aren’t looking for one single specialty area. This is encouraging for us since our graduates will have some flexibility in what skills to use for leverage.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;5. Which programming languages are in greatest demand? Do any of the languages correlate with higher salary?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For this question, I went beyond including just programming languages but also techniques, libraries, cloud services and skills. This has greatly increased the usefulness of the findings.&lt;/p&gt;
+&lt;p&gt;Figure 3.8 illustrates how the 10 most popular languages and skills compare across the 3 groups. This particular graph can be used to tailor your own portfolio building journey.&lt;/p&gt;
+&lt;p&gt;For instance, if you have expertise in R and SQL, you’re more well positioned to aim for a DA roles. If you have experience in Java and are considering pivoting into data science, then focusing on Python and AWS will put you in good stead.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*IR6XEm5D8i8tT0tzWGyiMQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.8— Skills in demand&lt;/p&gt;
+&lt;p&gt;If you’re a data bootcamp, you can help inform more clearly which skills grads can leverage towards which roles, so they can optimise their job search. Towards the end of your course, you could create ‘Data Science Profiles’ that learners can gravitate towards depending on the kind of work they would prefer doing. Those that want heavier computational work (so more on the ML side), can attend classes on Docker, Java and AWS. Those drawn more towards analytics can spend more time refining their SQL and other relevant skills.&lt;/p&gt;
+&lt;h2 id=&#34;modelling--a-null-result&#34;&gt;Modelling — a null result&lt;/h2&gt;
+&lt;p&gt;I next attempted to build a linear regression model for predicting salary, but it would seem &lt;strong&gt;that there wasn’t any way to reliably predict the salary from the features I built&lt;/strong&gt;. After multiple iterations, dropping non-significant features and cross-validating, the summary for the best model is this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Model had &lt;strong&gt;root-mean squared error (RMSE) of about £13,000&lt;/strong&gt; on test data, which is a very wide margin for our purposes. So if we took a job post and predicted that the role should be paid around £40 000, on average the answer would be that figure, give or take £13k. Therefore this tool needs more / different data and features before it can be useful.&lt;/li&gt;
+&lt;li&gt;The strongest determiner of salary was the presence of the word ‘lead’ in the title — according to the model, the difference between a role that has lead in the title and one that doesn’t is, on average, £23k.&lt;/li&gt;
+&lt;li&gt;The weakest feature was whether the title included ‘scientist’— acc to the same model, the difference you’d expect in salary for a role that has the word ‘scientist’ in the title vs one that does not, was about £7k.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also attempted to bin the salary data into bands so that I could attempt to predict (binned into categories such as £20&#39;000–25&#39;000). However, even that didn’t have much predictive power, with the best model having an accuracy of about 10% (given 10 different salary bands). To conclude, the model is nullified and I will attempt to build another in future iterations of the project, when more data is available. However, it might just be the case that the features used have no real relationship with salary.&lt;/p&gt;
+&lt;h1 id=&#34;6-is-there-any-relationship-between-years-of-experience-required-and-salary&#34;&gt;6. Is there any relationship between years of experience required and salary?&lt;/h1&gt;
+&lt;p&gt;Many new data scientists find it vexing or disappointing when they search for an “entry-level” position and find that it requires 3 years of experience in the field. But do the years of experience required stated in the job ad actually have anything to do with something more concrete, like pay?&lt;/p&gt;
+&lt;p&gt;After extracting the required experience in years from job posts using regex and averaging those that gave a range (“2–3 years experience” becomes 2.5), I compared it to salary for those jobs. Jobs with 0 years experience were found by searching for “junior role / data / position” (this is probably the most contentious assumption of the created feature). Unfortunately there were very few jobs I could extract such data for (246 job posts), although the Spearman Ranked Correlation test was significant (&lt;strong&gt;p value &amp;lt; 0.001&lt;/strong&gt;). The &lt;strong&gt;experience and salary have a weak-to-moderate correlation&lt;/strong&gt; (&lt;strong&gt;0.37&lt;/strong&gt;). We must remember that this was based on data mined with regex and is relying on certain assumptions and limitations. Hence this is an important test to re-run in the next project iteration.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1008/1*H5krNpINKuw75UNZKVdm4A.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.9 — how many years??&lt;/p&gt;
+&lt;p&gt;Out of those jobs, Figure 3.9 shows the general trend. The largest number of jobs in this group asked for 2 OR 3 years of experience. Hopefully this isn’t representative of the job market, but if it is then as a beginner data scientist, you’d have to find ways to make up for the lack of experience, e.g. by doing freelance work for a while.&lt;/p&gt;
+&lt;h1 id=&#34;7-what-are-the-main-topics-emerging-from-the-job-descriptions-and-the-title&#34;&gt;&lt;strong&gt;7. What are the main topics emerging from the job descriptions and the title?&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;Using topic modelling, can we see if there are natural groups within the job descriptions? Can we split apart our data in some semantic way?&lt;/p&gt;
+&lt;p&gt;Using Latent Dirichlet Allocation and pyLDAviz (&lt;a href=&#34;https://medium.com/latent-semantic-analysis-intuition-math-implementation-a194aff870f8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here’s my previous post&lt;/a&gt; on it), I determined a few emergent topics of interest. It’s important to note that, since this is an unsupervised approach, there’s a strong chance that the outputs are mostly noise, and not useful insights. However, guided by domain knowledge and other pieces of information in this dataset, we can infer at least 3 useful topics.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Client and Business-centric&lt;/em&gt; — (Fig 3.10) Roles heavily featuring this topic are focused more on delivering insights towards customers and using tools such as dashboards, excel, (power) ‘bi’ and thus providing analytical insights for the stakeholders.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*3JOj8mRch3XLVu9UQfD0Mw.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.10— Client and Business centric&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Development and Deep Learning&lt;/em&gt;— (Fig 3.11) This topic and associated job roles are focussed on development programming languages (‘java’), specific packages used for deep learning (‘tensorflow’, ‘pytorch’), niche areas (‘NLP’, ‘neural’ (networks)) and mentions ‘development’, ‘processing’ and ‘product’. This topic corresponds strongly to a lot of ML jobs.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*--JQ4Os7AO9G6YI-Uyr-Tw.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.11—Development and Deep Learning&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Academic &amp;amp; Scientific&lt;/em&gt; (Fig 3.12)  — there’s a very strong association with this topic and terms such as ‘university’ and ‘research’ — more so than for any other topic! Also the only other topic with a strong association with ‘AI’, ‘novel’, ‘publication’ and ‘academic’ is Topic 1 — Deep Learning and Development.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*6jiWe7njEo74vkwfvWEQbg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.12 — Academic and Scientific roles&lt;/p&gt;
+&lt;h1 id=&#34;5-conclusion&#34;&gt;5. Conclusion&lt;/h1&gt;
+&lt;p&gt;My plan is to repeat this project in late Q1 2021 with a fresh batch of job post data and to improve the functionality of the web scraper to be able to detect tags for things such as “Remote working”. I hope that this exploratory analysis proves useful to some people, although I repeat that all findings should be considered in light of the unstructured and semi-rigorous nature of the work. None of these findings can/should be interpreted as conclusive, only preliminary. As said before, I appreciate any feedback and any claps! If I had to summarise the most important advice for aspiring data scientists in one bullet point it would be this:&lt;/p&gt;
+&lt;p&gt;Invest &lt;strong&gt;most time into mastering Python and SQL&lt;/strong&gt;, &lt;strong&gt;play the long game&lt;/strong&gt; and &lt;strong&gt;lower your initial expectations&lt;/strong&gt; of what pay or job you’ll get, with the realistic hope that 2 years of building experience in your less-than-ideal job. Don’t spend too much time initially on niche, fancy areas like deep learning or NLP, you can revisit those at a latter stage. Knowledge of the basics, of how to solve problems and work experience are what pay off most.&lt;/p&gt;
+&lt;p&gt;Thank you.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Latent Dirichlet Allocation: Intuition, math, implementation and visualisation with pyLDAvis</title>
+      <link>/publication/lda_medium/</link>
+      <pubDate>Sat, 26 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/lda_medium/</guid>
+      <description>&lt;p&gt;TL;DR — &lt;a href=&#34;https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Latent Dirichlet Allocation&lt;/a&gt; (LDA, sometimes LDirA/LDiA) is one of the most popular and interpretable generative models for finding &lt;strong&gt;topics in text data&lt;/strong&gt;. I’ve provided an &lt;a href=&#34;https://nbviewer.jupyter.org/github/Ioana-P/MLEng_vs_DScientist_analysis/blob/master/2_Topic_modelling.ipynb#topic=0&amp;amp;lambda=1&amp;amp;term=&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;example notebook&lt;/a&gt; based on web-scraped job description data. Although running LDA on a canonical dataset like &lt;a href=&#34;https://scikit-learn.org/0.19/modules/generated/sklearn.datasets.fetch_20newsgroups.html#sklearn.datasets.fetch_20newsgroups&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;20Newsgroups&lt;/a&gt; would’ve provided &lt;a href=&#34;https://nbviewer.jupyter.org/github/bmabey/pyLDAvis/blob/master/notebooks/sklearn.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;clearer topics&lt;/a&gt; , it’s important to witness how difficult topic identification can be “in the wild”, and how you might not actually find clear topics — with unsupervised learning, you are &lt;em&gt;never guaranteed to find an answer!&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Acknowledgement&lt;/strong&gt;: the greatest aid to &lt;em&gt;my&lt;/em&gt; understanding was Louis Serrano’s two videos on LDA (2020). A lot of the intuition section is based on his explanation, and I would urge you to visit his &lt;a href=&#34;https://www.youtube.com/watch?v=T05t-SqKArY&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;video&lt;/a&gt; for a more thorough dissection.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*Xs1Xe1Hh4P6IGyWN8fImXw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.0 — the LDA “machine” producing documents&lt;/p&gt;
+&lt;h1 id=&#34;contents&#34;&gt;Contents:&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;#f1d8&#34;&gt;Intuition&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#7b8f&#34;&gt;Maths&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;#b9d6&#34;&gt;Implementation and visualisation&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;intuition&#34;&gt;Intuition&lt;/h1&gt;
+&lt;p&gt;Let’s say that you have a collection of different news articles (your &lt;em&gt;corpus&lt;/em&gt; of &lt;em&gt;documents&lt;/em&gt;), and you suspect that there are several topics that come up frequently within said corpus — your goal is to find out what they are! To get there you make a few &lt;strong&gt;key assumptions:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;The d&lt;/em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Distributional_semantics#:~:text=The%20distributional%20hypothesis%20suggests%20that,occur%20in%20similar%20linguistic%20contexts.&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;istributional hypothesis&lt;/em&gt;&lt;/a&gt;&lt;em&gt;:&lt;/em&gt; Words that appear together frequently are likely to be close in meaning;&lt;/li&gt;
+&lt;li&gt;each topic is a mixture of different words (Fig 1.1);&lt;/li&gt;
+&lt;li&gt;each document is a mixture of different topics (Fig 1.2).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*bgPL1Ex8dfxBSM7bSE3HlA.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.1 — Topics as a mixture of words&lt;/p&gt;
+&lt;p&gt;In Fig 1.1 you’ll notice that the topic “Health &amp;amp; Medicine” has various words associated with it to &lt;em&gt;varying degrees&lt;/em&gt; (“cancer” is more strongly associated than “vascular” or “exercise”). Note that different words can be associated with different topics, as with the word “cardio”.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*-dW-PbkYomLrP6XtNTYwHA.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.2 — Document as a mixture of topics&lt;/p&gt;
+&lt;p&gt;In Fig 1.2 you’ll see that a single document can pertain to multiple topics (as colour-coded on the left). Words like “injury” and “recovery” might also belong to multiple topics (hence why I’ve coloured them in more than one colour).&lt;/p&gt;
+&lt;p&gt;Now LDA is a &lt;em&gt;generative model&lt;/em&gt; — it tries to determine the underlying mechanism that &lt;em&gt;generates&lt;/em&gt; the articles and the topics. Think of it as if there’s a machine with particular settings that spits out articles, but we can’t see the machine’s settings, only what it produces. LDA creates a set of machines with different settings and selects the one that gives the best-fitting results (Serrano, 2020). Once the best one is found, we take a look at its “settings” and we deduce the topics from that.&lt;/p&gt;
+&lt;p&gt;So what are these &lt;em&gt;settings&lt;/em&gt;?&lt;/p&gt;
+&lt;p&gt;First, we have something called the &lt;em&gt;Dirichlet&lt;/em&gt; (pronounced like dee-reesh-lay) &lt;em&gt;prior&lt;/em&gt; of the topics. This is a number that says how &lt;em&gt;sparse&lt;/em&gt; or how &lt;em&gt;mixed&lt;/em&gt; up our topics are. In L Serrano’s video (which I highly recommend!) he illustrates how visually you can think of this as a triangle (Fig 1.3) where the dots represent the documents and their position with respect to the corners (i.e. the topics) represents the how they’re related to each of the topics (2020). So a dot that is very close to the “Sports” vertex will be almost entirely about sport.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*46pYVxXIOAL7qd40Bs_xHQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.3 — Dirichlet distribution of topics&lt;/p&gt;
+&lt;p&gt;In the lefthand triangle the documents are fairly separated, most of them neatly tucked into their corners (this corresponds to a low Dirichlet prior, alpha&amp;lt;1); on the right they are in the middle and represent a more even mix of topics (a higher Dirichlet prior, alpha&amp;gt;1). Look at the document in Fig 1.2 and, given the mix of topics, have a think about where you think it would be placed in the triangle on the right (my answer is that it’d be the dot &lt;em&gt;just above&lt;/em&gt; the one closest to the Sports corner).&lt;/p&gt;
+&lt;p&gt;Second, we have the Dirichlet prior of the &lt;em&gt;terms&lt;/em&gt; (all the words in our vocabulary). This number (whose name is &lt;em&gt;beta)&lt;/em&gt; has almost exactly the same function as alpha — except that it determines how the &lt;strong&gt;topics&lt;/strong&gt; are distributed amongst the &lt;strong&gt;terms&lt;/strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*ctgYvHaDDkcDKAzYcVigHg.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.4 Dirichlet distribution of terms; the numbers are proportional to how much each word is associated with each respective topic&lt;/p&gt;
+&lt;p&gt;As we said before, the topics are assumed to be mixtures (more precisely, &lt;em&gt;distributions&lt;/em&gt;) of different terms. In Fig 1.4 “Sports” is mostly drawn towards “injury”. “Health&amp;amp;Medicine” is torn between “cardio” and “injury” and has no association with the term “pray”.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;But wait, our vocabulary doesn’t consist of just 3 words!&lt;/em&gt; You’re right! We could have a vocabulary of &lt;em&gt;4 words&lt;/em&gt; (as shown in Fig 1.5)! Trouble is that visualising a typical vocabulary of &lt;em&gt;N&lt;/em&gt; words (where &lt;em&gt;N&lt;/em&gt; could be 10&#39;000) would require a &lt;a href=&#34;https://en.wikipedia.org/wiki/Simplex#The_standard_simplex&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;generalised version of the triangle shape,&lt;/a&gt; but in &lt;em&gt;N — 1&lt;/em&gt; dimensions (the term for this is an n-1 &lt;em&gt;simplex&lt;/em&gt;). This is where the visuals stop and we trust that the maths of higher dimensions will function as expected. This also applies to the topics — very often we’ll find ourselves with more than 3 topics.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*iq3bjiBg_Pchh0upPmnmMQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.5 — which topic is the red one, based on the distribution of terms?&lt;/p&gt;
+&lt;p&gt;An important clarification: in LDA we start with values of alpha and beta as hyperparameters, but these numbers &lt;em&gt;only&lt;/em&gt; tell us whether our dots (documents / topics) are &lt;strong&gt;generally&lt;/strong&gt; concentrated in the middle of their triangles or closer to the corners. The &lt;em&gt;actual positions&lt;/em&gt; within the triangle (simplex) are guessed by the machine — the guesswork is not random, it’s heavily weighted by the Dirichlet priors.&lt;/p&gt;
+&lt;p&gt;So the machine creates the two Dirichlet distributions, &lt;em&gt;distributes&lt;/em&gt; the documents and topics on them and then &lt;em&gt;generates&lt;/em&gt; documents based on those distributions (Fig 1.6). So, how does the last step happen, the &lt;em&gt;generation&lt;/em&gt; part?&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*Xs1Xe1Hh4P6IGyWN8fImXw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.6 — the LDA “machine” producing documents&lt;/p&gt;
+&lt;p&gt;Remember at the start we said that topics are seen as mixtures / distributions of words and documents as mixtures / distributions of topics? Going from left to right in Figure 1.7 we start with a document, somewhere in the triangle, torn between our 3 topics. If it’s near the “Sports” corner, this means that the document will be &lt;em&gt;mostly about Sports&lt;/em&gt;, with some mentions of “Religion” and “Health&amp;amp;Medicine”. So we know the topic composition of the document → therefore we can estimate what &lt;em&gt;words&lt;/em&gt; will come up. We will be sampling (i.e. randomly pulling out) words mostly from Sports, some from Health&amp;amp;Medicine and a very small amount from Religion (Fig 1.7). Here’s a question for you: looking at the triangle at the bottom of Fig 1.7, do you think &lt;em&gt;word 2&lt;/em&gt; will come up or not?&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*hDZIC8V8IyX-otJ1eblCuw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.7 — how the two Dirichlet distributions feed into our document generation&lt;/p&gt;
+&lt;p&gt;The answer is that &lt;strong&gt;it might&lt;/strong&gt;: remember that topics are mixtures of words. You might be thinking that &lt;em&gt;word 2&lt;/em&gt; is very strongly related to the yellow (Religion) topic, and since this topic is very sparse in this document &lt;em&gt;word 2&lt;/em&gt; won’t come up as much. But remember that a. &lt;em&gt;word 2&lt;/em&gt; is also associated with the blue, Sports topic and b. the words are sample probabilistically, so every word has some non-zero chance of appearing.&lt;/p&gt;
+&lt;p&gt;The words in our final, generated document (on the right end of Fig 1.7) will be compared to the words in the original documents. We won’t get the same document, BUT when we compare a range of different LDA “machines” with a range of different distributions, we find that one of them was closer to generating the document than the others were and that’s the LDA model that we choose.&lt;/p&gt;
+&lt;h1 id=&#34;maths&#34;&gt;Maths&lt;/h1&gt;
+&lt;p&gt;A normal statistical language model assumes that you can generate a document by sampling from a probability distribution over words, i.e. for each word in our vocabulary there is an associated probability of that word appearing.&lt;/p&gt;
+&lt;p&gt;LDA adds a layer of complexity over this arrangement. It assumes a list of topics, &lt;em&gt;k&lt;/em&gt;. Each document &lt;em&gt;m&lt;/em&gt; is a probability distribution over these &lt;em&gt;k&lt;/em&gt; topics, and each topic is a probability distribution over all the different terms in our vocabulary &lt;em&gt;V&lt;/em&gt;. That is to say that each word has various probabilities of appearing in each topic.&lt;/p&gt;
+&lt;p&gt;The full probability formula that generates a document is in Figure 2.0 below. If we break this down, on the right hand side we have three product sums:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dirichlet distribution of topics over terms:&lt;/strong&gt; (corresponds to Fig 1.4 and 1.5) for each topic &lt;em&gt;i&lt;/em&gt; amongst &lt;em&gt;K topics&lt;/em&gt;, what is the probability distribution of words for &lt;em&gt;i.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dirichlet distribution of documents over topics:&lt;/strong&gt; (corresponds to Fig 1.3) for each document &lt;em&gt;j&lt;/em&gt; in our corpus of size &lt;em&gt;M,&lt;/em&gt; what is the probability distribution of topics for &lt;em&gt;j.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Probability of a topic appearing given a document X the probability of a word appearing given a topic:&lt;/strong&gt; (corresponding to the two rectangles in Fig 1.7) how likely is it that certain topics, &lt;em&gt;Z,&lt;/em&gt; appear in this document and then how likely is that certain words, &lt;em&gt;W,&lt;/em&gt; appear given those topics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*pUTv6gS_8GDQodj4TlGTgw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.0 — LDA formula&lt;/p&gt;
+&lt;p&gt;The first two sums contain &lt;strong&gt;symmetric&lt;/strong&gt; Dirichlet distributions which are prior probability distributions for our documents and our topics (Fig 2.1 shows a set of general Dirichlet distributions, including symmetric ones).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1280/1*YJbCG2oZI6prRgIBmHiQtg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.1 — By Empetrisor — Own work, CC BY-SA 4.0, &lt;a href=&#34;https://commons.wikimedia.org/w/index.php?curid=49908662&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://commons.wikimedia.org/w/index.php?curid=49908662&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The 3rd sum contains two multinomial distributions, one over topics and one over words — i.e. we sample topics from a probability distribution of them and then for each topic instance we sample words from a probability distribution of words for that particular topic.&lt;/p&gt;
+&lt;p&gt;As was mentioned at the end of the Intuition section, using the final probability we try to generate the same distribution of words as the one that we get in our original documents. The probability of achieving this is &lt;em&gt;very, very low&lt;/em&gt;, but for some values of alpha and beta the probability will be less low.&lt;/p&gt;
+&lt;h2 id=&#34;interpreting-an-lda-model-and-its-topics&#34;&gt;Interpreting an LDA model and its topics&lt;/h2&gt;
+&lt;p&gt;What metrics do we use for finding our latent topics? As Shirley and Sievert note:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“To interpret a topic, one typically examines a ranked list of the most probable terms in that topic, […]. The problem with interpreting topics this way is that common terms in the corpus often appear near the top of such lists for multiple topics, making it hard to differentiate the meanings of these topics.” (2014)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That is exactly the problem we’ve stumbled into in the next section, &lt;em&gt;Implementation&lt;/em&gt;. Therefore we use an alternative metric for interpreting our topics — &lt;em&gt;relevance&lt;/em&gt; (Shirley and Sievert, 2014).&lt;/p&gt;
+&lt;h2 id=&#34;relevance&#34;&gt;Relevance&lt;/h2&gt;
+&lt;p&gt;This is an adjustable metric that balances a term’s frequency in a particular topic against the term’s frequency across the whole corpus of documents.&lt;/p&gt;
+&lt;p&gt;In other words, if we have a term that’s quite popular in a topic, relevance allows us to gauge how much of its popularity is due to it being very specific to that topic and how much of it is due to it just being a work that appears &lt;em&gt;everywhere.&lt;/em&gt; An example of the latter would be “learning” in the job description data. When we adjust relevance with a lower lambda (i.e. penalising terms that just happen to be frequent across &lt;strong&gt;all&lt;/strong&gt; topics), we see that “learning” is not that special a term, and it only comes up frequently because of its prevalence across the corpus.&lt;/p&gt;
+&lt;p&gt;The mathematical definition of relevance is:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1172/0*tL0f-BtwU3oSv-8-&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;r —&lt;/em&gt; relevance&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;⍵ —&lt;/em&gt; a term in our vocabulary&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;k —&lt;/em&gt; a topic amongst the ones our LDA has produced&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;λ —&lt;/em&gt; the adjustable weight parameter&lt;/li&gt;
+&lt;li&gt;𝝓kw — probability of a term appearing in a particular topic&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;p&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;w —&lt;/em&gt; the probability of a term appearing inside the corpus as a whole&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Apart from lambda, &lt;em&gt;λ,&lt;/em&gt; all the terms are derived from the LDA data and model. We adjust lambda in the next section to help us derive more useful insights. The original paper authors kept lambda in the range of 0.3 to 0.6 (Shirley and Sievert, 2014).&lt;/p&gt;
+&lt;h1 id=&#34;implementation-and-visualisation&#34;&gt;Implementation and visualisation&lt;/h1&gt;
+&lt;p&gt;The implementation of sklearn’s LatentDirichletAllocation model follows the pattern of most sklearn models. In my &lt;a href=&#34;https://nbviewer.jupyter.org/github/Ioana-P/MLEng_vs_DScientist_analysis/blob/master/2_Topic_modelling.ipynb#topic=0&amp;amp;lambda=1&amp;amp;term=&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;notebook&lt;/a&gt;, I:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pre-processed my text data,&lt;/li&gt;
+&lt;li&gt;Vectorised it (resulting in a document-term matrix),&lt;/li&gt;
+&lt;li&gt;Fit_transformed it using LDA and then&lt;/li&gt;
+&lt;li&gt;Inspected the results to see if there are any emergent, identifiable topics.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The last part is highly subjective (remember this is &lt;em&gt;unsupervised learning&lt;/em&gt;) and is not guaranteed to reveal anything really interesting. Furthermore the ability to identify topics (like clusters) depends on your domain knowledge of the data. I recommend also altering the alpha and beta parameters to match your expectations of the text data.&lt;/p&gt;
+&lt;p&gt;The data I’m using is job post description data from indeed.co.uk. The dataframe has many other attributes than text, including whether I used the search terms “data scientist”, “data analyst” or “machine learning engineer”. Can we find some of the original search categories in our LDA topics?&lt;/p&gt;
+&lt;p&gt;In the gist below you’ll see that I’ve vectorised my data and passed it to an LDA model (this happens under the hood of the data_to_lda function).&lt;/p&gt;
+&lt;p&gt;Running this code and the print_topics function will produce something like this:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Topics found via LDA on Count Vectorised data for ALL categories:  
+  
+Topic #1:  
+software; experience; amazon; learning; opportunity; team; application; business; work; product; engineer; problem; development; technical; make; personal; process; skill; working; science  
+  
+Topic #2:  
+learning; research; experience; science; team; role; work; working; model; skill; deep; please; language; python; nlp; quantitative; technique; candidate; algorithm; researcherTopic #3:  
+learning; work; team; time; company; causalens; business; high; platform; exciting; award; day; development; approach; best; holiday; fund; mission; opportunity; problem  
+  
+Topic #4:  
+client; business; team; work; people; opportunity; service; financial; role; value; investment; experience; firm; market; skill; management; make; global; working; support...
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The “print_topics” function gives the terms for each topic in decreasing order of probability, which &lt;strong&gt;can&lt;/strong&gt; be informative. It’s at this stage that we can &lt;strong&gt;start&lt;/strong&gt; trying to label the emergent, latent topics from our model. For instance, Topic 1 seems to be related mildly related to ML engineer skills and requirements (the mention of “amazon” relates to using AWS — this is something I found from the EDA stage of the project in another notebook); meanwhile, Topic 4 clearly has a more client-facing or business-oriented theme, given terms like “market”, “financial”, “global”.&lt;/p&gt;
+&lt;p&gt;Now those two categories might seem a bit far-fetched to you and that’s a fair criticism. You may also have noticed that using this method for topic determination is hard. So, let’s turn to pyLDAvis!&lt;/p&gt;
+&lt;h2 id=&#34;pyldavis&#34;&gt;pyLDAvis&lt;/h2&gt;
+&lt;p&gt;Using pyLDAvis, the LDA data (which in our case, was 10-dimensional) has been decomposed via PCA (principal component analysis) to be only 2-dimensional. Thus it has been flattened for the purposes of visualisation. We have ten circles and the center of each circle represents the position of our topic in the latent feature space; the distances between topics illustrates how (dis)similar the topics are and the area of the circles is proportional to how many documents feature each topic.&lt;/p&gt;
+&lt;p&gt;Below I’ve shown how you insert an already trained sklearn LDA model in pyLDAvis. Thankfully the &lt;a href=&#34;https://github.com/bmabey/pyLDAvis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;people responsible for adapting the original LDAvis&lt;/a&gt; (which was R model) to python made it communicate efficiently with sklearn.&lt;/p&gt;
+&lt;p&gt;And in Fig 3.0 is the plot we generate:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*e9Fj031z3H1s_eNx_KnfWg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.0 — pyLDAvis interactive plot&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interpreting pyLDAvis plots&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The LDAvis plot comes in two parts — a 2-dimensional ‘flattened’ replotting of our n-dimensional LDA data and an interactive, varying horizontal bar-chart of term distributions. Both of these are shown in Fig A1.0. One important feature to note is that the right-hand bar chart shows the terms in a topic in &lt;em&gt;decreasing order of relevance&lt;/em&gt;, but the bars indicate the frequency of the terms. The red section represents the term frequency purely within the particular topic; the red and blue represent the overall term frequency within the corpus of documents.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Adjusting&lt;/strong&gt; &lt;em&gt;λ (lambda)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If we set λ equal to 1, then our relevance is given purely by the probability of the word to that topic. Setting it to 0 will result in our relevance being dictated by specificity of that word to the topic — this is because the right hand term divides the probability of a term appearing in a particular topic divided by the probability of the word appearing generally — thus, highly frequent words (such as ‘team’, ‘skill’, ‘business’) will be downgraded heavily in relevance when we have a lower &lt;em&gt;λ&lt;/em&gt; value.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*gZJYETiTTlLPyi2VsXam9Q.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.1 — setting lambda to 1&lt;/p&gt;
+&lt;p&gt;In Fig 3.1 &lt;em&gt;λ&lt;/em&gt; was set to 1 and you can see that the terms tend to match the ones that dominate across the board generally (i.e. like in our print-outs of the most popular terms for each topic). This was only done for topic 1, but when I changed topic the distribution of top-30 most relevant terms barely changed at all!&lt;/p&gt;
+&lt;p&gt;Now, in Fig 3.2 &lt;em&gt;λ&lt;/em&gt; was set to 0 and the terms changed completely!&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*vHiv2kJNqRAZdsC23_O3sg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.2 — lambda set to 0&lt;/p&gt;
+&lt;p&gt;Now we have highly specific terms, but pay attention to the scale at the top — the most relevant word appears about 60 times. That’s quite a come down after over 6000! Also, these words won’t necessarily tell us anything interesting. If you select a different topic with this lambda value you will keep getting junk terms that aren’t necessarily that important.&lt;/p&gt;
+&lt;p&gt;In Fig 3.3 I’ve set lambda to 0.6 and I am exploring topic 2. Right off the bat there is a significant theme here surrounding engineer work, with terms like “aws”, “cloud” and “platform”.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*6Z1RjZ39WG4OCe6uyFE4uA.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.3 — lambda = 0.6&lt;/p&gt;
+&lt;p&gt;Another great thing that you can do with pyLDAvis is visually inspect the conditional topic distribution given a word, simply by hovering over the word (Fig 3.4). Below we can see just how much “NLP” is split amongst several topics — not a lot! This gives me further reason to believe that topic 6 is focused on NLP and text-based work (terms like “speech”, “language”, “text” also help in that regard). An interesting insight for me is the fact that “research” and “PhD” co-occur so strongly in this topic.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*lsD8XKNR7YSUlqkcVp-ZjA.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 3.4 — conditional topic distribution for “NLP”&lt;/p&gt;
+&lt;p&gt;Does this mean that NLP-focussed roles in the industry demand higher education than other roles? Do they demand previous research experience more often than other roles? Are NLP roles perhaps more fixated on experimental techniques and thus require someone with knowledge of the cutting edge?&lt;/p&gt;
+&lt;p&gt;While the interactive plot generated cannot deliver concrete answers, what it can do is provide us with a starting position for further investigation. If you’re in an organisation where you can run topic modelling, you can use LDA’s latent themes to inform survey-design, A/B testing or even correlate it with other available data to find interesting correlations!&lt;/p&gt;
+&lt;p&gt;I wish you the best of luck in topic modelling. If you’ve enjoyed this lengthy read, please give me as many claps as you think are appropriate. If you have knowledge of LDA and think I’ve gotten something &lt;strong&gt;even partially wrong&lt;/strong&gt; please leave me a comment (feedback is a gift and all that)!&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Serrano L. (2020). Accessed online: &lt;a href=&#34;https://www.youtube.com/watch?v=T05t-SqKArY&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Latent Dirichlet Allocation (Part 1 of 2)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sievert C. and Shirley K (2014). &lt;em&gt;LDAvis: A method for visualizing and interpreting topics.&lt;/em&gt; Accessed online: &lt;a href=&#34;https://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Proceedings of the Workshop on Interactive Language Learning, Visualization, and Interfaces&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>1 | Basics of Self-Attention</title>
+      <link>/publication/self_attention_1/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/self_attention_1/</guid>
+      <description>&lt;p&gt;TL;DR — Transformers are an exciting and (&lt;strong&gt;relatively&lt;/strong&gt;) new part of Machine Learning (ML) but there are a &lt;strong&gt;lot&lt;/strong&gt; of concepts that need to be broken down before you can understand them. This is the first post in a column I’m writing about them. Here we focus on how the basic self-attention mechanism works, which is the first layer of a Transformer model. Essentially for each input vector Self-Attention produces a vector that is the weighted sum over the vectors in its neighbourhood. The weights are determined by the relationship or &lt;em&gt;connectedness&lt;/em&gt; between the words. This column is aimed at ML novices and enthusiasts who are curious about what goes on under the hood of Transformers.&lt;/p&gt;
+&lt;h1 id=&#34;contents&#34;&gt;Contents:&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#cce2&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2beb&#34;&gt;Self-Attention — the math&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#c2e8&#34;&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h1&gt;
+&lt;p&gt;Transformers are an ML architecture that have been used successfully in a wide variety of NLP tasks, especially sequence to sequence (seq2seq) ones such as machine translation and text generation. In seq2seq tasks, the goal is to take a set of inputs (e.g. words in English) and produce a desirable set of outputs (- the same words in German). Since their inception in 2017, they’ve usurped the dominant architecture of their day (&lt;a href=&#34;https://en.wikipedia.org/wiki/Long_short-term_memory&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LSTMs&lt;/a&gt;) for seq2seq and have become almost ubiquitous in any news about NLP breakthroughs (for instance OpenAI’s &lt;a href=&#34;https://www.vox.com/2019/5/15/18623134/openai-language-ai-gpt2-poetry-try-it&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GPT-2 even appeared in mainstream&lt;/a&gt; media!).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/984/1*pblofc3psQrBkvXI4Jfxog.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 1.1 — machine translation (EN → DE)⁴&lt;/p&gt;
+&lt;p&gt;This column is intended as a very gentle, gradual introduction to the math, code and concept behind Transformer architecture. There’s no better place to start with than the attention mechanism because:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The most basic transformers rely purely on attention &lt;strong&gt;mechanisms³.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;2-self-attention--the-math&#34;&gt;2. Self-Attention — the math&lt;/h1&gt;
+&lt;p&gt;We want an ML system to learn the important relationships between words, similar to the way a human being understands words in a sentence. In Fig 2.1 you and I both know that “The” is referring to “animal” and thus should have a strong connection with that word. As the diagram’s colour coding shows, this system knows that there is some connection between “animal”, “cross”,“street” and “the” because they’re all &lt;em&gt;related&lt;/em&gt; to “animal”, the subject of the sentence. This is achieved through &lt;em&gt;Self-Attention.⁴&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*9XxSNAGInd3rbwTE_AwrQA.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.1 — which words does “The” pay &lt;strong&gt;&lt;em&gt;attention&lt;/em&gt;&lt;/strong&gt; to?⁴&lt;/p&gt;
+&lt;p&gt;At its most basic level, Self-Attention is a process by which one sequence of vectors &lt;em&gt;x&lt;/em&gt; is &lt;strong&gt;encoded&lt;/strong&gt; into another sequence of vectors &lt;em&gt;z&lt;/em&gt; (Fig 2.2). Each of the original vectors is just a &lt;strong&gt;block of numbers&lt;/strong&gt; that &lt;strong&gt;represents a word.&lt;/strong&gt; Its corresponding &lt;em&gt;z&lt;/em&gt; vector represents both the original word &lt;em&gt;and&lt;/em&gt; its &lt;strong&gt;relationship&lt;/strong&gt; with the other words around it.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*qeY6mWlzwkCIl2LhPN0zZQ.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.2: sequence of input vectors &lt;em&gt;x&lt;/em&gt; getting turned into another equally long sequence of vectors &lt;em&gt;z&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Vectors represent some sort of thing in a &lt;em&gt;space,&lt;/em&gt; like the flow of water particles in an ocean or the effect of gravity at any point around the Earth. You &lt;em&gt;can&lt;/em&gt; think of words as vectors in the total space of words. The direction of each word-vector &lt;em&gt;means&lt;/em&gt; something. Similarities and differences between the vectors correspond to similarities and differences between the words themselves (I’ve written about the subject before &lt;a href=&#34;https://medium.com/analytics-vidhya/ideas-for-using-word2vec-in-human-learning-tasks-1c5dabbeb72e&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Let’s just start by looking at the first three vectors and only looking in particular at how the vector &lt;em&gt;x2&lt;/em&gt;, our vector for “cat”, gets turned into &lt;em&gt;z2&lt;/em&gt;. All of these steps will be repeated for &lt;em&gt;each&lt;/em&gt; of the input vectors.&lt;/p&gt;
+&lt;p&gt;First, we multiply the vector in our spotlight, &lt;em&gt;x2&lt;/em&gt;, with all the vectors in a sequence, &lt;em&gt;including itself&lt;/em&gt;. We’re going to do a product of each vector and the &lt;em&gt;transpose&lt;/em&gt; (the diagonally flipped version) of &lt;em&gt;x2&lt;/em&gt; (Fig 2.3). This is the same as doing a dot product and you can think of a dot product of two vectors as a measure of &lt;strong&gt;how similar they are.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*dVJGPnBgZAFy8MorveslUQ.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.3: transposed multiplication (superscript “T” = “transposed”)&lt;/p&gt;
+&lt;p&gt;The dot product of two vectors is proportional to the cosine of the angle between them (Fig 2.4) — so the more closely they align in direction, the larger the dot product. If they were pointing in the exact same direction then the angle A would be 0⁰ and a cosine of 0⁰ is equal to 1. If they were pointing in opposite directions (so that A = 180⁰) then the cosine would be -1.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*2c4vsG2yNRBQL8xsIYKuew.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.4 — dot product of two vectors&lt;/p&gt;
+&lt;p&gt;As an aside, note that the &lt;em&gt;operation&lt;/em&gt; we use to get this product between vectors is a hyperparameter we can choose. The dot product is just the simplest option we have and the one that’s used in &lt;a href=&#34;https://arxiv.org/pdf/1706.03762.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Attention Is All You Need&lt;/em&gt;&lt;/a&gt;&lt;em&gt;³&lt;/em&gt; (AIAYN)&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If you want an additional intuitive perspective on this, &lt;a href=&#34;http://www.peterbloem.nl/blog/transformers&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bloem’s&lt;/a&gt;¹ post discusses how self-attention is analogous to the way recommender systems determine the similarity of movies or users.&lt;/p&gt;
+&lt;p&gt;So we put one word under the spotlight at a time and determine its output from its neighbourhood of words. Here we’re only looking at the words before and after but we could choose to widen that window in the future.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/900/1*RN9sHNRPhQu2atGXzTW5zg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.5 — raw weights for each j-th vector&lt;/p&gt;
+&lt;p&gt;If the spotlit word is “cat”, the sequence of words we’re going over is “the”, “cat”, “sat”. We’re asking &lt;strong&gt;how much attention the word “&lt;em&gt;cat”&lt;/em&gt; should pay to “&lt;em&gt;the”, “cat”&lt;/em&gt; and “&lt;em&gt;sat” respectively&lt;/em&gt;&lt;/strong&gt; (similar to what we see in Fig 2.1).&lt;/p&gt;
+&lt;p&gt;Multiplying the transpose of our spotlit word vector and the sequence of words around it will give us a set of 3 &lt;em&gt;raw weights&lt;/em&gt; (Fig 2.5)&lt;em&gt;.&lt;/em&gt; Each weight is proportional to how connected the two words are in meaning. We need to then normalise them so they are easier to use going ahead. We’ll do this using the &lt;a href=&#34;https://en.wikipedia.org/wiki/Softmax_function&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;softmax formula (Fig 2.6).&lt;/a&gt; This converts a sequence of numbers to be within the range of 0, 1 where each output is proportional to the &lt;em&gt;exponential of the input number&lt;/em&gt;. This makes our weights much easier to use and interpret.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1068/1*FM5PaDrHI31yoE8AwvMAWw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.6: normalising raw weights via softmax function&lt;/p&gt;
+&lt;p&gt;Now we take our normalised weights (one per every vector in the &lt;em&gt;j&lt;/em&gt; sequence), multiply them respectively with the &lt;em&gt;x&lt;/em&gt; input vectors, sum the products and bingo! We have an output &lt;em&gt;z&lt;/em&gt; vector, (Fig 2.5)! This is, of course, the output vector &lt;strong&gt;just&lt;/strong&gt; for x2 (“cat”) — this operation will be repeated for every input vector in &lt;em&gt;x&lt;/em&gt; until we get the output sequence we saw in Fig 2.2.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*Q1d4gzdBleLgcMUrI58D8g.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.7: Final operation to get our new sequence of vectors, &lt;em&gt;z&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This explanation so far may have raised some questions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Aren’t the weights we calculated highly dependent on how we determined the original input vectors?&lt;/li&gt;
+&lt;li&gt;Why are we relying on the &lt;em&gt;similarity&lt;/em&gt; of the vectors? What if we want to find a connection between two ‘dissimilar’ words, such as the object and subject of “The cat sat on the matt”?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the next post, we’ll address these questions. We’ll transform each vector for each of its different uses and thus define relationships between words &lt;em&gt;more precisely&lt;/em&gt; so that we can get an output more like Fig 2.8.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/1400/1*al_9j5AzCoqPaTUMjFRkjQ.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Fig 2.8 — which words is “cross” paying attention to in the &lt;strong&gt;orange column&lt;/strong&gt; vs the &lt;strong&gt;pink&lt;/strong&gt; one?&lt;/p&gt;
+&lt;p&gt;I hope you’ve enjoyed this post and I appreciate any amount of claps. Feel free to leave any feedback (positive or constructive) in the comments and I’ll aim to take it onboard as quickly as I can.&lt;/p&gt;
+&lt;p&gt;The people who helped my understanding the most and to whom I am very grateful are Peter Bloem (his &lt;a href=&#34;http://www.peterbloem.nl/blog/transformers&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;post&lt;/a&gt; is a great start if, like me, you prefer a math-first approach to Machine Learning¹ ) and Jay Alammar (if you want a top-down view to start with, I recommend &lt;a href=&#34;https://jalammar.github.io/illustrated-transformer/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;his article&lt;/a&gt;²).&lt;/p&gt;
+&lt;h1 id=&#34;3-references&#34;&gt;3. References&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Alammar J. &lt;em&gt;The Illustrated Transformer.&lt;/em&gt; (2018)  &lt;a href=&#34;https://jalammar.github.io/illustrated-transformer/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://jalammar.github.io/illustrated-transformer/&lt;/a&gt; [accessed 27th June 2020]&lt;/li&gt;
+&lt;li&gt;Bloem P. &lt;em&gt;Transformers from Scratch.&lt;/em&gt; (2019) &lt;a href=&#34;http://www.peterbloem.nl/blog/transformers&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://www.peterbloem.nl/blog/transformers&lt;/a&gt; .[accessed 27th June 2020]&lt;/li&gt;
+&lt;li&gt;Vaswani A. et al. Dec 2017. &lt;em&gt;Attention is all you need&lt;/em&gt;. 31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, CA, USA. &lt;a href=&#34;https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf&lt;/a&gt; [accessed 27th June 2020]. &lt;a href=&#34;https://arxiv.org/abs/1706.03762&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;arXiv:1706.03762&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Vaswani A. et al. Mar 2018 &lt;a href=&#34;https://arxiv.org/abs/1803.07416&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;arXiv:1803.07416&lt;/a&gt; . &lt;a href=&#34;https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb?authuser=2#scrollTo=OJKU36QAfqOC&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Interactive notebook&lt;/a&gt;: [accessed 29th June 2020]&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Latent Semantic Analysis: intuition, math, implementation</title>
+      <link>/publication/lsa_medium/</link>
+      <pubDate>Fri, 10 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/lsa_medium/</guid>
+      <description>&lt;p&gt;=========================================================&lt;/p&gt;
+&lt;h2 id=&#34;how-do-we-extract-themes-and-topic-from-text-using-unsupervised-learning&#34;&gt;How do we extract themes and topic from text using unsupervised learning&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;TL;DR — Text data suffers heavily from high-dimensionality. Latent Semantic Analysis (LSA) is a popular, dimensionality-reduction techniques that follows the same method as Singular Value Decomposition. LSA ultimately reformulates text data in terms of &lt;em&gt;r&lt;/em&gt; &lt;strong&gt;latent&lt;/strong&gt;  (i.e. &lt;strong&gt;hidden&lt;/strong&gt;) features, where &lt;em&gt;r&lt;/em&gt; is less than &lt;em&gt;m&lt;/em&gt;, the number of terms in the data. I’ll explain the &lt;strong&gt;conceptual&lt;/strong&gt; and &lt;strong&gt;mathematical&lt;/strong&gt; intuition  and run a basic &lt;strong&gt;implementation&lt;/strong&gt; in &lt;a href=&#34;https://scikit-learn.org/stable/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scikit-Learn&lt;/a&gt; using the &lt;a href=&#34;https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;20 newsgroups&lt;/a&gt; dataset.&lt;/p&gt;
+&lt;p&gt;Language is more than the collection of words in front of you. When you read a text your mind conjures up images and notions. When you read many texts, themes begin to emerge, even if they’re never stated explicitly. Our innate ability to understand and process language defies an algorithmic expression (for the moment). LSA is one of the most popular Natural Language Processing (NLP) techniques for trying to determine themes within text mathematically. LSA is an unsupervised learning technique that rests on two pillars:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The distributional hypothesis, which states that words with similar meanings appear frequently together. This is best summarised by JR Firth’s quote “You shall know a word by the company it keeps” [1, p106]&lt;/li&gt;
+&lt;li&gt;Singular Value Decomposition (SVD — Figure 1) a mathematical technique that we’ll be looking at in greater depth.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that LSA is an &lt;em&gt;unsupervised&lt;/em&gt; learning technique — there is no ground truth. The latent concepts might or might not be there! In the dataset we’ll use later we know there are 20 news categories and we can perform classification on them, but that’s only for illustrative purposes. It’ll often be the case that we’ll use LSA on unstructured, unlabelled data.&lt;/p&gt;
+&lt;p&gt;Like all Machine Learning concepts, LSA can be broken down into 3 parts: the intuition, the maths and the code. Feel free to use the links in Contents to skip to the part most relevant to you. The full code is available in this &lt;a href=&#34;https://github.com/Ioana-P/pca_and_clustering_for_edu_purposes/blob/master/newsgroups_LSA.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A note on terminology: generally when decomposition of this kind is done on text data, the terms SVD and LSA (or LSI) are used interchangeably. From now on I’ll be using LSA, for simplicity’s sake.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This article assumes some understanding of basic NLP preprocessing and of word vectorisation (specifically&lt;/em&gt; &lt;a href=&#34;https://medium.com/tf-term-frequency-idf-inverse-document-frequency-from-scratch-in-python-6c2b61b78558&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;tf-idf vectorisation&lt;/em&gt;&lt;/a&gt;&lt;em&gt;).&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;contents&#34;&gt;Contents:&lt;/h3&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#0c85&#34;&gt;Intuition&lt;/a&gt;: explanation with political news topics&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#d570&#34;&gt;The Math&lt;/a&gt;: SVD as a weighted, ordered sum of matrices &lt;strong&gt;or&lt;/strong&gt; as a set of 3 linear transformations&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#04db&#34;&gt;The code implementation&lt;/a&gt;: in Python3 with Scikit-Learn and 20Newsgroups data&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#a131&#34;&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;1-intuition&#34;&gt;1. Intuition&lt;/h1&gt;
+&lt;p&gt;(&lt;a href=&#34;#3ce3&#34;&gt;return to Contents&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;In simple terms: LSA takes meaningful text documents and recreates them in &lt;em&gt;n&lt;/em&gt; different parts where each part expresses a different way of looking at meaning in the text. If you imagine the text data as a an idea, there would be &lt;em&gt;n&lt;/em&gt; different ways of &lt;em&gt;looking&lt;/em&gt; at that idea, or &lt;em&gt;n&lt;/em&gt; different ways of &lt;em&gt;conceptualising&lt;/em&gt; the whole text. LSA reduces our table of data to a table of latent (hidden_)_ concepts.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*1Sldip6QA_xwyyw7DI6SWw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 1: formula and matrix dimensions for SVD&lt;/p&gt;
+&lt;p&gt;Suppose that we have some table of data, in this case text data, where each row is one document, and each column represents a term (which can be a word or a group of words, like “baker’s dozen” or “Downing Street”). This is the standard way to represent text data (in a &lt;em&gt;document-term matrix&lt;/em&gt;, as shown in Figure 2). The numbers in the table reflect how important that word is in the document. If the number is zero then that word simply doesn’t appear in that document.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*LuETpJGCTOaKAc8zyfjs4g.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 2: Document Term matrix, after applying some sort of vectorisation, in our case TF-IDF (but Bag of Words would also do)&lt;/p&gt;
+&lt;p&gt;Different documents will be about different topics. Let’s say all the documents are &lt;strong&gt;politics&lt;/strong&gt; articles and there are 3 topics: &lt;strong&gt;foreign policy (F.P.), elections and reform&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*uPHKa66FY0XBnpMM2Kx-1w.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 3: Document-Topic matrix (or Document- &lt;strong&gt;Latent&lt;/strong&gt;-Concept if you prefer)&lt;/p&gt;
+&lt;p&gt;Let’s say that there are articles strongly belonging to each category, some that are in two and some that belong to all 3 categories. We could plot a table where each row is a different document (a news article) and each column is a different topic. In the cells we would have a different numbers that indicated how strongly that document belonged to the particular topic (see Figure 3).&lt;/p&gt;
+&lt;p&gt;Now if we shift our attention conceptually to the &lt;strong&gt;topics&lt;/strong&gt; themselves, we should ask ourselves the following question: &lt;em&gt;do we expect certain&lt;/em&gt; &lt;strong&gt;&lt;em&gt;words&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;to turn up more often in either of these topics?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If we’re looking at foreign policy, we might see terms like “Middle East”, “EU”, “embassies”. For elections it might be “ballot”, “candidates”, “party”; and for reform we might see “bill”, “amendment” or “corruption”. So, if we plotted these topics and these terms in a different table, where the rows are the terms, we would see scores plotted for each term according to which topic it most strongly belonged. Naturally there will be terms that feature in all three documents (“prime minister”, “Parliament”, “decision”) and these terms will have scores across all 3 columns that reflect how much they belong to either category — the higher the number, the greater its affiliation to that topic. So, our second table (Figure 4) consists of terms and topics.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*b2T1vn1LLGWbCjat4tolGg.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 4: Term — Topic matrix&lt;/p&gt;
+&lt;p&gt;Now the last component is a bit trickier to explain as a table. It’s actually a set of numbers, one for each of our topics. What do the numbers represent? They represent how much each of the topics &lt;em&gt;explains&lt;/em&gt; our data.&lt;/p&gt;
+&lt;p&gt;How do they “explain” the data? Well, suppose that actually, “reform” wasn’t really a salient topic across our articles, and the majority of the articles fit in far more comfortably in the “foreign policy” and “elections”. Thus “reform” would get a really low number in this set, lower than the other two. An alternative is that maybe all three numbers are actually quite low and we actually should have had four or more topics — we find out later that a lot of our articles were actually concerned with economics! By sticking to just three topics we’ve been denying ourselves the chance to get a more detailed and precise look at our data. The technical name for this array of numbers is the “singular values”.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*vQY75Vct3QJJoPQlDLisKg.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 5: Singular values — what is the relative importance of our topics within our text?&lt;/p&gt;
+&lt;p&gt;So that’s the intuition so far. You’ll notice that our two tables have one thing in common (the documents / articles) and all three of them have one thing in common — the topics, or some representation of them.&lt;/p&gt;
+&lt;p&gt;Now let’s explain how this is a dimensionality reduction technique. It’s easier to see the merits if we specify a number of documents and topics. Suppose we had 100 articles and 10,000 different terms (just think of how many unique words there would be all those articles, from “amendment” to “zealous”!). In our original document-term matrix that’s 100 rows and 10,000 columns. When we start to break our data down into the 3 components, we can actually choose the number of topics — we could choose to have 10,000 different topics, if we genuinely thought that was reasonable. However, we could probably represent the data with far fewer topics, let’s say the 3 we originally talked about. That means that in our document-topic table, we’d slash about &lt;em&gt;99,997 columns&lt;/em&gt;, and in our term-topic table, we’d do the same. The columns and rows we’re discarding from our tables are shown as hashed rectangles in Figure 6. M  is the original document-term table; &lt;em&gt;U&lt;/em&gt; is the document-topic table, 𝚺 (sigma) is the array of singular values and &lt;em&gt;V-transpose&lt;/em&gt; (the superscript T means that the original matrix T has been flipped along its diagonal) is the document-topic table, but flipped on its diagonal (I’ll explain why in the math section).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*5najHCdleqnOpvZgJHB1kA.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 6 — what’s hashed we discard&lt;/p&gt;
+&lt;p&gt;As for the set of numbers denoting topic importance, from a set of 10,000 numbers, each number getting smaller and smaller as it corresponds to a less important topic, we cut down to only 3 numbers, for our 3 remaining topics. This is why the Python implementation for LSA is called &lt;em&gt;Truncated&lt;/em&gt; SVD by the way: we’re cutting off part of our table, but we’ll get to the code later. It’s also worth noting that we don’t know what the 3 topics are in advance, we merely hypothesised that there would be 3 and, once we’ve gotten our components, we can explore them and see what the terms are.&lt;/p&gt;
+&lt;p&gt;Of course, we don’t just want to return to the original dataset: we now have 3 lower-dimensional components we can use. In the code and maths parts we’ll go through which one we actually take forward. In brief, once we’ve truncated the tables (matrices), the product we’ll be getting out is the document-topic table (&lt;em&gt;U&lt;/em&gt;) &lt;em&gt;times&lt;/em&gt; the singular values (𝚺). This can be interpreted as the documents (all our news articles) along with how much they belong to each topic then &lt;strong&gt;weighted&lt;/strong&gt; by the relative importance of each topic. You’ll notice that in that case something’s been left out of this final table — the &lt;em&gt;words.&lt;/em&gt; Yes, we’ve gone beyond the words, we’re discarding them but keeping &lt;em&gt;the themes&lt;/em&gt;, which is a much more compact way to express our text.&lt;/p&gt;
+&lt;h1 id=&#34;2-the-math&#34;&gt;2. The Math&lt;/h1&gt;
+&lt;p&gt;(&lt;a href=&#34;#3ce3&#34;&gt;return to Contents&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;For the maths, I’ll be going through two different interpretations of SVD: first the general geometric decomposition that you can use with a real square matrix M and second the separable-models decomposition which is more pertinent to our example. SVD is also used in model-based recommendation systems. It is very similar to Principal Component Analysis (PCA), but it operates better on sparse data than PCA does (and text data is almost always sparse). Whereas PCA performs decomposition on the &lt;em&gt;correlation&lt;/em&gt; matrix of a dataset, SVD/LSA performs decomposition directly on the dataset as it is.&lt;/p&gt;
+&lt;p&gt;We will be &lt;strong&gt;factorising&lt;/strong&gt; this matrix into constituent matrices. When I say factorising this is essentially the same as when we’re taking a number and representing it its factors, which when multiplied together, give us the original number, e.g. A = B * C * D .&lt;/p&gt;
+&lt;p&gt;This is also why it’s called Singular Value &lt;strong&gt;Decomposition&lt;/strong&gt; — we’re &lt;em&gt;decomposing&lt;/em&gt; it into its constituent parts.&lt;/p&gt;
+&lt;h2 id=&#34;general-geometric-decomposition&#34;&gt;General geometric decomposition&lt;/h2&gt;
+&lt;p&gt;The extra dimension that wasn’t available to us in our original matrix, the &lt;em&gt;r&lt;/em&gt; dimension, is the amount of &lt;em&gt;latent concepts&lt;/em&gt;. Generally we’re trying to represent our matrix as other matrices that have one of their axes being this set of components. You will also note that, based on dimensions, the multiplication of the 3 matrices (when V is transposed) will lead us back to the shape of our original matrix, the &lt;em&gt;r&lt;/em&gt; dimension effectively disappearing.&lt;/p&gt;
+&lt;p&gt;What matters in understanding the math is not the algebraic algorithm by which each number in U, V and 𝚺 is determined, but the mathematical properties of these products and how they relate to each other.&lt;/p&gt;
+&lt;p&gt;First of all, it’s important to consider first what a matrix actually is and what it can be thought of — a transformation of vector space. In the top left corner of Figure 7 we have two perpendicular vectors. If we have only two variables to start with then the feature space (the data that we’re looking at) can be plotted anywhere in this space that is described by these two &lt;strong&gt;basis&lt;/strong&gt; vectors. Now moving to the right in our diagram, the matrix M is applied to this vector space and this transforms it into the new, transformed space in our top right corner. In the diagram below the geometric effect of M would be referred to as “shearing” the vector space; the two vectors &lt;em&gt;𝝈1&lt;/em&gt; and &lt;em&gt;𝝈2&lt;/em&gt; are actually our singular values plotted in this space.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*wGflVq-hpWnmUto3thkR6g.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 7: Source: Wikipedia; &lt;a href=&#34;https://en.wikipedia.org/wiki/Singular_value_decomposition&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Singular Value Decomposition&lt;/a&gt;; &lt;a href=&#34;https://commons.wikimedia.org/wiki/File:Singular-Value-Decomposition.svg#filelinks;&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;link&lt;/a&gt;; Author : Georg-Johann&lt;/p&gt;
+&lt;p&gt;Now, just like with geometric transformations of points that you may remember from school, we can reconsider this transformation &lt;em&gt;M&lt;/em&gt; as three separate transformations:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The rotation (or reflection) caused by &lt;em&gt;V*.&lt;/em&gt; Note that &lt;em&gt;V* = V-transpose&lt;/em&gt; as V is a real unitary matrix, so the complex conjugate of V is the same as its transpose. In vector terms, the transformation by V or &lt;em&gt;V*&lt;/em&gt; keeps the length of the basis vectors the same;&lt;/li&gt;
+&lt;li&gt;𝚺 has the effect of stretching or compressing all coordinate points along the values of its singular values. Imagine our disc in the bottom left corner as we squeeze it vertically down in the direction of &lt;em&gt;𝝈2&lt;/em&gt; and stretch it horizontally along the direction of &lt;em&gt;𝝈1&lt;/em&gt;. These two singular values now can be pictured as the major and minor semi-axes of an ellipse. You can of course generalise this to &lt;em&gt;n&lt;/em&gt;-dimensions.&lt;/li&gt;
+&lt;li&gt;Lastly, applying &lt;em&gt;U&lt;/em&gt; rotates (or reflects) our feature space. We’ve arrived at the same output as a transformation directly from &lt;em&gt;M&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I also recommend the excellent &lt;a href=&#34;https://en.wikipedia.org/wiki/Singular_value_decomposition&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Wikipedia entry on SVD&lt;/a&gt; as it has a particularly good explanation and GIF of the process.&lt;/p&gt;
+&lt;p&gt;So, in other words, where &lt;em&gt;x&lt;/em&gt; is any column vector:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /publication/lsa_medium/formula_1_huae8fae504900f8ae279e5e034c9661e9_15651_23dd397b521c2f9d1b44f82cff7c0d41.webp 400w,
+               /publication/lsa_medium/formula_1_huae8fae504900f8ae279e5e034c9661e9_15651_08393934825db899d7d9e57c5883571c.webp 760w,
+               /publication/lsa_medium/formula_1_huae8fae504900f8ae279e5e034c9661e9_15651_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;/publication/lsa_medium/formula_1_huae8fae504900f8ae279e5e034c9661e9_15651_23dd397b521c2f9d1b44f82cff7c0d41.webp&#34;
+               width=&#34;520&#34;
+               height=&#34;249&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;The transformation by M on x is the same as the three transformations on x by the matrices on the right&lt;/p&gt;
+&lt;p&gt;One of the properties of the matrices &lt;em&gt;U&lt;/em&gt; and &lt;em&gt;V*&lt;/em&gt; is that they’re unitary, so we can say that the columns of both of these matrices form two sets of orthonormal basis vectors. In other words, the column vectors you can get from U would form their own coordinate space, such that if there were two columns &lt;em&gt;U1&lt;/em&gt; and &lt;em&gt;U2,&lt;/em&gt; you could write out all of the coordinates of the space as combinations of &lt;em&gt;U1&lt;/em&gt; and &lt;em&gt;U2&lt;/em&gt;. The same applies to the columns of &lt;em&gt;V&lt;/em&gt;, &lt;em&gt;V1&lt;/em&gt; and &lt;em&gt;V2,&lt;/em&gt; and this would generalise to &lt;em&gt;n&lt;/em&gt;-dimensions (you’d have &lt;em&gt;n&lt;/em&gt;-columns).&lt;/p&gt;
+&lt;h1 id=&#34;separable-models-decomposition&#34;&gt;Separable models decomposition&lt;/h1&gt;
+&lt;p&gt;We can arrive at the same understanding of PCA if we imagine that our matrix M can be broken down into a weighted sum of separable matrices, as shown below.&lt;/p&gt;
+&lt;p&gt;Decomposition of our data M into a weighted sum of separable matrices, &lt;em&gt;Ai&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The matrices 𝐴𝑖 are said to be separable because they can be decomposed into the outer product of two vectors, weighted by the singular value 𝝈_i_. Calculating the outer product of two vectors with shapes (&lt;em&gt;m,&lt;/em&gt;) and (&lt;em&gt;n,&lt;/em&gt;) would give us a matrix with a shape (m,n). In other words, every possible product of any two numbers in the two vectors is computed and placed in the new matrix. The singular value not only weights the sum but orders it, since the values are arranged in descending order, so that the first singular value is always the highest one.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*D8WG84Sg8zkOZl6olTK8ng.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 8: our separable matrices. Note the ≅ sign is representing the fact that the decomposed set of 3 products only &lt;strong&gt;approximates&lt;/strong&gt; our original matrix, it does not equal it exactly.&lt;/p&gt;
+&lt;p&gt;In Figure 8 you can see how you could visualise this. Previously we had the tall &lt;em&gt;U&lt;/em&gt;, the square &lt;em&gt;Σ&lt;/em&gt; and the long 𝑉-&lt;em&gt;transpose&lt;/em&gt; matrices. Now you can picture taking the first vertical slice from &lt;em&gt;U&lt;/em&gt;, weighting (multiplying) all its values by the first singular value and then, by doing an outer product with the first horizontal slice of 𝑉_-transpose_, creating a new matrix with the dimensions of those slices. Then we add those products together and we get &lt;em&gt;M&lt;/em&gt;. Or, if we don’t do the full sum but only complete it partially, we get the truncated version.&lt;/p&gt;
+&lt;p&gt;So, for our data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;where &lt;em&gt;M&lt;/em&gt; is our original (&lt;em&gt;m, n&lt;/em&gt;) data matrix — m rows, n columns; &lt;em&gt;m documents, n terms&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;U is a (&lt;em&gt;m, r&lt;/em&gt;) matrix — &lt;em&gt;m documents and r concepts&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Σ is a &lt;em&gt;diagonal&lt;/em&gt; (&lt;em&gt;r , r&lt;/em&gt;) matrix — all values except those in the diagonal are zero. (But what do the non-zero values represent?&lt;/li&gt;
+&lt;li&gt;V is a (&lt;em&gt;n, r&lt;/em&gt;) matrix — &lt;em&gt;n terms, r concepts&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The values in 𝚺 represent how much each latent concept explains the variance in our data. When these are multiplied by the &lt;em&gt;u&lt;/em&gt; column vector for that latent concept, it will effectively weigh that vector.&lt;/p&gt;
+&lt;p&gt;If we were to decompose this to 5 components, this would look something like this:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34; srcset=&#34;
+               /publication/lsa_medium/formula_2_hu3038c161a4454db15d2e72400bed9bc7_14673_087a12892503fbcada5b088d5d27d77e.webp 400w,
+               /publication/lsa_medium/formula_2_hu3038c161a4454db15d2e72400bed9bc7_14673_1d2507fdbdd2dad7307882d91dbefed5.webp 760w,
+               /publication/lsa_medium/formula_2_hu3038c161a4454db15d2e72400bed9bc7_14673_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;/publication/lsa_medium/formula_2_hu3038c161a4454db15d2e72400bed9bc7_14673_087a12892503fbcada5b088d5d27d77e.webp&#34;
+               width=&#34;535&#34;
+               height=&#34;196&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;A sum of the outer product of our weighted document-concept vector and our term-concept vector&lt;/p&gt;
+&lt;p&gt;where there would be originally &lt;em&gt;r&lt;/em&gt; number of &lt;em&gt;u&lt;/em&gt; vectors; 5 singular values and n number of 𝑣_-transpose_ vectors.&lt;/p&gt;
+&lt;h1 id=&#34;3-the-code-implementation&#34;&gt;3. The code implementation&lt;/h1&gt;
+&lt;p&gt;(&lt;a href=&#34;#3ce3&#34;&gt;return to Contents&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;In this last section we’ll see how we can implement basic LSA using Scikit-Learn.&lt;/p&gt;
+&lt;h2 id=&#34;extract-transform-and-load-our-text-data&#34;&gt;Extract, Transform and Load our text data&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from sklearn.datasets import fetch\_20newsgroups  
+X\_train, y\_train = fetch\_20newsgroups(subset=&amp;#39;train&amp;#39;, return\_X\_y=True)  
+X\_test, y\_test = fetch\_20newsgroups(subset=&amp;#39;test&amp;#39;, return\_X\_y=True)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;cleaning-and-preprocessing&#34;&gt;Cleaning and Preprocessing&lt;/h2&gt;
+&lt;p&gt;The cleaning of text data is often a very different beast from cleaning of numerical data. You’ll often find yourself having prepared your vectoriser, you model and you’re ready to Gridsearch and then extract features, only to find that the most important features in cluster &lt;em&gt;x&lt;/em&gt; is the string “___” … so you go back…and do more cleaning. The code block below came about as a result of me realizing that I needed to remove website URLs, numbers and emails from the dataset.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from nltk.corpus import stopwords  
+from nltk.tokenize import RegexpTokenizer  
+import re  
+tokenizer = RegexpTokenizer(r&amp;#39;\\b\\w{3,}\\b&amp;#39;)  
+stop\_words = list(set(stopwords.words(&amp;#34;english&amp;#34;)))  
+stop\_words += list(string.punctuation)  
+stop\_words += \[&amp;#39;\_\_&amp;#39;, &amp;#39;\_\_\_&amp;#39;\]\# Uncomment and run the 3 lines below if you haven&amp;#39;t got these packages already  
+\# nltk.download(&amp;#39;stopwords&amp;#39;)  
+\# nltk.download(&amp;#39;punkt&amp;#39;)  
+\# nltk.download(&amp;#39;wordnet&amp;#39;)def rmv\_emails\_websites(string):  
+    &amp;#34;&amp;#34;&amp;#34;Function removes emails, websites and numbers&amp;#34;&amp;#34;&amp;#34; new\_str = re.sub(r&amp;#34;\\S+@\\S+&amp;#34;, &amp;#39;&amp;#39;, string)  
+    new\_str = re.sub(r&amp;#34;\\S+.co\\S+&amp;#34;, &amp;#39;&amp;#39;, new\_str)  
+    new\_str = re.sub(r&amp;#34;\\S+.ed\\S+&amp;#34;, &amp;#39;&amp;#39;, new\_str)  
+    new\_str = re.sub(r&amp;#34;\[0-9\]+&amp;#34;, &amp;#39;&amp;#39;, new\_str)  
+    return new\_strX\_train = list(map(rmv\_emails\_websites, X\_train))  
+X\_test  = list(map(rmv\_emails\_websites, X\_test))
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;tokenising-and-vectorising-text-data&#34;&gt;Tokenising and vectorising text data&lt;/h2&gt;
+&lt;p&gt;Our models work on numbers, not string! So we tokenise the text (turning all documents into smaller observational entities — in this case words) and then turn them into numbers using Sklearn’s TF-IDF vectoriser. I recommend with any transformation process (especially ones that take time to run) you do them on the first 10 rows of your data and inspect results: are they what you expected to see? Is the shape of the dataframe what you hoped for? Once you’re feeling confident of your code, feed in the whole corpus.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tfidf = TfidfVectorizer(lowercase=True,   
+                        stop\_words=stop\_words,   
+                        tokenizer=tokenizer.tokenize,   
+                        max\_df=0.2,  
+                        min\_df=0.02  
+                       )  
+tfidf\_train\_sparse = tfidf.fit\_transform(X\_train)  
+tfidf\_train\_df = pd.DataFrame(tfidf\_train\_sparse.toarray(),   
+                        columns=tfidf.get\_feature\_names())  
+tfidf\_train\_df.head()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This should give you your vectorised text data — the document-term matrix. Repeat the steps above for the test set as well, but &lt;strong&gt;only&lt;/strong&gt; using transform, &lt;strong&gt;not&lt;/strong&gt; fit_transform.&lt;/p&gt;
+&lt;h2 id=&#34;lsa-for-exploratory-data-analysis-eda&#34;&gt;LSA for Exploratory Data Analysis (EDA)&lt;/h2&gt;
+&lt;p&gt;Just for the purpose of visualisation and EDA of our decomposed data, let’s fit our LSA object (which in Sklearn is the &lt;a href=&#34;https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TruncatedSVD class&lt;/a&gt;) to our train data and specifying only 20 components.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from sklearn.decomposition import TruncatedSVDlsa\_obj = TruncatedSVD(n\_components=20, n\_iter=100, random\_state=42)tfidf\_lsa\_data = lsa\_obj.fit\_transform(tfidf\_train\_df)  
+Sigma = lsa\_obj.singular\_values\_  
+V\_T = lsa\_obj.components\_.T
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now let’s visualise the singular values — is the barplot below showing us what we expected of them?&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sns.barplot(x=list(range(len(Sigma))), y = Sigma)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/640/1*U6GCUrfJ1hfOwI7fBkzwNw.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 9 — our singular values, representing how much each latent concept &lt;em&gt;explains the variance in the data&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Let’s explore our reduced data through the term-topic matrix, &lt;em&gt;V-tranpose.&lt;/em&gt; TruncatedSVD will return it to as a numpy array of shape (num_documents, num_components), so we’ll turn it into a Pandas dataframe for ease of manipulation.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;term\_topic\_matrix = pd.DataFrame(data=lsa\_term\_topic,   
+                                 index = eda\_train.columns,   
+                                 columns = \[f&amp;#39;Latent\_concept\_{r}&amp;#39; for r in range(0,V\_T.shape\[1\])\])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Let’s slice our term-topic matrix into Pandas Series (single column data-frames), sort them by value and plot them. The code below plots this for our 2nd latent component (recall that in python we start counting from 0) and returns the plot in Figure 10:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;data = term\_topic\_matrix\[f&amp;#39;Latent\_concept\_1&amp;#39;\]  
+data = data.sort\_values(ascending=False)  
+top\_10 = data\[:10\]  
+plt.title(&amp;#39;Top terms along the axis of Latent concept 1&amp;#39;)  
+fig = sns.barplot(x= top\_10.values, y=top\_10.index)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/640/1*eBXrjYQF7Vao3pLSLGEHiA.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 10: despite the seeming noise at least 3 terms here have a strong theme&lt;/p&gt;
+&lt;p&gt;These are the words that rank highly along our 2nd latent component. What about the words at the other end of this axis (see Fig 11)?&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/640/1*2E2kZjCp4hUk-mVTrKj_-Q.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 11: it was at this moment the author appreciated how useful lemming/stemming would’ve been&lt;/p&gt;
+&lt;p&gt;You can make your own mind up about that this semantic divergence signifies. Adding more preprocessing steps would help us cleave through the noise that words like “say” and “said” are creating, but we’ll press on for now. Let’s do one more pair of visualisations for the 6th latent concept (Figures 12 and 13).&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/640/1*sH66WI7jpF5eTiaLhUylgQ.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/640/1*J8wVB1n2hcrREesFjhxu_Q.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 13: we see once again that technological terms feature strongly in this data&lt;/p&gt;
+&lt;p&gt;At this point it’s up to us to infer some meaning from these plots. The negative end of concept 5’s axis seems to correlate very strongly with technological and scientific themes (‘space’, ‘science’, ‘computer’), but so does the positive end, albeit more focused on computer related terms (‘hard’, ‘drive’, ‘system’).&lt;/p&gt;
+&lt;p&gt;Now just to be clear, determining the right amount of components will require tuning, so I didn’t leave the argument set to 20, but changed it to 100. You might think that’s still a large number of dimensions, but our original was 220 (and that was with constraints on our minimum document frequency!), so we’ve reduced a sizeable chunk of the data. I’ll explore in another post how to choose the optimal number of singular values. For now we’ll just go forward with what we have.&lt;/p&gt;
+&lt;h2 id=&#34;using-our-latent-components-in-our-modelling-task&#34;&gt;Using our latent components in our modelling task&lt;/h2&gt;
+&lt;p&gt;Although LSA is an unsupervised technique often used to find patterns in unlabelled data, we’re using it here to reduce the dimensions of labelled data before feeing it into a model. We’ll compare our accuracy on the LSA data with the accuracy on our standard TF-IDF data to gauge how much useful information the LSA has captured from the original dataset. We now have a train dataset of shape (11314, 100). The number of documents is preserved and we have created 100 latent concepts. Now let’s run a model on this and on our standard TF-IDF data. The aim of the implementation below isn’t to get a great model, but to compare the two very different datasets. I’ve included basic cross validation through GridSearchCV and performed a tiny amount of tuning for the tolerance hyperparameter. If you were to do this for the sake of building an actual model, you would go much farther than what’s written below. This is just to help you get a basic implementation going:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;logreg\_lsa = LogisticRegression()  
+logreg     = LogisticRegression()  
+logreg\_param\_grid = \[{&amp;#39;penalty&amp;#39;:\[&amp;#39;l1&amp;#39;, &amp;#39;l2&amp;#39;\]},  
+                 {&amp;#39;tol&amp;#39;:\[0.0001, 0.0005, 0.001\]}\]grid\_lsa\_log = GridSearchCV(estimator=logreg\_lsa,  
+                        param\_grid=logreg\_param\_grid,   
+                        scoring=&amp;#39;accuracy&amp;#39;, cv=5,  
+                        n\_jobs=-1)grid\_log = GridSearchCV(estimator=logreg,  
+                        param\_grid=logreg\_param\_grid,   
+                        scoring=&amp;#39;accuracy&amp;#39;, cv=5,  
+                        n\_jobs=-1)best\_lsa\_logreg = grid\_lsa\_log.fit(tfidf\_lsa\_data, y\_train).best\_estimator\_  
+best\_reg\_logreg = grid\_log.fit(tfidf\_train\_df, y\_train).best\_estimator\_print(&amp;#34;Accuracy of Logistic Regression on LSA train data is :&amp;#34;, best\_lsa\_logreg.score(tfidf\_lsa\_data, y\_train))  
+print(&amp;#34;Accuracy of Logistic Regression with standard train data is :&amp;#34;, best\_reg\_logreg.score(tfidf\_train\_df, y\_train))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Which returns:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Accuracy of Logistic Regression on LSA train data is : 0.45  
+Accuracy of Logistic Regression with standard train data is : 0.52
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The drop in performance is significant, but you can work this into an optimisation pipeline and tweak the number of latent components. How does this perform on our test data (7532 documents) though?&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Accuracy of Logistic Regression on LSA test data is : 0.35  
+Accuracy of Logistic Regression on standard test data is : 0.37
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Accuracy has dropped greatly for both, but notice how small the gap between the models is! Our LSA model is able to capture about as much information from our test data as our standard model did, with less than half the dimensions! Since this is a multi-label classification it would be best to visualise this with a confusion matrix (Figure 14). Our results look significantly better when you consider the random classification probability given 20 news categories. If you’re not familiar with a confusion matrix, as a rule of thumb, we want to maximise the numbers down the diagonal and minimise them everywhere else.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://miro.medium.com/max/720/1*I24_6q3dvnKNuLSw2Sth0Q.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 14— &lt;a href=&#34;https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Confusion matrix&lt;/a&gt; for our test data (7532 documents). y-axis represents actual news categories, x-axis represents predicted news categories. The diagonal values are all the correctly classified documents.&lt;/p&gt;
+&lt;p&gt;And that concludes our implementation of LSA in Scikit-Learn. We’ve covered the intuition, mathematics and coding of this technique.&lt;/p&gt;
+&lt;p&gt;I hope you’ve enjoyed this post and would appreciate any amount of claps. Feel free to leave any feedback (positive or constructive) in the comments, especially about the math section, since I found that the most challenging to articulate.&lt;/p&gt;
+&lt;h1 id=&#34;4-references&#34;&gt;4. References&lt;/h1&gt;
+&lt;p&gt;(&lt;a href=&#34;http://3ce3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;return to Contents&lt;/a&gt;)&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References:&lt;/h2&gt;
+&lt;p&gt;[1] L. Hobson, H. Cole, H. Hapke, &lt;a href=&#34;https://www.manning.com/books/natural-language-processing-in-action&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Natural Language Processing in Action&lt;/a&gt; (2019), &lt;a href=&#34;https://www.manning.com/books/natural-language-processing-in-action&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.manning.com/books/natural-language-processing-in-action&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2] Pedregosa &lt;em&gt;et al.,&lt;/em&gt; &lt;a href=&#34;http://jmlr.csail.mit.edu/papers/v12/pedregosa11a.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scikit-learn: Machine Learning in Python&lt;/a&gt; (2011), JMLR 12, pp. 2825–2830.&lt;/p&gt;
+&lt;p&gt;[3] &lt;a href=&#34;https://towardsdatascience.com/@yassine.hamdaoui?source=post_page-----6c2b61b78558----------------------&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hamdaoui&lt;/a&gt; Y, &lt;a href=&#34;https://medium.com/tf-term-frequency-idf-inverse-document-frequency-from-scratch-in-python-6c2b61b78558&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TF(Term Frequency)-IDF(Inverse Document Frequency) from scratch in python&lt;/a&gt; (2019), Towards Data Science&lt;/p&gt;
+&lt;p&gt;[4] Wikipedia contributers, &lt;a href=&#34;https://en.wikipedia.org/wiki/Singular_value_decomposition&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Singular Value Decomposition&lt;/a&gt;, &lt;a href=&#34;https://en.wikipedia.org/wiki/Singular_value_decomposition&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://en.wikipedia.org/wiki/Singular_value_decomposition&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Gently guiding the (machine) learner</title>
+      <link>/publication/active_ml/</link>
+      <pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/active_ml/</guid>
+      <description>&lt;p&gt;====================================&lt;/p&gt;
+&lt;h2 id=&#34;1-why-should-we-be-interested&#34;&gt;1. Why should we be interested?&lt;/h2&gt;
+&lt;p&gt;Often in Data Science and Machine Learning we are constrained by a lack of adequate labelled data. We have the tried-and-tested Supervised Learning (SL) algorithms, we have an idea of what type of task and output we would like to see, we can even imagine that glorious insight we&amp;rsquo;d gain from applying our Neural Nets and Decision Trees, BUT we just don&amp;rsquo;t have the (labelled) data.&lt;/p&gt;
+&lt;p&gt;Generating labelled data sets is time-consuming, expensive and ludicrously tedious. Imagine having to go through several hundred thousand photos and tag them with the number of pine trees they contain. You&amp;rsquo;d get bored very quickly. Now imagine if you had to read through hundreds of thousands of lines of text, labelling them with whether the sentence is in active or passive voice. On top of being bored, you&amp;rsquo;ll get sloppy at some point, so an additional labeller will probably be needed. The problem becomes worse for complex data points, such as long legal documents or health records. For any organisation trying to leverage its data, the cost of this (in terms of time, money and, frankly, morale!) will quickly ramp up! So instead of using SL, we can turn to a form of Semi-Supervised Learning, specifically, Active Machine Learning.
+2. What is Active Machine Learning?
+The purpose of Active ML is to supply the smallest necessary amount of labelled data to produce a robust learner while minimising human intervention. The human labelling is restricted to those cases where it has the maximum usefulness. Now some questions arise immediately from that statement:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How do you determine the &amp;ldquo;smallest necessary amount&amp;rdquo;?&lt;/li&gt;
+&lt;li&gt;Which data should go into that amount?&lt;/li&gt;
+&lt;li&gt;What are we defining as &amp;ldquo;usefulness&amp;rdquo;?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;ll delve deeper into those issues in section 3. Figure 1 shows the general steps in active ML. The green numbers represent our steps detailed below:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*WwBlS7WJ_C_VclDQXff4Og.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+Fig 1: general architecture of active machine learning&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The human expert only labels a subset of that data (say 10%; the individual steps are shown in green). This cuts down massively on labelling time. Let&amp;rsquo;s refer to this initial labelled data as the seed data.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We train our machine learner (which could be ANY type of algorithm suited to our task, be it regressor or classifier) JUST on the seed data.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The now trained learner generates predictions on the rest of the data set and provides a value of how confident it is for each of its predictions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The learner returns the predictions with the lowest confidence ratings to the human domain expert (kind of like a student going to a teacher with their homework saying &amp;ldquo;I wasn&amp;rsquo;t really sure how to do these…&amp;rdquo;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The human expert only labels these low-confidence data points.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally the additionally labelled data is fed into the labelled data set and, along with the seed data, is used to retrain our machine learner.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A lot of the problems arise in Step 1, where we select our seed data. Before addressing that, let&amp;rsquo;s go through an example.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*w14qLn3kiYD_I7KUq3Fu9w.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+Fig 2: a boundary case; the learner hasn&amp;rsquo;t quite figured out the features that make a &amp;ldquo;4&amp;rdquo; a &amp;ldquo;4&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Imagine you&amp;rsquo;re training a classifier on the MNIST handwritten digits dataset (a collection of pixelated images of single digit numbers from 0 to 9). Suppose that we lost all the labels for this data. We could just the then you would train your learner on a subsection of the data that was labelled. It is useful to think of the low-confidence data points as being highly discriminant - they are very good boundary cases that test your learner&amp;rsquo;s comprehension of the data. Then, when our learner makes predictions on the rest of the data, it will return us the predictions with the lowest confidence, as shown in&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*w14qLn3kiYD_I7KUq3Fu9w.jpeg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+Figure 2. A classifier might misidentify the number &amp;ldquo;4&amp;rdquo; as a &amp;ldquo;1&amp;rdquo;, but we can see why it would do so.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*yRkOQoLM2FpHL8vaJVb1RQ.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+Figure 3: I went with &amp;ldquo;7&amp;rdquo; but honestly your guess is as good as mine&lt;/p&gt;
+&lt;p&gt;In Figure 3 you can see an example of what this would look like in a Notebook (I used the standard example code for modAL, an Active Machine Learning library built to be compatible with Scikit-Learn).&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;3. What are the limitations?
+How do you determine the &amp;ldquo;smallest necessary amount&amp;rdquo;?
+Which data should go into that amount?
+What are we defining as &amp;ldquo;usefulness&amp;rdquo;?&lt;/p&gt;
+&lt;p&gt;This questions is domain- and data-specific. If you apply both standard supervised learning and AML to a dataset, as you increase the amount of initial labelled data supplied, your accuracy will increase in both cases. However, if the assumptions of AML are robust, then the accuracy curve will be steeper for the active learning process than for the standard supervised learning technique. In this case you should determine the relative costs of labelling more data and seeing what the uppermost limit on data labelling would be. There is no definitive answer (yet!) to this question, so empirically trying out the method on any previously labelled data sets to determine a cost-optimal threshold would be a good way to start.
+This is an area of active research: ideally you need to provide an initial data set that is significantly representative of your total data set. Any bias in your initial selection will have significant repercussions in the testing stage, which is a considerable drawback of active learning. A pseudo-random selection from the data (as I have done with the MNIST dataset above) seems promising, but does not guarantee representativeness.&lt;/p&gt;
+&lt;p&gt;How useful would this row of data be to our learner if it were labelled? Active learning involves the machine choosing which instances to send back to the human (teacher). There are a variety of ways our learner can be set up to choose the most useful data to have labelled, normally based on the learner&amp;rsquo;s confidence, e.g. least-confidence (querying about the instances which the learner is least confident of in its prediction); margin sampling (chooses instances where the classification margin is the narrowest); query-by-committee (a set of different models are trained on the data and the instances where the greatest disagreement occurs are deemed most useful).&lt;/p&gt;
+&lt;p&gt;There is still a lot unknown in AML, most significantly the fact that we often don&amp;rsquo;t know in advance if a particular dataset or type will benefit from this semi-supervised approach. Nevertheless, the literature survey [1] suggests that there are some areas of significant success, especially within Natural Language Processing (one example of AML being used successfully in Named-Entity-Recognition here).&lt;/p&gt;
+&lt;h2 id=&#34;4-references&#34;&gt;4. References&lt;/h2&gt;
+&lt;p&gt;[1] Olsson, Fredrik (2009) A literature survey of active machine learning in the context of natural language processing. [SICS Report]. Available at: &lt;a href=&#34;http://eprints.sics.se/3600/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://eprints.sics.se/3600/&lt;/a&gt; [accessed on 30.12.2019]&lt;/p&gt;
+&lt;p&gt;[2] Deep Learning Scaling is Predictable, Empirically; Hestness, J. et al, arXiv:1712.00409 [cs.LG].
+Active (Machine) Learning - Computerphile. &lt;a href=&#34;https://www.youtube.com/watch?v=ANIw1Mz1SRI&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.youtube.com/watch?v=ANIw1Mz1SRI&lt;/a&gt;. [accessed on: 30.12.2019]&lt;/p&gt;
+&lt;p&gt;[3] The code snippets were completed using modAL:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;@article{modAL2018,
+    title={mod{AL}: {A} modular active learning framework for {P}ython},
+    author={Tivadar Danka and Peter Horvath},
+    url={https://github.com/cosmic-cortex/modAL},
+    note={available on arXiv at \url{https://arxiv.org/abs/1805.00979}}
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
