@@ -19,7 +19,7 @@ publication:
 publication_short: In [*Towards Data Science*](https://towardsdatascience.com/)
 publication_types:
 # - "1"
-publishDate: "2017-01-01T00:00:00Z"
+publishDate: "2020-09-26T00:00:00Z"
 slides: 
 summary: I explain the intuition behind LDirA and go through a worked example of applying and visualizing it to a canonical NLP dataset.
 tags: ["NLProc", "Unsupervised Learning"]

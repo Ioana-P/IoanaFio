@@ -21,8 +21,8 @@ publication_types:
 # - "1"
 # publishDate: "2017-01-01T00:00:00Z"
 slides: 
-summary: Breaking down the first part of transformer language models - the self-attention mechanism.
-tags: ["NLProc", "Web-scraping"]
+summary: Extracting useful insights about the UK data science job market utilizing web-scraped data, NLP techniques and unsupervised learning in the form of topic modelling.
+tags: ["NLProc", "Web-scraping", "Unsupervised Learning", "Data-viz", "Statistics"]
 title: "What do UK employers want from a data scientist?"
 subtitle: "Analysing job post data from Indeed, can we make more evidence-informed career decisions?"
 url_code: ""

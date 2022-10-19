@@ -14,7 +14,7 @@ summary: Built a sentiment classifier using Pytorch and deployed using AWS Lambd
 tags: 
   - "Deep Learning"
   - "NLProc"
-  # - "Machine Learning"
+
   
 # cannot seem to add multiple tags - have tried newline, after comma, after semicolon
 title: Sentiment Analysis with Pytorch

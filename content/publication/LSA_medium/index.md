@@ -1,16 +1,16 @@
 ---
 abstract: 
-# TL;DR — [Latent Dirichlet Allocation](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) (LDA, sometimes LDirA/LDiA) is one of the most popular and interpretable generative models for finding **topics in text data**. I’ve provided an [example notebook](https://nbviewer.jupyter.org/github/Ioana-P/MLEng_vs_DScientist_analysis/blob/master/2_Topic_modelling.ipynb#topic=0&lambda=1&term=) based on web-scraped job description data. Although running LDA on a canonical dataset like [20Newsgroups](https://scikit-learn.org/0.19/modules/generated/sklearn.datasets.fetch_20newsgroups.html#sklearn.datasets.fetch_20newsgroups) would’ve provided [clearer topics](https://nbviewer.jupyter.org/github/bmabey/pyLDAvis/blob/master/notebooks/sklearn.ipynb) , it’s important to witness how difficult topic identification can be “in the wild”, and how you might not actually find clear topics — with unsupervised learning, you are _never guaranteed to find an answer!_
+# TL;DR — Text data suffers heavily from high-dimensionality. Latent Semantic Analysis (LSA) is a popular, dimensionality-reduction techniques that follows the same method as Singular Value Decomposition. LSA ultimately reformulates text data in terms of _r_ **latent**  (i.e. **hidden**) features, where _r_ is less than _m_, the number of terms in the data. I’ll explain the **conceptual** and **mathematical** intuition  and run a basic **implementation** in [Scikit-Learn](https://scikit-learn.org/stable/index.html) using the [20 newsgroups](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html) dataset.
 # author_notes:
 # - Equal contribution
 # - Equal contribution
 authors:
 - admin
-date: "2020-05-10T00:00:00Z"
+date: "2020-04-10T00:00:00Z"
 doi: ""
 featured: false
 image:
-  caption: 'Image credit: [****](https://miro.medium.com/max/1400/1*Xs1Xe1Hh4P6IGyWN8fImXw.jpeg)'
+  caption: 'Image credit: [****](https://miro.medium.com/max/720/1*1Sldip6QA_xwyyw7DI6SWw.jpeg)'
   focal_point: ""
   preview_only: true
 projects:
@@ -19,12 +19,11 @@ publication:
 publication_short: In [*Towards Data Science*](https://towardsdatascience.com/)
 publication_types:
 # - "1"
-publishDate: "2017-01-01T00:00:00Z"
+publishDate: "2020-04-10T00:00:00Z"
 slides: 
-summary: I explain the intuition behind Latent Semantic Analysis and implement it on sklearn's 20NewsGroups dataset.
+summary: I explain the intuition behind Latent Semantic Analysis (LSA) and go through a worked example of applying and visualizing it to a canonical NLP dataset.
 tags: ["NLProc", "Unsupervised Learning"]
 title: "Latent Semantic Analysis: intuition, math, implementation"
-subtitle: "How do we extract themes and topic from text using unsupervised learning"
 url_code: ""
 url_dataset: ""
 url_pdf: ""
@@ -34,6 +33,13 @@ url_slides: ""
 url_source: ""
 url_video: ""
 ---
+
+=========================================================
+
+## How do we extract themes and topic from text using unsupervised learning
+------------------------------------------------------------------------
+
+TL;DR — Text data suffers heavily from high-dimensionality. Latent Semantic Analysis (LSA) is a popular, dimensionality-reduction techniques that follows the same method as Singular Value Decomposition. LSA ultimately reformulates text data in terms of _r_ **latent**  (i.e. **hidden**) features, where _r_ is less than _m_, the number of terms in the data. I’ll explain the **conceptual** and **mathematical** intuition  and run a basic **implementation** in [Scikit-Learn](https://scikit-learn.org/stable/index.html) using the [20 newsgroups](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html) dataset.
 
 Language is more than the collection of words in front of you. When you read a text your mind conjures up images and notions. When you read many texts, themes begin to emerge, even if they’re never stated explicitly. Our innate ability to understand and process language defies an algorithmic expression (for the moment). LSA is one of the most popular Natural Language Processing (NLP) techniques for trying to determine themes within text mathematically. LSA is an unsupervised learning technique that rests on two pillars:
 
@@ -48,7 +54,7 @@ A note on terminology: generally when decomposition of this kind is done on text
 
 _This article assumes some understanding of basic NLP preprocessing and of word vectorisation (specifically_ [_tf-idf vectorisation_](https://medium.com/tf-term-frequency-idf-inverse-document-frequency-from-scratch-in-python-6c2b61b78558)_)._
 
-Contents:
+### Contents:
 ---------
 
 1.  [Intuition](#0c85): explanation with political news topics
@@ -63,15 +69,15 @@ Contents:
 
 In simple terms: LSA takes meaningful text documents and recreates them in _n_ different parts where each part expresses a different way of looking at meaning in the text. If you imagine the text data as a an idea, there would be _n_ different ways of _looking_ at that idea, or _n_ different ways of _conceptualising_ the whole text. LSA reduces our table of data to a table of latent (hidden_)_ concepts.
 
-![](https://miro.medium.com/max/1400/1*1Sldip6QA_xwyyw7DI6SWw.jpeg)Figure 1: formula and matrix dimensions for SVD
+![](https://miro.medium.com/max/720/1*1Sldip6QA_xwyyw7DI6SWw.jpeg)Figure 1: formula and matrix dimensions for SVD
 
 Suppose that we have some table of data, in this case text data, where each row is one document, and each column represents a term (which can be a word or a group of words, like “baker’s dozen” or “Downing Street”). This is the standard way to represent text data (in a _document-term matrix_, as shown in Figure 2). The numbers in the table reflect how important that word is in the document. If the number is zero then that word simply doesn’t appear in that document.
 
-![](https://miro.medium.com/max/1400/1*LuETpJGCTOaKAc8zyfjs4g.jpeg)Figure 2: Document Term matrix, after applying some sort of vectorisation, in our case TF-IDF (but Bag of Words would also do)
+![](https://miro.medium.com/max/720/1*LuETpJGCTOaKAc8zyfjs4g.jpeg)Figure 2: Document Term matrix, after applying some sort of vectorisation, in our case TF-IDF (but Bag of Words would also do)
 
 Different documents will be about different topics. Let’s say all the documents are **politics** articles and there are 3 topics: **foreign policy (F.P.), elections and reform**.
 
-![](https://miro.medium.com/max/1400/1*uPHKa66FY0XBnpMM2Kx-1w.jpeg)Figure 3: Document-Topic matrix (or Document- **Latent**\-Concept if you prefer)
+![](https://miro.medium.com/max/720/1*uPHKa66FY0XBnpMM2Kx-1w.jpeg)Figure 3: Document-Topic matrix (or Document- **Latent**\-Concept if you prefer)
 
 Let’s say that there are articles strongly belonging to each category, some that are in two and some that belong to all 3 categories. We could plot a table where each row is a different document (a news article) and each column is a different topic. In the cells we would have a different numbers that indicated how strongly that document belonged to the particular topic (see Figure 3).
 
@@ -79,19 +85,19 @@ Now if we shift our attention conceptually to the **topics** themselves, we shou
 
 If we’re looking at foreign policy, we might see terms like “Middle East”, “EU”, “embassies”. For elections it might be “ballot”, “candidates”, “party”; and for reform we might see “bill”, “amendment” or “corruption”. So, if we plotted these topics and these terms in a different table, where the rows are the terms, we would see scores plotted for each term according to which topic it most strongly belonged. Naturally there will be terms that feature in all three documents (“prime minister”, “Parliament”, “decision”) and these terms will have scores across all 3 columns that reflect how much they belong to either category — the higher the number, the greater its affiliation to that topic. So, our second table (Figure 4) consists of terms and topics.
 
-![](https://miro.medium.com/max/1400/1*b2T1vn1LLGWbCjat4tolGg.jpeg)Figure 4: Term — Topic matrix
+![](https://miro.medium.com/max/720/1*b2T1vn1LLGWbCjat4tolGg.jpeg)Figure 4: Term — Topic matrix
 
 Now the last component is a bit trickier to explain as a table. It’s actually a set of numbers, one for each of our topics. What do the numbers represent? They represent how much each of the topics _explains_ our data.
 
 How do they “explain” the data? Well, suppose that actually, “reform” wasn’t really a salient topic across our articles, and the majority of the articles fit in far more comfortably in the “foreign policy” and “elections”. Thus “reform” would get a really low number in this set, lower than the other two. An alternative is that maybe all three numbers are actually quite low and we actually should have had four or more topics — we find out later that a lot of our articles were actually concerned with economics! By sticking to just three topics we’ve been denying ourselves the chance to get a more detailed and precise look at our data. The technical name for this array of numbers is the “singular values”.
 
-![](https://miro.medium.com/max/1400/1*vQY75Vct3QJJoPQlDLisKg.jpeg)Figure 5: Singular values — what is the relative importance of our topics within our text?
+![](https://miro.medium.com/max/720/1*vQY75Vct3QJJoPQlDLisKg.jpeg)Figure 5: Singular values — what is the relative importance of our topics within our text?
 
 So that’s the intuition so far. You’ll notice that our two tables have one thing in common (the documents / articles) and all three of them have one thing in common — the topics, or some representation of them.
 
 Now let’s explain how this is a dimensionality reduction technique. It’s easier to see the merits if we specify a number of documents and topics. Suppose we had 100 articles and 10,000 different terms (just think of how many unique words there would be all those articles, from “amendment” to “zealous”!). In our original document-term matrix that’s 100 rows and 10,000 columns. When we start to break our data down into the 3 components, we can actually choose the number of topics — we could choose to have 10,000 different topics, if we genuinely thought that was reasonable. However, we could probably represent the data with far fewer topics, let’s say the 3 we originally talked about. That means that in our document-topic table, we’d slash about _99,997 columns_, and in our term-topic table, we’d do the same. The columns and rows we’re discarding from our tables are shown as hashed rectangles in Figure 6. M  is the original document-term table; _U_ is the document-topic table, 𝚺 (sigma) is the array of singular values and _V-transpose_ (the superscript T means that the original matrix T has been flipped along its diagonal) is the document-topic table, but flipped on its diagonal (I’ll explain why in the math section).
 
-![](https://miro.medium.com/max/1400/1*5najHCdleqnOpvZgJHB1kA.jpeg)Figure 6 — what’s hashed we discard
+![](https://miro.medium.com/max/720/1*5najHCdleqnOpvZgJHB1kA.jpeg)Figure 6 — what’s hashed we discard
 
 As for the set of numbers denoting topic importance, from a set of 10,000 numbers, each number getting smaller and smaller as it corresponds to a less important topic, we cut down to only 3 numbers, for our 3 remaining topics. This is why the Python implementation for LSA is called _Truncated_ SVD by the way: we’re cutting off part of our table, but we’ll get to the code later. It’s also worth noting that we don’t know what the 3 topics are in advance, we merely hypothesised that there would be 3 and, once we’ve gotten our components, we can explore them and see what the terms are.
 
@@ -117,7 +123,7 @@ What matters in understanding the math is not the algebraic algorithm by which e
 
 First of all, it’s important to consider first what a matrix actually is and what it can be thought of — a transformation of vector space. In the top left corner of Figure 7 we have two perpendicular vectors. If we have only two variables to start with then the feature space (the data that we’re looking at) can be plotted anywhere in this space that is described by these two **basis** vectors. Now moving to the right in our diagram, the matrix M is applied to this vector space and this transforms it into the new, transformed space in our top right corner. In the diagram below the geometric effect of M would be referred to as “shearing” the vector space; the two vectors _𝝈1_ and _𝝈2_ are actually our singular values plotted in this space.
 
-![](https://miro.medium.com/max/1400/1*wGflVq-hpWnmUto3thkR6g.png)Figure 7: Source: Wikipedia; [Singular Value Decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition); [link](https://commons.wikimedia.org/wiki/File:Singular-Value-Decomposition.svg#filelinks;); Author : Georg-Johann
+![](https://miro.medium.com/max/720/1*wGflVq-hpWnmUto3thkR6g.png)Figure 7: Source: Wikipedia; [Singular Value Decomposition](https://en.wikipedia.org/wiki/Singular_value_decomposition); [link](https://commons.wikimedia.org/wiki/File:Singular-Value-Decomposition.svg#filelinks;); Author : Georg-Johann
 
 Now, just like with geometric transformations of points that you may remember from school, we can reconsider this transformation _M_ as three separate transformations:
 
@@ -128,6 +134,8 @@ Now, just like with geometric transformations of points that you may remember fr
 I also recommend the excellent [Wikipedia entry on SVD](https://en.wikipedia.org/wiki/Singular_value_decomposition) as it has a particularly good explanation and GIF of the process.
 
 So, in other words, where _x_ is any column vector:
+
+![](formula_1.png)
 
 The transformation by M on x is the same as the three transformations on x by the matrices on the right
 
@@ -142,7 +150,7 @@ Decomposition of our data M into a weighted sum of separable matrices, _Ai_
 
 The matrices 𝐴𝑖 are said to be separable because they can be decomposed into the outer product of two vectors, weighted by the singular value 𝝈_i_. Calculating the outer product of two vectors with shapes (_m,_) and (_n,_) would give us a matrix with a shape (m,n). In other words, every possible product of any two numbers in the two vectors is computed and placed in the new matrix. The singular value not only weights the sum but orders it, since the values are arranged in descending order, so that the first singular value is always the highest one.
 
-![](https://miro.medium.com/max/1400/1*D8WG84Sg8zkOZl6olTK8ng.jpeg)Figure 8: our separable matrices. Note the ≅ sign is representing the fact that the decomposed set of 3 products only **approximates** our original matrix, it does not equal it exactly.
+![](https://miro.medium.com/max/720/1*D8WG84Sg8zkOZl6olTK8ng.jpeg)Figure 8: our separable matrices. Note the ≅ sign is representing the fact that the decomposed set of 3 products only **approximates** our original matrix, it does not equal it exactly.
 
 In Figure 8 you can see how you could visualise this. Previously we had the tall _U_, the square _Σ_ and the long 𝑉-_transpose_ matrices. Now you can picture taking the first vertical slice from _U_, weighting (multiplying) all its values by the first singular value and then, by doing an outer product with the first horizontal slice of 𝑉_\-transpose_, creating a new matrix with the dimensions of those slices. Then we add those products together and we get _M_. Or, if we don’t do the full sum but only complete it partially, we get the truncated version.
 
@@ -156,6 +164,8 @@ So, for our data:
 The values in 𝚺 represent how much each latent concept explains the variance in our data. When these are multiplied by the _u_ column vector for that latent concept, it will effectively weigh that vector.
 
 If we were to decompose this to 5 components, this would look something like this:
+
+![](formula_2.png)
 
 A sum of the outer product of our weighted document-concept vector and our term-concept vector
 
@@ -236,7 +246,9 @@ Now let’s visualise the singular values — is the barplot below showing us wh
 
 ```
 sns.barplot(x=list(range(len(Sigma))), y = Sigma)
-```![](https://miro.medium.com/max/1152/1*U6GCUrfJ1hfOwI7fBkzwNw.jpeg)Figure 9 — our singular values, representing how much each latent concept _explains the variance in the data_
+```
+
+![](https://miro.medium.com/max/640/1*U6GCUrfJ1hfOwI7fBkzwNw.jpeg)Figure 9 — our singular values, representing how much each latent concept _explains the variance in the data_
 
 Let’s explore our reduced data through the term-topic matrix, _V-tranpose._ TruncatedSVD will return it to as a numpy array of shape (num\_documents, num\_components), so we’ll turn it into a Pandas dataframe for ease of manipulation.
 
@@ -254,15 +266,17 @@ data = data.sort\_values(ascending=False)
 top\_10 = data\[:10\]  
 plt.title('Top terms along the axis of Latent concept 1')  
 fig = sns.barplot(x= top\_10.values, y=top\_10.index)
-```![](https://miro.medium.com/max/864/1*eBXrjYQF7Vao3pLSLGEHiA.jpeg)Figure 10: despite the seeming noise at least 3 terms here have a strong theme
+```
+![](https://miro.medium.com/max/640/1*eBXrjYQF7Vao3pLSLGEHiA.jpeg)Figure 10: despite the seeming noise at least 3 terms here have a strong theme
 
 These are the words that rank highly along our 2nd latent component. What about the words at the other end of this axis (see Fig 11)?
 
-![](https://miro.medium.com/max/864/1*2E2kZjCp4hUk-mVTrKj_-Q.jpeg)Figure 11: it was at this moment the author appreciated how useful lemming/stemming would’ve been
+![](https://miro.medium.com/max/640/1*2E2kZjCp4hUk-mVTrKj_-Q.jpeg)Figure 11: it was at this moment the author appreciated how useful lemming/stemming would’ve been
 
 You can make your own mind up about that this semantic divergence signifies. Adding more preprocessing steps would help us cleave through the noise that words like “say” and “said” are creating, but we’ll press on for now. Let’s do one more pair of visualisations for the 6th latent concept (Figures 12 and 13).
 
-![](https://miro.medium.com/max/864/1*sH66WI7jpF5eTiaLhUylgQ.jpeg)Figure 12![](https://miro.medium.com/max/864/1*J8wVB1n2hcrREesFjhxu_Q.jpeg)Figure 13: we see once again that technological terms feature strongly in this data
+![](https://miro.medium.com/max/640/1*sH66WI7jpF5eTiaLhUylgQ.jpeg)Figure 12
+![](https://miro.medium.com/max/640/1*J8wVB1n2hcrREesFjhxu_Q.jpeg)Figure 13: we see once again that technological terms feature strongly in this data
 
 At this point it’s up to us to infer some meaning from these plots. The negative end of concept 5’s axis seems to correlate very strongly with technological and scientific themes (‘space’, ‘science’, ‘computer’), but so does the positive end, albeit more focused on computer related terms (‘hard’, ‘drive’, ‘system’).
 
@@ -304,7 +318,7 @@ Accuracy of Logistic Regression on standard test data is : 0.37
 
 Accuracy has dropped greatly for both, but notice how small the gap between the models is! Our LSA model is able to capture about as much information from our test data as our standard model did, with less than half the dimensions! Since this is a multi-label classification it would be best to visualise this with a confusion matrix (Figure 14). Our results look significantly better when you consider the random classification probability given 20 news categories. If you’re not familiar with a confusion matrix, as a rule of thumb, we want to maximise the numbers down the diagonal and minimise them everywhere else.
 
-![](https://miro.medium.com/max/1400/1*I24_6q3dvnKNuLSw2Sth0Q.jpeg)Figure 14— [Confusion matrix](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html) for our test data (7532 documents). y-axis represents actual news categories, x-axis represents predicted news categories. The diagonal values are all the correctly classified documents.
+![](https://miro.medium.com/max/720/1*I24_6q3dvnKNuLSw2Sth0Q.jpeg)Figure 14— [Confusion matrix](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html) for our test data (7532 documents). y-axis represents actual news categories, x-axis represents predicted news categories. The diagonal values are all the correctly classified documents.
 
 And that concludes our implementation of LSA in Scikit-Learn. We’ve covered the intuition, mathematics and coding of this technique.
 

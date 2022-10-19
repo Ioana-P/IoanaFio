@@ -48,8 +48,10 @@ feature:
     icon: pedagogy
     icon_pack: custom
     name: Teaching
-  # - description:
-  #   icon: 
+  - description:
+    icon: data_viz
+    icon_pack: custom
+    name: Data visualization
     
 
 # Uncomment to use emoji icons.
