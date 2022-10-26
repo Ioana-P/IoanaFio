@@ -1,0 +1,32 @@
+---
+title: Are_you_privileged_or_a_!!!!_category
+author: Ioana Fiona Preoteasa
+date: '2022-10-25'
+slug: are-you-privileged-or-a-category
+categories: []
+tags:
+  - Data-viz
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2022-10-25T13:52:05+01:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+# "Are you privileged or are you a p0rn category?"
+##### - someone on the internet, some time
+
+
+
+
+##### Rough notes:
+
+- principled stance: this is a controversial topic, so I gave a great deal of thought to the ethical ramifications of doing and publishing this work. 
+- I had considered allowing for completely open search terms so people could conduct their own 'mini' research. However, an golden rule of thumb for the internet is: if you put something online, bad-faith actors will find someway of using it for nefarious purposes. Ergo, I have limited the RShiny dashboard to a set of simple, combinatorial inputs that only map to data that has already been retrieved. 
+- methodology: determine list of queries (start with two term queries, e.g. 'tall man', 'tall woman'... ) and feed each of them to the Google Custom Search API; retrieve JSON of results for 1 page, process all results to check a. if any pornographic results and b. if so, how many; go to next page and do the same; (if p results are found in any page <3, then carry on processing till page 3 so as to count); also store the total number of results for each query; repeat for each query, then building a long form table with each search results as a row and also another table (which will form the basis of our dashboard viz), where each query is a row, and we have features such as "nr pornographic results on page 1/2/3"; "pornographic_results_found_in_first_3_pages"; "If_none_in_first_3_how_many_pages_(to_100)
+

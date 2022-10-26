@@ -81,15 +81,15 @@ and, a slight outlier in some sense:
 
 If we take a look at the by-day total likes, re-tweets and responses, it's clear that 3rd Oct 2022, when Musk posted his poll on the war, was a bit of watershed in terms of twitter stats (note that the ones in the plot are scaled down for comparison's sake- he didn't just get under 5 responses!). This particular day certainly generated the most conversation (if we take number of responses as a proxy) and in generally most of his tweet stats increased somewhat in the period after. Apart from the one-day spike, it can hardly be said that the furore many felt as a result of the 3rd Oct twitter poll has manifested at the tweet meta-data level.
 
-![Stats for Musk's tweets over time](fig/ggplot_musk_all_total_tweets_feats.png)
+![Stats for Musk's tweets over time](fig/ggplot_musk_all_total_tweets_feats.jpg)
 
 If we compare *average* values before and after the poll went out (shown below with the box and jitter plot- each point represents one tweet), then we see barely any changes at all. The distribution of retweets and responses seems to be somewhat more skewed, but looking at it it's not even worth doing a statistical test. 
 
-![Stats for Musk's tweets before and after](EDA_twitter_sentiment_tracking/boxplot_before_and_after.png)
+![Stats for Musk's tweets before and after](fig/boxplot_before_and_after.jpeg)
 
 How about when we combine tweet stats with the topics, just for Elon Musk's tweets? Well, the heatmap below shows that there isn't much correlation between the probability scores of each of our main topics of interest and any of the three tweet features:
 
-![Correlation heatmap of main topics and tweet stats](EDA_twitter_sentiment_tracking/corr_heatmap.png)
+![Correlation heatmap of main topics and tweet stats](fig/corr_heatmap.jpeg)
 
 There are two correlations worth testing for here:
 
