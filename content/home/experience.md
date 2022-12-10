@@ -22,6 +22,14 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
+  - title: Data Scientist (full-time)
+    company: Foundry
+    company_url: 'https://foundryco.com/' 
+    location: Remote / London, UK
+    date_start: '2022-12-05'
+    # date_end: 'current role'
+    description: |2-
+        Helping to scale the company’s analytical capabilities and advising on the company’s overall data strategy. Performing data-driven analyses that drive operational and commercial uplift for Foundry’s business units. 
   - title: Consultant Data Analyst (freelance)
     company: Integrity Global
     company_url: 'https://www.integrityglobal.com/'
