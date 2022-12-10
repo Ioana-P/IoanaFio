@@ -81,20 +81,22 @@ and, a slight outlier in some sense:
 
 If we take a look at the by-day total likes, re-tweets and responses, it's clear that 3rd Oct 2022, when Musk posted his poll on the war, was a bit of watershed in terms of twitter stats (note that the ones in the plot are scaled down for comparison's sake- he didn't just get under 5 responses!). This particular day certainly generated the most conversation (if we take number of responses as a proxy) and in generally most of his tweet stats increased somewhat in the period after. Apart from the one-day spike, it can hardly be said that the furore many felt as a result of the 3rd Oct twitter poll has manifested at the tweet meta-data level.
 
-![Stats for Musk's tweets over time](fig/ggplot_musk_all_total_tweets_feats.png)
+![Stats for Musk's tweets over time](fig/ggplot_musk_all_total_tweets_feats.jpg)
 
 If we compare *average* values before and after the poll went out (shown below with the box and jitter plot- each point represents one tweet), then we see barely any changes at all. The distribution of retweets and responses seems to be somewhat more skewed, but looking at it it's not even worth doing a statistical test. 
 
-![Stats for Musk's tweets before and after](EDA_twitter_sentiment_tracking/boxplot_before_and_after.png)
+![Stats for Musk's tweets before and after](fig/boxplot_before_and_after.jpeg)
 
 How about when we combine tweet stats with the topics, just for Elon Musk's tweets? Well, the heatmap below shows that there isn't much correlation between the probability scores of each of our main topics of interest and any of the three tweet features:
 
-![Correlation heatmap of main topics and tweet stats](EDA_twitter_sentiment_tracking/corr_heatmap.png)
+![Correlation heatmap of main topics and tweet stats](fig/corr_heatmap.jpeg)
 
 There are two correlations worth testing for here:
 
 * nr of likes and tweets on SpaceX
 * nr of responses and tweets on Russia-Ukraine war
+
+We should check them for statistical significance. Of course, the data we're dealing with here is not normal, so it doesn't meet the usual requirements of Pearson correlation tests. This makes sense because some of the tweets are severe outliers in both dimensions of likes and responses. Using repeated, random sampling, we get normal random samples and test to see if the correlation of the samples is indeed significant. We're doing two tests, so we'll be diving our alpha by 2 to account for that. 
 
 Let's check them for statistical significance. 
 
@@ -108,18 +110,20 @@ Setting alpha = 0.05/(number of tests) = 0.025
 
 | H1: there is a statistically significant correlation between our determined* Elon Musk's tweets on SpaceX and the number of likes to these tweets. 
 
-Setting alpha = 0.05/(number of tests) = 0.025
+Setting alpha = 0.025
 
 *I'm referring to them as determined by us because these tweets were categorised via a semi-supervised method, and they are not a gold-standard dataset that has been hand-labelled. 
+
+The p-values for these two tests were 0.34 and 0.06 respectively. Therefore, we were unable to refute either of the null hypotheses. However, given the small amount of data, I still think it would be worth testing this again in the future, as I suspect a Type-II error. 
 
 ### Sentiment and Topics
 
 I was interested to see how different topics within this data in terms of the sentiment. To that end, I passed the tweets through a pre-trained sentiment classifier to infer whether they were positive or negative. Below I show how this varies over time for the Tweets directly mentioning Elon Musk:
 
-![Sentiment around Musk by topic](fig/ggplot_pct_tweets_by_topic_and_sentiment.png)
+![Sentiment around Musk by topic](fig/ggplot_pct_tweets_by_topic_and_sentiment.jpeg)
 
 It's important to note that the amount of tweets is hard to include in the graph and the y-axis reports on percentages by day. Prior to early autumn '22, the number of tweets mentioning Elon and concerned with the war was significantly lower. Note that although there is a trend line included, it wherever the green and red lines run tangentially to each other near 100% is to be ignored: those are days with very few datapoints and where the % sentiment per day flips between fully positive and fully negative easily. 
-I've tried to represent the number of tweets in the opacity/transparency of the points, however, that is skewed by the fact the outlier of negative tweets Musk received the around the time he released his poll. Nevertheless, at least within this limited subset of his audience, there appears to have been a clear rise in the proportion of negative tweets, especially around the theme of the war. However, this batch is not representative of course: partially for the reason stated earlier about how the data was collect but also because these topics do not cover the full range of sentiment around Musk. Consider the fact that there could easily have been someone tweeting "@elonmusk, please stay out of global affairs" and this would likely not have been categoriesed as part of the war-theme topic cluster. Therefore, we are very likely undercounting. Realistically, here are only looking at the subset of tweets that were in some way in Elon's extended network, that mentioned him and that mentioned terms directly relevant to the war, so that someone with no prior knowledge could have picked them up and said "yes, this Tweet has X opinion about Musk on this topic". Lastly, there is the possibility of tweets that mention Musk but without actually being focussed on him: e.g. someone making a negative statement about the war in general and @ Musk in it for different reasons. 
+I've tried to represent the number of tweets in the opacity/transparency of the points, however, that is skewed by the fact the outlier of negative tweets Musk received the around the time he released his poll. Nevertheless, at least within this limited subset of his audience, there appears to have been a clear rise in the proportion of negative tweets, especially around the theme of the war. However, this batch is not representative of course: partially for the reason stated earlier about how the data was collect but also because these topics do not cover the full range of sentiment around Musk. Consider the fact that there could easily have been someone tweeting "@elonmusk, please stay out of global affairs" and this would likely not have been categorised as part of the war-theme topic cluster. Therefore, we are very likely undercounting. Realistically, here are only looking at the subset of tweets that were in some way in Elon's extended network, that mentioned him and that mentioned terms directly relevant to the war, so that someone with no prior knowledge could have picked them up and said "yes, this Tweet has X opinion about Musk on this topic". Lastly, there is the possibility of tweets that mention Musk but without actually being focussed on him: e.g. someone making a negative statement about the war in general and @ Musk in it for different reasons. 
 
 Perhaps the opacity of the points should be a greater focus of attention: it would appear that attention flared up dramatically on Musk (for this segment of the data) and then died down again slowly, but maintained the tendency to be negative. 
 
